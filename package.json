@@ -1,0 +1,27 @@
+{
+  "name": "bookclub",
+  "version": "1.0.0",
+  "description": "Paige Boyer Ethan Jobmann",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpalazz/bookclub.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dpalazz/bookclub/issues"
+  },
+  "homepage": "https://github.com/dpalazz/bookclub#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.13.7",
+    "morgan": "^1.9.0",
+    "pretty-error": "^2.1.1"
+  }
+}
