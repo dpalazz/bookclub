@@ -20,9 +20,9 @@ db.on('disconnected', () => console.log('Mongo disconnected'));
 mongoose.Promise = global.Promise;
 
 // CONTROLLERS
-// const booksController = require('./controllers/books');
-// const usersController = require('./controllers/users');
-// const sessionsController = require('./controllers/sessions');
+const booksController = require('./controllers/books');
+const usersController = require('./controllers/users');
+const sessionsController = require('./controllers/sessions');
 
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: false }));
@@ -35,9 +35,9 @@ app.use(session({
   saveUninitialized: false,
   maxAge: 2592000000
 }));
-// app.use('/books', booksController);
-// app.use('/users', usersController);
-// app.use('/sessions', sessionsController);
+app.use('/books', booksController);
+app.use('/users', usersController);
+app.use('/sessions', sessionsController);
 
 app.get('/', (req, res) => {
   res.send('working');
