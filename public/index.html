@@ -10,7 +10,8 @@
   </head>
   <body ng-controller='MainController as ctrl'>
     <div ng-repeat="book in ctrl.books">
-      {{book.id}}
+      <h4>{{book.volumeInfo.title}}</h4>
+      <img ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
     </div>
 
   </body>
