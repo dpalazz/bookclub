@@ -14,8 +14,8 @@ app.controller('MainController', ['$http', function($http) {
       method: 'GET'
     })
     .then(response => {
-          console.log(response.data);
-          this.books = response.data;
+          console.log(response.data.items);
+          this.books = response.data.items;
         },
         error => {
           console.log(error.message);
