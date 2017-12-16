@@ -8,7 +8,6 @@ app.controller('MainController', ['$http', function($http) {
   this.author = 'Anita+Shreve';
 
   this.getBooks = () => {
-    console.log(key);
 
     $http({
       url: this.url + this.author + '&key=' + key,
