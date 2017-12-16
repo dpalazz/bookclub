@@ -11,6 +11,31 @@
     <base href="/" target="_blank">
   </head>
   <body>
+    <div class="header">
+      <div class="nav">
+        <nav>
+          <div>
+            Login
+          </div>
+          <div>
+            Search
+            <input type="text" ng-model="searchBox">
+          </div>
+        </nav>
+      </div>
+      <div class="inner-header">
+        <div class="title-images">
+          <img src="./assets/anthony-tran-378336.jpg">
+          <img src="./assets/amirreza-fardad-426198.jpg">
+          <img src="./assets/clay-banks-258326.jpg">
+        </div>
+        <div class="title">
+          <h3>There's no shame in a little</h3>
+          <h1>Shelf Help</h1>
+        </div>
+      </div>
+    </div>
+
     <div ng-controller='MainController as ctrl'>
       <div ng-repeat="book in ctrl.books">
         <h4>{{book.volumeInfo.title}}</h4>
@@ -22,5 +47,9 @@
       </div>
 
     <main ng-view></main>
+
+    <div class="footer">
+    </div>
+
   </body>
 </html>
