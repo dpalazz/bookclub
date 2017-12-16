@@ -5,11 +5,15 @@
     <title></title>
     <link rel="stylesheet" href="/css/main.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-    <script type='text/javascript' src='config.js'></script>
+    <script type='text/javascript' src='/js/config.js'></script>
     <script type="text/javascript" src="/js/app.js"></script>
   </head>
   <body ng-controller='MainController as ctrl'>
     {{2+2}}
+
+    <div ng-repeat="book in ctrl.books">
+      {{book.id}}
+    </div>
 
   </body>
 </html>
