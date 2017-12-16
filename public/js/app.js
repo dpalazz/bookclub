@@ -1,6 +1,25 @@
-const app = angular.module('Shelf_Help', []);
+const app = angular.module('Shelf_Help', ['ngRoute']);
 
 const key = config.key;
+
+app.controller('ExpandedBooksController', function() {
+  this.num = '000';
+});
+
+// app.controller('BookDisplayController', function() {
+//   // this.books = '000';
+//
+// });
+
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+  $locationProvider.html5Mode({enabled: true});
+
+  $routeProvider.when('/expandedbooks', {
+    templateUrl: 'expanded.html',
+    controller: 'ExpandedBooksController',
+    controllerAs: 'ctrl'
+  });
+}]);
 
 app.controller('MainController', ['$http', function($http) {
 
@@ -25,9 +44,4 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   this.getBooks();
-
-
-
-
-
 }]);
