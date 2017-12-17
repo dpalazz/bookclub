@@ -13,23 +13,19 @@ app.controller('ExpandedBooksController', ['$http', function($http) {
       method: 'GET'
     })
     .then(response => {
-          console.log(response.data.items);
-          this.books = response.data.items;
-        },
-        error => {
-          console.log(error.message);
-        }
-      )
-    .catch(err => console.log(err))
-  }
+      console.log(response.data.items);
+      this.books = response.data.items;
+    },
+    error => {
+      console.log(error.message);
+    }
+  )
+  .catch(err => console.log(err))
+}
 
-  this.getBooks();
+this.getBooks();
 }]);
 
-// app.controller('BookDisplayController', function() {
-//   // this.books = '000';
-//
-// });
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode({enabled: true});
@@ -53,15 +49,15 @@ app.controller('MainController', ['$http', function($http) {
       method: 'GET'
     })
     .then(response => {
-          console.log(response.data.items);
-          this.books = response.data.items;
-        },
-        error => {
-          console.log(error.message);
-        }
-      )
-    .catch(err => console.log(err))
-  }
+      console.log(response.data.items);
+      this.books = response.data.items;
+    },
+    error => {
+      console.log(error.message);
+    }
+  )
+  .catch(err => console.log(err))
+}
 
-  this.getBooks();
+this.getBooks();
 }]);
