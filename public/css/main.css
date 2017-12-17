@@ -93,6 +93,7 @@ nav {
 /* main content ----------------- */
 main {
   color: #33332e;
+  padding-bottom: 0px;
 }
 
 .index-line {
