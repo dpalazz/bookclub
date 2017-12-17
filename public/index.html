@@ -57,17 +57,34 @@
 
     <main ng-view></main>
 
-    <div class="index-links">
+    <div ng-controller="ExpanderCollapserController as ctrl" class="expand-collapse">
 
-      <div class="expander">
-        <a href="/expandedbooks">
-          <div class="triangle-down">
-            <!-- <h3>show more</h3> -->
-          </div>
-          <h3>show more</h3>
-        </a>
+      <div class="collapse"
+      ng-click="ctrl.expanded = false"
+      ng-class="(ctrl.expanded ? '' : 'hidden')">
+        <div class="collapser">
+          <a href="/">
+            <div class="triangle-up">
+            </div>
+            <h3>show less</h3>
+          </a>
+        </div>
       </div>
 
+      <div class="expand"
+      ng-click="ctrl.expanded = true"
+      ng-class="(ctrl.expanded ? 'hidden' : '')">
+        <div class="expander">
+          <a href="/expandedbooks">
+            <div class="triangle-down">
+            </div>
+            <h3>show more</h3>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="index-links">
     </div>
 
     <div class="footer">

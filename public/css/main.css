@@ -173,21 +173,40 @@ main {
 }
 
 
-/* index links ------------------ */
-.index-links {
+/* expander/collapser ----------- */
+.expand-collapse {
   width: 100%;
   color: #fafaed;
-  height: 500px;
+  height: 100px;
   margin: 0;
+}
+
+.expand {
   border-top: 1px solid #33332e;
 }
 
-.expander, .collapser {
+.collapse {
+  border-bottom: 1px solid #33332e;
+}
+
+.expander {
   margin: auto;
   width: 200px;
   height: 100px;
   position: relative;
-  z-index: 0;
+  z-index: 1;
+}
+
+.collapser {
+  margin: auto;
+  width: 200px;
+  height: 100px;
+  position: relative;
+  z-index: 4;
+}
+
+.hidden {
+  display: none;
 }
 
 .expander a, .collapser a {
@@ -203,7 +222,7 @@ main {
   border-right: 100px solid transparent;
   border-top: 100px solid #33332e;
   position: relative;
-  z-index: 5;
+  z-index: 2;
 }
 
 .triangle-down:hover, .triangle-up:hover {
@@ -213,7 +232,7 @@ main {
 .expander h3 {
   color: #fafaed;
   position: absolute;
-  z-index: 10;
+  z-index: 3;
   top: 0px;
   width: 100%;
   text-align: center;
@@ -236,8 +255,17 @@ main {
 .collapser h3 {
   color: #fafaed;
   position: absolute;
-  z-index: 10;
+  z-index: 6;
   bottom: 0px;
   width: 100%;
   text-align: center;
+}
+
+
+/* index links ------------------ */
+.index-links {
+  width: 100%;
+  color: #fafaed;
+  height: 500px;
+  margin: 0;
 }
