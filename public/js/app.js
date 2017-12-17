@@ -24,6 +24,7 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   this.getBook = (book) => {
+    this.book = null;
     this.book = book;
     console.log(this.book);
   }
