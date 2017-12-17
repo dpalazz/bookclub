@@ -39,16 +39,28 @@
     <main ng-controller='MainController as ctrl'>
       <h3 class="index-line">Popular on Shelf Help</h3>
       <div class="book-index">
-        <div class="book-card" ng-repeat="book in ctrl.books">
+
+        <div class="book-show">
+          <img ng-src={{ctrl.book.volumeInfo.imageLinks.thumbnail}}>
+          <div>
+            <h4>{{ctrl.book.volumeInfo.title}}</h4>
+            <h5>
+              <h5 class="by">by</h5>
+              {{ctrl.book.volumeInfo.authors[0]}}
+            </h5>
+            <h5 ng-if="ctrl.book.volumeInfo.authors.length >= 1">, ...</h5>
+            <p>
+              {{ctrl.book.volumeInfo.description}}
+            </p>
+          </div>
+        </div>
+
+        <div class="book-card" ng-repeat="book in ctrl.books | limitTo:4">
           <div class="img-like">
-            <a href="/showbook">
-              <img  ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
-            </a>
+            <img ng-click="ctrl.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
             <h2>+</h2>
           </div>
-          <a href="/showbook">
-            <h4>{{book.volumeInfo.title}}</h4>
-          </a>
+          <h4>{{book.volumeInfo.title}}</h4>
           <div class="author">
             <h5 class="by">by</h5>
             <h5> {{book.volumeInfo.authors[0]}}</h5>

@@ -2,33 +2,10 @@ const app = angular.module('Shelf_Help', ['ngRoute']);
 const key = config.key;
 
 // controllers
-app.controller('ShowBookController', ['$http', function($http) {
-  this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=1&startIndex=2&printType=books&q=';
-  this.author = 'Steve';
-
-  this.getBook = () => {
-    $http({
-      url: this.url + this.author + '&key=' + key,
-      method: 'GET'
-    })
-    .then(response => {
-          console.log(response.data.items);
-          this.book = response.data.items;
-        },
-        error => {
-          console.log(error.message);
-        }
-      )
-    .catch(err => console.log(err))
-  }
-
-  this.getBook();
-}]);
-
-
 app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   this.author = 'Steve';
+  this.book = null;
 
   this.getBooks = () => {
     $http({
@@ -44,6 +21,11 @@ app.controller('MainController', ['$http', function($http) {
         }
       )
     .catch(err => console.log(err))
+  }
+
+  this.getBook = (book) => {
+    this.book = book;
+    console.log(this.book);
   }
 
   this.getBooks();
