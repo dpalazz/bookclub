@@ -58,7 +58,7 @@
     <main ng-view></main>
 
     <div ng-controller="ExpanderCollapserController as ctrl" class="expand-collapse">
-      <div class="expander">
+      <div ng-click="ctrl.expanded = true" class="expander" ng-class="(ctrl.expanded ? 'hidden' : '')">
         <a href="/expandedbooks">
           <div class="triangle-down">
           </div>
@@ -66,7 +66,7 @@
         </a>
       </div>
 
-      <div class="collapser">
+      <div ng-click="ctrl.expanded = false" class="collapser" ng-class="(ctrl.expanded ? '' : 'hidden')">
         <a href="/">
           <div class="triangle-up">
           </div>

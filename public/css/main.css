@@ -191,7 +191,7 @@ main {
 }
 
 .hidden {
-  visibility: hidden;
+  visibility: collapse;
 }
 
 .expander a, .collapser a {
