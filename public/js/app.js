@@ -25,7 +25,9 @@ app.controller('MainController', ['$http', function($http) {
   this.getBooks();
 }]);
 
-
+app.controller('ExpanderCollapserController', function() {
+  this.expanded = false;
+})
 
 
 app.controller('ExpandedBooksController', ['$http', function($http) {

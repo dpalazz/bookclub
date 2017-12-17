@@ -57,7 +57,7 @@
 
     <main ng-view></main>
 
-    <div class="expand-collapse">
+    <div ng-controller="ExpanderCollapserController as ctrl" class="expand-collapse">
       <div class="expander">
         <a href="/expandedbooks">
           <div class="triangle-down">
@@ -65,6 +65,15 @@
           <h3>show more</h3>
         </a>
       </div>
+
+      <div class="collapser">
+        <a href="/">
+          <div class="triangle-up">
+          </div>
+          <h3>show less</h3>
+        </a>
+      </div>
+
     </div>
 
     <div class="index-links">

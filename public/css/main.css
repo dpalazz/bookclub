@@ -190,6 +190,10 @@ main {
   z-index: 0;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .expander a, .collapser a {
   text-decoration: none;
 }
