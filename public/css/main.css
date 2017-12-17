@@ -131,7 +131,7 @@ main {
   align-items: flex-start;
 }
 
-.img-like > img {
+.img-like img {
   width: 128px;
   height: 184px;
   margin-bottom: 10px;
@@ -145,7 +145,17 @@ main {
   margin: 0;
 }
 
-.book-card > h4 {
+.book-card a {
+  color: #33332e;
+  text-decoration: none;
+}
+
+.book-card a:hover {
+  color: #33332e;
+  text-decoration: underline;
+}
+
+.book-card h4 {
   font-size: 18px;
   padding: 5px 0;
   margin: 0 25px;

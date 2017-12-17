@@ -2,6 +2,30 @@ const app = angular.module('Shelf_Help', ['ngRoute']);
 const key = config.key;
 
 // controllers
+app.controller('ShowBookController', ['$http', function($http) {
+  this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=1&startIndex=2&printType=books&q=';
+  this.author = 'Steve';
+
+  this.getBook = () => {
+    $http({
+      url: this.url + this.author + '&key=' + key,
+      method: 'GET'
+    })
+    .then(response => {
+          console.log(response.data.items);
+          this.book = response.data.items;
+        },
+        error => {
+          console.log(error.message);
+        }
+      )
+    .catch(err => console.log(err))
+  }
+
+  this.getBook();
+}]);
+
+
 app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   this.author = 'Steve';
@@ -24,6 +48,7 @@ app.controller('MainController', ['$http', function($http) {
 
   this.getBooks();
 }]);
+
 
 app.controller('ExpanderCollapserController', function() {
   this.expanded = false;
@@ -65,4 +90,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'ExpandedBooksController',
     controllerAs: 'ctrl'
   });
+
+  $routeProvider.when('/showbook', {
+    templateUrl: 'showbook.html',
+    controller: 'ShowBookController',
+    controllerAs: 'ctrl'
+  });
+
 }]);
