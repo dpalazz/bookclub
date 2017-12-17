@@ -40,19 +40,22 @@
       <h3 class="index-line">Popular on Shelf Help</h3>
       <div class="book-index">
 
-        <div class="book-show" ng-class="(ctrl.book? 'show' : '')">
-          <img ng-src={{ctrl.book.volumeInfo.imageLinks.thumbnail}}>
-          <div class="show-text">
-            <h4>{{ctrl.book.volumeInfo.title}}</h4>
-            <div>
-              <h5 class="by">by</h5>
-              <h5 ng-repeat="author in ctrl.book.volumeInfo.authors">
-                {{author}}
-              </h5>
+        <div class="book-show-section" ng-class="(ctrl.book? 'show' : '')">
+          <div class='close' ng-click="ctrl.book = null">x</div>
+          <div class="book-show" >
+            <img ng-src={{ctrl.book.volumeInfo.imageLinks.thumbnail}}>
+            <div class="show-text">
+              <h4>{{ctrl.book.volumeInfo.title}}</h4>
+              <div>
+                <h5 class="by">by</h5>
+                <h5 ng-repeat="author in ctrl.book.volumeInfo.authors">
+                  {{author}}
+                </h5>
+              </div>
+              <p>
+                {{ctrl.book.volumeInfo.description}}
+              </p>
             </div>
-            <p>
-              {{ctrl.book.volumeInfo.description}}
-            </p>
           </div>
         </div>
 

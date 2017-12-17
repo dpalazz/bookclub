@@ -93,13 +93,24 @@ nav {
 
 
 /* show book -------------------- */
-.book-show {
-  width: 1150px;
-  margin: 30px 0;
+.book-show-section {
   display: none;
   border-top: 1px solid #33332e;
   border-bottom: 1px solid #33332e;
+  width: 1150px;
+  margin: 30px 0;
   padding: 30px 100px;
+}
+
+.close {
+  text-align: right;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.book-show {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
@@ -134,7 +145,7 @@ nav {
 
 .show {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 
