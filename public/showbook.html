@@ -1,0 +1,14 @@
+<div class="book-index">
+  <div class="book-card" ng-repeat="singleBook in ctrl.book">
+    <div class="img-like">
+      <img  ng-src={{singleBook.volumeInfo.imageLinks.smallThumbnail}}>
+      <!-- <h2>+</h2> -->
+    </div>
+    <h4>{{singleBook.volumeInfo.title}}</h4>
+    <div class="author">
+      <h5 class="by">by</h5>
+      <h5> {{singleBook.volumeInfo.authors[0]}}</h5>
+      <h5 ng-if="singleBook.volumeInfo.authors.length >= 1">, ...</h5>
+    </div>
+  </div>
+</div>

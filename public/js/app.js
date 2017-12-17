@@ -5,6 +5,7 @@ const key = config.key;
 app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   this.author = 'Steve';
+  this.book = null;
 
   this.getBooks = () => {
     $http({
@@ -22,8 +23,15 @@ app.controller('MainController', ['$http', function($http) {
     .catch(err => console.log(err))
   }
 
+  this.getBook = (book) => {
+    this.book = null;
+    this.book = book;
+    console.log(this.book);
+  }
+
   this.getBooks();
 }]);
+
 
 app.controller('ExpanderCollapserController', function() {
   this.expanded = false;
@@ -65,4 +73,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'ExpandedBooksController',
     controllerAs: 'ctrl'
   });
+
+  $routeProvider.when('/showbook', {
+    templateUrl: 'showbook.html',
+    controller: 'ShowBookController',
+    controllerAs: 'ctrl'
+  });
+
 }]);
