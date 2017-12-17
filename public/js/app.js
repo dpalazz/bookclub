@@ -23,8 +23,8 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 app.controller('MainController', ['$http', function($http) {
 
-  this.url = 'https://www.googleapis.com/books/v1/volumes?q=';
-  this.author = 'Anita+Shreve';
+  this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
+  this.author = 'Steve';
 
   this.getBooks = () => {
 
@@ -44,4 +44,4 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   this.getBooks();
-}]);   
+}]);
