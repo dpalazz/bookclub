@@ -36,7 +36,8 @@
       </div>
     </div>
 
-    <div ng-controller='MainController as ctrl'>
+    <main ng-controller='MainController as ctrl'>
+      <h3 class="index-line">Popular on Shelf Help</h3>
       <div class="book-index">
         <div class="book-card" ng-repeat="book in ctrl.books">
           <div class="img-like">
@@ -51,12 +52,23 @@
           </div>
         </div>
       </div>
-    </div>
-    <div>
-      <a href="/expandedbooks">Expand</a>
-    </div>
+    </main>
+
 
     <main ng-view></main>
+
+    <div class="index-links">
+
+      <div class="expander">
+        <a href="/expandedbooks">
+          <div class="triangle">
+            <!-- <h3>show more</h3> -->
+          </div>
+          <h3>show more</h3>
+        </a>
+      </div>
+
+    </div>
 
     <div class="footer">
     </div>
