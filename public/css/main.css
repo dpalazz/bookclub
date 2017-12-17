@@ -173,13 +173,13 @@ main {
 }
 
 
-/* index links ------------------ */
-.index-links {
+/* expander/collapser ----------- */
+.expand-collapse {
   width: 100%;
   color: #fafaed;
-  height: 500px;
+  height: 100px;
   margin: 0;
-  border-top: 1px solid #33332e;
+  border: 1px solid #33332e;
 }
 
 .expander, .collapser {
@@ -240,4 +240,13 @@ main {
   bottom: 0px;
   width: 100%;
   text-align: center;
+}
+
+
+/* index links ------------------ */
+.index-links {
+  width: 100%;
+  color: #fafaed;
+  height: 500px;
+  margin: 0;
 }
