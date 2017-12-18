@@ -8,7 +8,7 @@ const Book    = require('../models/books.js');
 // REGISTER FORM ROUTE FOR SESSION
 // ===============================
 router.get('/register', async (req, res) => {
-  res.render('register.html');
+  res.render('./public/register.html');
 })
 // ===============================
 // REGISTER POST ROUTE FOR SESSION
