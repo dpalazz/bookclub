@@ -40,7 +40,6 @@
     <main >
       <h3 class="index-line">Popular on Shelf Help</h3>
       <div ng-controller='MainController as ctrl1' class="book-index">
-        <div ng-include="partials/register.html"></div>
         <div class="book-show-section" ng-class="(ctrl1.book? 'show' : '')">
           <div class='close' ng-click="ctrl1.book = null">x</div>
           <div class="book-show" >
