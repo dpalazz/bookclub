@@ -6,7 +6,7 @@ const key = config.key;
 // ===========
 app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
-  this.author = 'Steve';
+  this.author = 'Stephen+King';
   this.book = null;
   this.getBooks = () => {
     $http({
@@ -29,6 +29,18 @@ app.controller('MainController', ['$http', function($http) {
     console.log(this.book);
   }
   this.getBooks();
+
+  this.deleteBook = (id) => {
+    $http({
+      url: '/delete/' + id,
+      method: 'DELETE',
+      data: id
+    }).then((data) => {
+      this.getBooks();
+    }, ( error ) => {
+      console.log(error);
+    });
+  }
 }]);
 
 app.controller('ExpanderCollapserController', function() {
@@ -37,7 +49,9 @@ app.controller('ExpanderCollapserController', function() {
 
 app.controller('ExpandedBooksController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=12&startIndex=8&printType=books&q=';
-  this.author = 'Steve';
+
+  this.author = 'Stephen+King';
+
   this.getBooks = () => {
     $http({
       url: this.url + this.author + '&key=' + key,
@@ -52,6 +66,11 @@ app.controller('ExpandedBooksController', ['$http', function($http) {
     }
   )
   .catch(err => console.log(err))
+}
+this.getBook = (book) => {
+  this.book = null;
+  this.book = book;
+  console.log(this.book);
 }
 this.getBooks();
 }]);
