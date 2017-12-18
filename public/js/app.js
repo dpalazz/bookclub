@@ -67,6 +67,11 @@ app.controller('ExpandedBooksController', ['$http', function($http) {
   )
   .catch(err => console.log(err))
 }
+this.getBook = (book) => {
+  this.book = null;
+  this.book = book;
+  console.log(this.book);
+}
 this.getBooks();
 }]);
 
