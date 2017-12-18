@@ -4,7 +4,7 @@ const key = config.key;
 // controllers
 app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
-  this.author = 'Steve';
+  this.author = 'Stephen+King';
   this.book = null;
 
   this.getBooks = () => {
@@ -30,6 +30,18 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   this.getBooks();
+
+  this.deleteBook = (id) => {
+    $http({
+      url: '/delete/' + id,
+      method: 'DELETE',
+      data: id
+    }).then((data) => {
+      this.getBooks();
+    }, ( error ) => {
+      console.log(error);
+    });
+  }
 }]);
 
 
@@ -40,7 +52,7 @@ app.controller('ExpanderCollapserController', function() {
 
 app.controller('ExpandedBooksController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=12&startIndex=8&printType=books&q=';
-  this.author = 'Steve';
+  this.author = 'Stephen+King';
 
   this.getBooks = () => {
     $http({
