@@ -148,7 +148,21 @@
         <div class="my-shelf" ng-repeat="book in ctrl.userBooks">
 
           <div class="my-shelf-section">
-            {{book.title}}
+            <div class="book-show">
+              <img ng-src={{book.img}}>
+              <div class="show-text">
+                <h4>{{book.title}}</h4>
+                <div>
+                  <h5 class="by">by</h5>
+                  <h5 ng-repeat="author in book.authors">
+                    {{author}}
+                  </h5>
+                </div>
+                <p>
+                  {{book.description}}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
