@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema({
   password: {type: String, required: true}
 });
 
-// Middleware to hash user's password
+// ** TO HASH PASSWORD OF USER TRYING TO LOGIN
 userSchema.pre('save', function(next){
   if (this.isModified('password')) {
     const hashedPassword = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
@@ -16,7 +16,7 @@ userSchema.pre('save', function(next){
   next();
 })
 
-// Compares 'stored' password with entered pasword to authenticate
+// ** TO AUTHENTICATE USER TRYING TO LOGIN
 userSchema.methods.authenticate = function(password) {
   return bcrypt.compareSync(password, this.password);
 }
