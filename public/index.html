@@ -39,7 +39,7 @@
     </div>
 
     <main >
-      <h3 class="index-line">Popular on Shelf Help</h3>
+      <div class="index-line"><h3>popular on Shelf Help</h3></div>
       <div ng-controller='MainController as ctrl1' class="book-index">
         <div class="book-show-section" ng-class="(ctrl1.book? 'show' : '')">
           <div class='close' ng-click="ctrl1.book = null">x</div>
@@ -144,23 +144,26 @@
     <main>
       <div ng-controller="UserShelfController as ctrl" class="book-index">
 
-        <h2 class="index-line">My Shelf</h2>
+        <div class="index-line"><h3>my Shelf | <a href="#">add books</a></h3></div>
         <div class="my-shelf" ng-repeat="book in ctrl.userBooks">
 
           <div class="my-shelf-section">
             <div class="book-show">
               <img ng-src={{book.img}}>
               <div class="show-text">
-                <h4>{{book.title}}</h4>
                 <div>
+                  <h4>{{book.title}}</h4>
                   <h5 class="by">by</h5>
                   <h5 ng-repeat="author in book.authors">
                     {{author}}
                   </h5>
                 </div>
+                <h5>Published: {{book.publishedDate}}</h5>
+                <h5>{{book.categories[0]}}</h5>
                 <p>
                   {{book.description}}
                 </p>
+                <h5>PageCount: {{book.pageCount}}</h5>
               </div>
             </div>
           </div>
