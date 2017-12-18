@@ -182,7 +182,7 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   /*padding-top: 30px;*/
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 .book-card {

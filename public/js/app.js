@@ -97,17 +97,51 @@ app.controller('RegisterController', ['$http', function($http) {
 
 // user's shelf
 app.controller('UserShelfController', ['$http', function($http) {
+  this.url = "https://www.googleapis.com/books/v1/volumes/";
+  this.userBooks = [];
+  this.book = {};
+
+  this.getBook = (bookId) => {
+    $http({
+      url: this.url + bookId+ '?key=' + key,
+      method: 'GET'
+    }).then(response => {
+      this.book.title = response.data.volumeInfo.title;
+      this.book.authors = response.data.volumeInfo.authors;
+      this.book.img = response.data.volumeInfo.imageLinks.thumbnail;
+      this.book.description = response.data.volumeInfo.description;
+      this.book.categories = response.data.volumeInfo.categories;
+      this.book.pageCount = response.data.volumeInfo.pageCount;
+      this.book.publishedDate = response.data.volumeInfo.publishedDate;
+      console.log(this.book);
+      this.userBooks.push(this.book);
+      this.book = {};
+    }, error => {
+      console.error(error)
+    }).catch(err => console.log(err))
+  }
+
   this.getUser = (id) => {
     $http({
       url: '/users/' + id,
       method: 'GET'
     }).then(response => {
-      console.log(response.data);
       this.user = response.data.user;
       console.log(this.user);
+
+
+      for (let i = 0; i < this.user.bookCollection.length; i++) {
+        console.log(this.user.bookCollection[i]);
+        this.getBook(this.user.bookCollection[i]);
+        console.log(this.book);
+        console.log(this.userBooks);
+      }
+      console.log(this.userBooks);
     }, error => {
       console.error(error);
     }).catch(err => console.log(err))
+
+
   }
 
   this.getUser('5a38037b6c03034b8c7e5ac3');

@@ -144,11 +144,11 @@
     <main>
       <div ng-controller="UserShelfController as ctrl" class="book-index">
 
-        <h2>My Shelf</h2>
-        <div class="my-shelf" ng-repeat="book in ctrl.user.bookCollection">
+        <h2 class="index-line">My Shelf</h2>
+        <div class="my-shelf" ng-repeat="book in ctrl.userBooks">
 
           <div class="my-shelf-section">
-            {{book}}
+            {{book.title}}
           </div>
         </div>
       </div>
