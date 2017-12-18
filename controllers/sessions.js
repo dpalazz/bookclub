@@ -39,12 +39,11 @@ router.post('/register', async (req, res) => {
 // =======================
 router.post('/login', async (req, res) => {
   const loggedUser = await User.findOne({username: req.body.username});
-  const loggedUsersBooks = await Books.findOne({username: loggedUser._id});
   try {
     // ** TO AUTHENTICATE USER TRYING TO LOGIN
     if (loggedUser.authenticate(req.body.password)) {
       req.session.user = loggedUser;
-      res.status(200).json({loggedUser, loggedUsersBooks});
+      res.status(200).json({loggedUser});
     } else {
       res.status(403).json({err: 'Forbidden.'});
     }

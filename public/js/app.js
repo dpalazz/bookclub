@@ -114,4 +114,5 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'RegisterController',
     controllerAs: 'ctrl'
   });
+
 }]);

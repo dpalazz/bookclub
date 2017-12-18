@@ -7,7 +7,7 @@ const Book    = require('../models/books');
 // =======================
 // CREATE ROUTE FOR A USER
 // =======================
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     const user = await User.create(req.body);
     req.session.user = user;
@@ -24,6 +24,18 @@ router.get('/', async (req, res) => {
   try {
     const allUsers = await User.find();
     res.status(200).json(allUsers);
+  } catch (err) {
+    res.status(400).json({err: err.message});
+  }
+});
+
+// =======================
+// UPDATE/EDIT ROUTE FOR USERS
+// =======================
+router.put('/:id', async (req, res) => {
+  try {
+    const oneUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    res.status(200).json(oneUser);
   } catch (err) {
     res.status(400).json({err: err.message});
   }
@@ -47,7 +59,7 @@ router.get('/:id', async (req, res) => {
 // =====================
 router.delete('/:id', async (req, res) => {
   try {
-    const userToDelete = await User.findByIdAndRemove({username: req.params.id});
+    const userToDelete = await User.findByIdAndRemove(req.params.id);
     const userToDeletesBooks = await Book.remove({user: userToDelete.id});
     res.status(200).json({message: 'User and associated books deleted.'});
   } catch (err) {
