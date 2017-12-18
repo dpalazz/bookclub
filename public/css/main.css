@@ -8,14 +8,14 @@
     src: url('Dual-300.otf');
 }
 
-
 body {
   margin: 0;
   padding: 0;
   font-family: "Dual-300";
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   background-color: #fcfcf6;
 }
+
 
 /* header ------------------------*/
 .header, .footer {
@@ -79,6 +79,7 @@ nav {
   font-size: 20px;
   margin-bottom: 10px;
   padding-left: 30px;
+  letter-spacing: 2px;
 }
 
 .title > h1 {
@@ -90,18 +91,79 @@ nav {
   padding-bottom: 40px
 }
 
+
+/* show book -------------------- */
+.book-show-section {
+  display: none;
+  border-top: 1px solid #33332e;
+  border-bottom: 1px solid #33332e;
+  width: 1150px;
+  margin: 30px 0;
+  padding: 30px 100px;
+}
+
+.close {
+  text-align: right;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.book-show {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.book-show > img {
+  width: 173px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.show-text {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+}
+
+.show-text > h4 {
+  margin: 0;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.show-text > div {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.show-text h5 {
+  margin: 0;
+  /*padding: 0;*/
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
+}
+
+
 /* main content ----------------- */
 main {
   color: #33332e;
   padding-bottom: 0px;
+  /*border: 1px red solid;*/
 }
 
 .index-line {
-  padding: 80px 0 0 0;
+  padding: 80px 0 60px 0;
   width: 1150px;
   margin: 0 auto;
   font-weight: bold;
   font-size: 22px;
+  /*border: 1px red solid;*/
 }
 
 .book-index {
@@ -110,7 +172,7 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-top: 30px;
+  /*padding-top: 30px;*/
 }
 
 .book-card {
@@ -121,6 +183,7 @@ main {
   flex-wrap: wrap;
   align-items: center;
   padding-bottom: 60px;
+  /*border: 1px red solid;*/
 }
 
 .img-like {
@@ -130,11 +193,12 @@ main {
   align-items: flex-start;
 }
 
-.img-like > img {
+.img-like img {
   width: 128px;
   height: 184px;
   margin-bottom: 10px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .img-like > h2 {
@@ -144,11 +208,22 @@ main {
   margin: 0;
 }
 
-.book-card > h4 {
+.book-card a {
+  color: #33332e;
+  text-decoration: none;
+}
+
+.book-card a:hover {
+  color: #33332e;
+  text-decoration: underline;
+}
+
+.book-card h4 {
   font-size: 18px;
   padding: 5px 0;
   margin: 0 25px;
   text-align: center;
+  cursor: pointer;
 }
 
 .book-card > h5 {
@@ -171,13 +246,21 @@ main {
   padding-right: 4px;
 }
 
-/* index links ------------------ */
-.index-links {
+
+/* expander/collapser ----------- */
+.expand-collapse {
   width: 100%;
   color: #fafaed;
-  height: 500px;
+  height: 100px;
   margin: 0;
+}
+
+.expand {
   border-top: 1px solid #33332e;
+}
+
+.collapse {
+  border-bottom: 1px solid #33332e;
 }
 
 .expander {
@@ -185,14 +268,26 @@ main {
   width: 200px;
   height: 100px;
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
-.expander a {
+.collapser {
+  margin: auto;
+  width: 200px;
+  height: 100px;
+  position: relative;
+  z-index: 4;
+}
+
+.hidden {
+  display: none;
+}
+
+.expander a, .collapser a {
   text-decoration: none;
 }
 
-.triangle {
+.triangle-down {
   color: #fafaed;
   margin: auto;
   width: 0;
@@ -201,18 +296,50 @@ main {
   border-right: 100px solid transparent;
   border-top: 100px solid #33332e;
   position: relative;
-  z-index: 5;
+  z-index: 2;
 }
 
-.triangle:hover {
+.triangle-down:hover, .triangle-up:hover {
   cursor: pointer;
 }
 
-.index-links h3 {
+.expander h3 {
   color: #fafaed;
   position: absolute;
-  z-index: 10;
+  z-index: 3;
   top: 0px;
   width: 100%;
   text-align: center;
+}
+
+
+/* expanded section ------------- */
+.triangle-up {
+  color: #fafaed;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 100px solid #33332e;
+  position: relative;
+  z-index: 5;
+}
+
+.collapser h3 {
+  color: #fafaed;
+  position: absolute;
+  z-index: 6;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* index links ------------------ */
+.index-links {
+  width: 100%;
+  color: #fafaed;
+  height: 500px;
+  margin: 0;
 }

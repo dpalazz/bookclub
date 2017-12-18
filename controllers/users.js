@@ -1,9 +1,25 @@
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 
-const User   = require('../models/users');
-const Book   = require('../models/books');
+const User    = require('../models/users');
+const Book    = require('../models/books');
 
+// =======================
+// CREATE ROUTE FOR A USER
+// =======================
+router.post('/', async (req, res){
+  try {
+    const user = await User.create(req.body);
+    req.session.user = user;
+    res.status(200).json({user});
+  } catch (err) {
+    res.status(400).json({err: err.message});
+  }
+});
+
+// =======================
+// DISPLAY ROUTE FOR USERS
+// =======================
 router.get('/', async (req, res) => {
   try {
     const allUsers = await User.find();
@@ -13,7 +29,10 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/:id', async (req, res) {
+// ==========================
+// DISPLAY ROUTE FOR ONE USER
+// ==========================
+router.get('/:id', async (req, res) {
   try {
     const user = await User.findById(req.session.user.id);
     const books = await Books.find({user: user._id});
@@ -21,7 +40,20 @@ router.post('/:id', async (req, res) {
   } catch (err) {
     res.status(400).json({err: err.message});
   }
-})
+});
+
+// =====================
+// DELETE ROUTE FOR USER
+// =====================
+router.delete('/:id', async (req, res){
+  try {
+    const userToDelete = await User.findByIdAndRemove({username: req.params.id});
+    const userToDeletesBooks = await Book.remove({user: userToDelete.id});
+    res.status(200).json({message: 'User and associated books deleted.'});
+  } catch (err) {
+    res.status(400).json({err: err.message});
+  }
+});
 
 
 module.exports = router;

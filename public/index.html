@@ -36,38 +36,111 @@
       </div>
     </div>
 
-    <main ng-controller='MainController as ctrl'>
+    <main >
       <h3 class="index-line">Popular on Shelf Help</h3>
-      <div class="book-index">
-        <div class="book-card" ng-repeat="book in ctrl.books">
+      <div ng-controller='MainController as ctrl1' class="book-index">
+
+        <div class="book-show-section" ng-class="(ctrl1.book? 'show' : '')">
+          <div class='close' ng-click="ctrl1.book = null">x</div>
+          <div class="book-show" >
+            <img ng-src={{ctrl1.book.volumeInfo.imageLinks.thumbnail}}>
+            <div class="show-text">
+              <h4>{{ctrl1.book.volumeInfo.title}}</h4>
+              <div>
+                <h5 class="by">by</h5>
+                <h5 ng-repeat="author in ctrl1.book.volumeInfo.authors">
+                  {{author}}
+                </h5>
+              </div>
+              <p>
+                {{ctrl1.book.volumeInfo.description}}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="book-card" ng-repeat="book in ctrl1.books | limitTo:4">
           <div class="img-like">
-            <img  ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
+            <img ng-click="ctrl1.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
             <h2>+</h2>
           </div>
-          <h4>{{book.volumeInfo.title}}</h4>
+          <h4 ng-click="ctrl1.getBook(book)">{{book.volumeInfo.title}}</h4>
           <div class="author">
             <h5 class="by">by</h5>
             <h5> {{book.volumeInfo.authors[0]}}</h5>
-            <h5 ng-if="book.volumeInfo.authors.length >= 1">, ...</h5>
+            <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
           </div>
         </div>
       </div>
+
+      <div ng-controller='MainController as ctrl2' class="book-index">
+
+        <div class="book-show-section" ng-class="(ctrl2.book? 'show' : '')">
+          <div class='close' ng-click="ctrl2.book = null">x</div>
+          <div class="book-show" >
+            <img ng-src={{ctrl2.book.volumeInfo.imageLinks.thumbnail}}>
+            <div class="show-text">
+              <h4>{{ctrl2.book.volumeInfo.title}}</h4>
+              <div>
+                <h5 class="by">by</h5>
+                <h5 ng-repeat="author in ctrl2.book.volumeInfo.authors">
+                  {{author}}
+                </h5>
+              </div>
+              <p>
+                {{ctrl2.book.volumeInfo.description}}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="book-card" ng-repeat="book in ctrl2.books | limitTo:-4">
+          <div class="img-like">
+            <img ng-click="ctrl2.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
+            <h2>+</h2>
+          </div>
+          <h4 ng-click="ctrl2.getBook(book)">{{book.volumeInfo.title}}</h4>
+          <div class="author">
+            <h5 class="by">by</h5>
+            <h5> {{book.volumeInfo.authors[0]}}</h5>
+            <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
+          </div>
+        </div>
+      </div>
+
     </main>
 
 
     <main ng-view></main>
 
-    <div class="index-links">
+    <div ng-controller="ExpanderCollapserController as ctrl" class="expand-collapse">
 
-      <div class="expander">
-        <a href="/expandedbooks">
-          <div class="triangle">
-            <!-- <h3>show more</h3> -->
-          </div>
-          <h3>show more</h3>
-        </a>
+      <div class="collapse"
+      ng-click="ctrl.expanded = false"
+      ng-class="(ctrl.expanded ? '' : 'hidden')">
+        <div class="collapser">
+          <a href="/">
+            <div class="triangle-up">
+            </div>
+            <h3>show less</h3>
+          </a>
+        </div>
       </div>
 
+      <div class="expand"
+      ng-click="ctrl.expanded = true"
+      ng-class="(ctrl.expanded ? 'hidden' : '')">
+        <div class="expander">
+          <a href="/expandedbooks">
+            <div class="triangle-down">
+            </div>
+            <h3>show more</h3>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="index-links">
     </div>
 
     <div class="footer">

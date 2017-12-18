@@ -1,17 +1,30 @@
 const express = require('express');
 const router  = express.Router();
 
-const User = require('../models/users.js');
-const Book = require('../models/books.js');
+const User    = require('../models/users.js');
+const Book    = require('../models/books.js');
 
-// =======================
+// ==========================
 // REGISTER ROUTE FOR SESSION
-// =======================
+// ==========================
 router.post('/register', async (req, res){
-  try {
-    const newRegistrant = await req.body.username
-  } catch (err) {
-    res.status(400).json({err: err.message});
+  const newPassword = req.body.password;
+  // unsure if I need to hash password here
+  const newUserCheck = await User.find({username: req.body.username});
+  // ** CHECKING TO SEE IF THERE IS ANOTHER USE WITH THAT NAME, THEN ENTERING IT IF NO OR SENDING MESSAGE IF YES.
+  if (newUserCheck.length === 0) {
+    const userDbEntry = {};
+    userDebEntry.username = req.body.username;
+    userDbEntry.password = newPassword;
+    try {
+      const user = await User.create(userDbEntry);
+      req.session.username = user.username;
+      req.session.logged = true;
+    } catch (err) {
+      res.status(400).json({err: err.message});
+    }
+  } else {
+    res.status(403).json({err: 'User already exists.'});
   }
 });
 
@@ -19,9 +32,9 @@ router.post('/register', async (req, res){
 // LOGIN ROUTE FOR SESSION
 // =======================
 router.post('/login', async (req, res){
+  const loggedUser = await User.findOne({username: req.body.username});
+  const loggedUsersBooks = await Books.findOne({username: loggedUser._id});
   try {
-    const loggedUser = await User.findOne({username: req.body.username});
-    const loggedUsersBooks = await Books.findOne({username: loggedUser._id});
     // ** TO AUTHENTICATE USER TRYING TO LOGIN
     if (loggedUser.authenticate(req.body.password)) {
       req.session.user = loggedUser;
