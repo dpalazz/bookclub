@@ -41,6 +41,15 @@ nav {
   margin: auto;
 }
 
+nav a {
+  color: #fafaed;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
 .inner-header {
   display: flex;
   flex-direction: row;
