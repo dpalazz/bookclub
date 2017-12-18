@@ -7,7 +7,7 @@ const Book    = require('../models/books.js');
 // ==========================
 // REGISTER ROUTE FOR SESSION
 // ==========================
-router.post('/register', async (req, res){
+router.post('/register', async (req, res) => {
   const newPassword = req.body.password;
   // unsure if I need to hash password here
   const newUserCheck = await User.find({username: req.body.username});
@@ -31,7 +31,7 @@ router.post('/register', async (req, res){
 // =======================
 // LOGIN ROUTE FOR SESSION
 // =======================
-router.post('/login', async (req, res){
+router.post('/login', async (req, res) => {
   const loggedUser = await User.findOne({username: req.body.username});
   const loggedUsersBooks = await Books.findOne({username: loggedUser._id});
   try {
@@ -51,7 +51,7 @@ router.post('/login', async (req, res){
 // =======================
 // DELETE ROUTE FOR SESSION
 // =======================
-router.delete('/logout', async (req, res){
+router.delete('/logout', async (req, res) => {
   req.session.destroy(() => {
     console.log('Just ended the session for ', req.session);
     res.status(200).json({message: 'Session Destroyed.'});

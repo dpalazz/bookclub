@@ -7,7 +7,7 @@ const Book    = require('../models/books');
 // =======================
 // CREATE ROUTE FOR A USER
 // =======================
-router.post('/', async (req, res){
+router.post('/', async (req, res) => {
   try {
     const user = await User.create(req.body);
     req.session.user = user;
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
 // ==========================
 // DISPLAY ROUTE FOR ONE USER
 // ==========================
-router.get('/:id', async (req, res) {
+router.get('/:id', async (req, res) => {
   try {
     const user = await User.findById(req.session.user.id);
     const books = await Books.find({user: user._id});
@@ -45,7 +45,7 @@ router.get('/:id', async (req, res) {
 // =====================
 // DELETE ROUTE FOR USER
 // =====================
-router.delete('/:id', async (req, res){
+router.delete('/:id', async (req, res) => {
   try {
     const userToDelete = await User.findByIdAndRemove({username: req.params.id});
     const userToDeletesBooks = await Book.remove({user: userToDelete.id});
