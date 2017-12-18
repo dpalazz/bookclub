@@ -41,6 +41,15 @@ nav {
   margin: auto;
 }
 
+nav a, .index-line a {
+  color: #fafaed;
+  text-decoration: none;
+}
+
+nav a:hover, .index-line a:hover {
+  text-decoration: underline;
+}
+
 .inner-header {
   display: flex;
   flex-direction: row;
@@ -126,9 +135,9 @@ nav {
   width: 700px;
 }
 
-.show-text > h4 {
-  margin: 0;
-  padding: 5px 0;
+.show-text h4 {
+  margin: 0 0 5px 0;
+  padding: 0 5px 5px 0;
   font-weight: bold;
   font-size: 18px;
 }
@@ -136,12 +145,12 @@ nav {
 .show-text > div {
   display: flex;
   flex-direction: row;
-  padding: 5px;
+  /*padding: 20px;*/
+  align-items: baseline;
 }
 
 .show-text h5 {
-  margin: 0;
-  /*padding: 0;*/
+  margin: 0 0 5px 0;
 }
 
 .show {
@@ -152,18 +161,41 @@ nav {
 
 /* main content ----------------- */
 main {
-  color: #33332e;
+  color: black;
   padding-bottom: 0px;
   /*border: 1px red solid;*/
 }
 
 .index-line {
-  padding: 80px 0 60px 0;
+  padding: 20px 0 0 0;
   width: 1150px;
-  margin: 0 auto;
+  margin: 60px auto 50px auto;
   font-weight: bold;
-  font-size: 22px;
-  /*border: 1px red solid;*/
+  font-size: 19px;
+  border-bottom: 1px #33332e solid;
+}
+
+.index-line a {
+  color: #33332e;
+  text-decoration: none;
+}
+
+.index-line a:hover {
+  text-decoration: underline;
+}
+
+.index-line > h3 {
+  padding: 20px 20px 10px 20px;
+  margin: 0;
+  font-weight: bold;
+  border-top: 1px #33332e solid;
+  border-right: 1px #33332e solid;
+  border-left: 1px #33332e solid;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  display: inline-block;
+  color: #33332e;
+  /*background-color: #33332e;*/
 }
 
 .book-index {
@@ -173,6 +205,7 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   /*padding-top: 30px;*/
+  /*border: 1px solid red;*/
 }
 
 .book-card {
@@ -209,12 +242,12 @@ main {
 }
 
 .book-card a {
-  color: #33332e;
+  color: black;
   text-decoration: none;
 }
 
 .book-card a:hover {
-  color: #33332e;
+  color: black;
   text-decoration: underline;
 }
 
@@ -333,6 +366,40 @@ main {
   bottom: 0px;
   width: 100%;
   text-align: center;
+}
+
+
+/* my shelf --------------------- */
+.my-shelf-section {
+  border-bottom: 1px solid #33332e;
+  /*border-bottom: 1px solid #33332e;*/
+  margin: 0;
+  padding: 30px 100px;
+  width: 1150px;
+}
+
+.my-shelf {
+  width: 1150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.book-show > img {
+  width: 173px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.show-text {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
 }
 
 

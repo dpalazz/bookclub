@@ -1,0 +1,81 @@
+<div ng-controller='ExpandedBooksController as ctrl' class="book-index">
+
+<div class="book-show-section" ng-class="(ctrl.book? 'show' : '')">
+  <div class='close' ng-click="ctrl.book = null">x</div>
+  <div class="book-show" >
+    <img ng-src={{ctrl.book.volumeInfo.imageLinks.thumbnail}}>
+    <div class="show-text">
+      <h4>{{ctrl.book.volumeInfo.title}}</h4>
+      <div>
+        <h5 class="by">by</h5>
+        <h5 ng-repeat="author in ctrl.book.volumeInfo.authors">
+          {{author}}
+        </h5>
+      </div>
+      <p>
+        {{ctrl.book.volumeInfo.description}}
+      </p>
+    </div>
+  </div>
+</div>
+
+  <div class="book-card" ng-repeat="book in ctrl.books | limitTo:-4">
+
+    <div class="img-like">
+      <img ng-click="ctrl.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
+      <h2>+</h2>
+    </div>
+    <h4>{{book.volumeInfo.title}}</h4>
+    <div class="author">
+      <h5 class="by">by</h5>
+      <h5> {{book.volumeInfo.authors[0]}}</h5>
+      <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
+    </div>
+  </div>
+
+</div>
+
+<div ng-controller='ExpandedBooksController as ctrl1' class="book-index">
+
+<div class="book-show-section" ng-class="(ctrl1.book? 'show' : '')">
+  <div class='close' ng-click="ctrl1.book = null">x</div>
+  <div class="book-show" >
+    <img ng-src={{ctrl1.book.volumeInfo.imageLinks.thumbnail}}>
+    <div class="show-text">
+      <h4>{{ctrl1.book.volumeInfo.title}}</h4>
+      <div>
+        <h5 class="by">by</h5>
+        <h5 ng-repeat="author in ctrl1.book.volumeInfo.authors">
+          {{author}}
+        </h5>
+      </div>
+      <p>
+        {{ctrl1.book.volumeInfo.description}}
+      </p>
+    </div>
+  </div>
+</div>
+
+  <div class="book-card" ng-repeat="book in ctrl1.books | limitTo:4">
+
+    <div class="img-like">
+      <img ng-click="ctrl1.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
+      <h2>+</h2>
+    </div>
+    <h4>{{book.volumeInfo.title}}</h4>
+    <div class="author">
+      <h5 class="by">by</h5>
+      <h5> {{book.volumeInfo.authors[0]}}</h5>
+      <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
+    </div>
+  </div>
+
+</div>
+
+<!-- <div class="collapser">
+  <a href="/">
+    <div class="triangle-up">
+    </div>
+    <h3>show less</h3>
+  </a>
+</div> -->
