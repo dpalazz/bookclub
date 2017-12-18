@@ -4,9 +4,15 @@ const router  = express.Router();
 const User    = require('../models/users.js');
 const Book    = require('../models/books.js');
 
-// ==========================
-// REGISTER ROUTE FOR SESSION
-// ==========================
+// ===============================
+// REGISTER FORM ROUTE FOR SESSION
+// ===============================
+router.get('/register', async (req, res) => {
+  res.render('register.html');
+})
+// ===============================
+// REGISTER POST ROUTE FOR SESSION
+// ===============================
 router.post('/register', async (req, res) => {
   const newPassword = req.body.password;
   // unsure if I need to hash password here

@@ -1,12 +1,13 @@
 const app = angular.module('Shelf_Help', ['ngRoute']);
 const key = config.key;
 
-// controllers
+// ===========
+// CONTROLLERS
+// ===========
 app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   this.author = 'Stephen+King';
   this.book = null;
-
   this.getBooks = () => {
     $http({
       url: this.url + this.author + '&key=' + key,
@@ -22,13 +23,11 @@ app.controller('MainController', ['$http', function($http) {
       )
     .catch(err => console.log(err))
   }
-
   this.getBook = (book) => {
     this.book = null;
     this.book = book;
     console.log(this.book);
   }
-
   this.getBooks();
 
   this.deleteBook = (id) => {
@@ -44,14 +43,13 @@ app.controller('MainController', ['$http', function($http) {
   }
 }]);
 
-
 app.controller('ExpanderCollapserController', function() {
   this.expanded = false;
 })
 
-
 app.controller('ExpandedBooksController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=12&startIndex=8&printType=books&q=';
+
   this.author = 'Stephen+King';
 
   this.getBooks = () => {
@@ -69,17 +67,22 @@ app.controller('ExpandedBooksController', ['$http', function($http) {
   )
   .catch(err => console.log(err))
 }
-
 this.getBooks();
 }]);
 
+app.controller('RegisterController', function() {
+  this.hello = 'hello';
+});
 
-// config
+// ======
+// CONFIG
+// ======
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode({enabled: true});
 
-
-// routing
+// =======
+// ROUTING
+// =======
   $routeProvider.when('/expandedbooks', {
     templateUrl: 'expanded.html',
     controller: 'ExpandedBooksController',
@@ -92,6 +95,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controllerAs: 'ctrl'
   });
 
+  $routeProvider.when('/register', {
+    templateUrl: 'register.html',
+    controller: 'RegisterController',
+    controllerAs: 'ctrl'
+  });
 }]);
 
 
