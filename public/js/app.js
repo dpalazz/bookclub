@@ -1,9 +1,9 @@
 const app = angular.module('Shelf_Help', ['ngRoute']);
 const key = config.key;
 
-// ===========
-// CONTROLLERS
-// ===========
+// ===============
+// MAIN CONTROLLER
+// ===============
 app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   this.author = 'Stephen+King';
@@ -39,49 +39,58 @@ app.controller('MainController', ['$http', function($http) {
       this.getBooks();
     }, ( error ) => {
       console.log(error);
-    });
+    }).catch(err => console.log(err));
   }
 }]);
 
+// =================
+// OTHER CONTROLLERS
+// =================
 app.controller('ExpanderCollapserController', function() {
   this.expanded = false;
-})
+});
 
 app.controller('ExpandedBooksController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=12&startIndex=8&printType=books&q=';
-
   this.author = 'Stephen+King';
-
   this.getBooks = () => {
     $http({
       url: this.url + this.author + '&key=' + key,
       method: 'GET'
-    })
-    .then(response => {
+    }).then(response => {
       console.log(response.data.items);
       this.books = response.data.items;
-    },
-    error => {
+    }, error => {
       console.log(error.message);
-    }
-  )
-  .catch(err => console.log(err))
-}
-this.getBook = (book) => {
-  this.book = null;
-  this.book = book;
-  console.log(this.book);
-}
-this.getBooks();
+    }).catch(err => console.log(err))
+  }
+  this.getBook = (book) => {
+    this.book = null;
+    this.book = book;
+    console.log(this.book)
+  };
+
+  this.getBooks();
 }]);
 
-app.controller('RegisterController', function() {
-  this.hello = 'hello';
-});
 
-// ======
-// CONFIG
-// ======
+app.controller('RegisterController', ['$http', function($http) {
+  this.registerUser = () => {
+    $http({
+      url: '/register',
+      method: 'POST',
+      data: this.formData
+    }).then(response => {
+      this.users.push(response.data);
+    }, error => {
+      console.log(error.message);
+    }).catch(err => console.log(err));
+  }
+}]);
+
+// =================
+// CONFIG CONTROLLER
+// =================
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode({enabled: true});
 
@@ -89,41 +98,20 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 // ROUTING
 // =======
   $routeProvider.when('/expandedbooks', {
-    templateUrl: 'expanded.html',
+    templateUrl: 'partials/expanded.html',
     controller: 'ExpandedBooksController',
     controllerAs: 'ctrl'
   });
 
   $routeProvider.when('/showbook', {
-    templateUrl: 'showbook.html',
+    templateUrl: 'partials/showbook.html',
     controller: 'ShowBookController',
     controllerAs: 'ctrl'
   });
 
   $routeProvider.when('/register', {
-    templateUrl: 'register.html',
+    templateUrl: 'partials/register.html',
     controller: 'RegisterController',
     controllerAs: 'ctrl'
   });
-}]);
-
-
-// config
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-  $locationProvider.html5Mode({enabled: true});
-
-
-// routing
-  $routeProvider.when('/expandedbooks', {
-    templateUrl: 'expanded.html',
-    controller: 'ExpandedBooksController',
-    controllerAs: 'ctrl'
-  });
-
-  $routeProvider.when('/showbook', {
-    templateUrl: 'showbook.html',
-    controller: 'ShowBookController',
-    controllerAs: 'ctrl'
-  });
-
 }]);
