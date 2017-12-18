@@ -17,7 +17,7 @@
           <div>
             <a href="#">Login</a> |
             <a href="/register">Register</a> |
-            <a href="/userShelf/5a37eca9544c2a4a27cf99e4">username</a>
+            <a href="#">username</a>
           </div>
           <div>
             Search
@@ -140,6 +140,14 @@
         </div>
       </div>
     </div>
+
+    <main>
+      <div ng-controller="UserShelfController as ctrl" class="book-index">
+
+      <h2>My Shelf</h2>
+        <h3>{{ctrl.user.username}}</h3>
+      </div>
+    </main>
 
     <div class="index-links">
     </div>

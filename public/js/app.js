@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   this.author = 'Stephen+King';
   this.book = null;
+
   this.getBooks = () => {
     $http({
       url: this.url + this.author + '&key=' + key,
@@ -24,11 +25,13 @@ app.controller('MainController', ['$http', function($http) {
       )
     .catch(err => console.log(err))
   }
+
   this.getBook = (book) => {
     this.book = null;
     this.book = book;
     console.log(this.book);
   }
+
   this.getBooks();
 
   this.deleteBook = (id) => {
@@ -93,8 +96,21 @@ app.controller('RegisterController', ['$http', function($http) {
 }]);
 
 // user's shelf
-app.controller('UserShelfController', ['$routeParams', function($routeParams) {
-  this.id = $routeParams.id;
+app.controller('UserShelfController', ['$http', function($http) {
+  this.getUser = (id) => {
+    $http({
+      url: '/users/' + id,
+      method: 'GET'
+    }).then(response => {
+      console.log(response.data);
+      this.user = response.data.user;
+      console.log(this.user);
+    }, error => {
+      console.error(error);
+    }).catch(err => console.log(err))
+  }
+
+  this.getUser('5a38037b6c03034b8c7e5ac3');
 
 }]);
 
@@ -111,12 +127,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   $routeProvider.when('/expandedbooks', {
     templateUrl: 'partials/expanded.html',
     controller: 'ExpandedBooksController',
-    controllerAs: 'ctrl'
-  });
-
-  $routeProvider.when('/userShelf/:id', {
-    templateUrl: 'partials/userShelf.html',
-    controller: 'UserShelfController',
     controllerAs: 'ctrl'
   });
 
