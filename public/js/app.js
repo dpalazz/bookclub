@@ -81,3 +81,24 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   });
 
 }]);
+
+
+// config
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+  $locationProvider.html5Mode({enabled: true});
+
+
+// routing
+  $routeProvider.when('/expandedbooks', {
+    templateUrl: 'expanded.html',
+    controller: 'ExpandedBooksController',
+    controllerAs: 'ctrl'
+  });
+
+  $routeProvider.when('/showbook', {
+    templateUrl: 'showbook.html',
+    controller: 'ShowBookController',
+    controllerAs: 'ctrl'
+  });
+
+}]);
