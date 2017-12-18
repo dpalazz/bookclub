@@ -182,6 +182,7 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   /*padding-top: 30px;*/
+  border: 1px solid red;
 }
 
 .book-card {
@@ -342,6 +343,58 @@ main {
   bottom: 0px;
   width: 100%;
   text-align: center;
+}
+
+
+/* my shelf --------------------- */
+.my-shelf-section {
+  border-top: 1px solid #33332e;
+  /*border-bottom: 1px solid #33332e;*/
+  margin: 0;
+  padding: 30px 100px;
+  width: 1150px;
+}
+
+.my-shelf {
+  width: 1150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.book-show > img {
+  width: 173px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.show-text {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+}
+
+.show-text > h4 {
+  margin: 0;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.show-text > div {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.show-text h5 {
+  margin: 0;
+  /*padding: 0;*/
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
 }
 
 
