@@ -74,4 +74,22 @@ router.delete('/:id', async (req, res) => {
 });
 
 
+// =====================
+// DELETE ROUTE FOR BOOK
+// =====================
+router.delete('/delete/:user/:id', async (req, res) => {
+  try {
+    let user = await User.findById(req.params.user);
+    for (let i = 0; i < user.bookCollection.length; i++) {
+      if (user.bookCollection[i] === req.params.id) {
+        user.bookCollection.splice(i, 1);
+      }
+    }
+    res.status(200).json({user});
+  } catch (err) {
+    res.status(400).json({err: err.message});
+  }
+});
+
+
 module.exports = router;

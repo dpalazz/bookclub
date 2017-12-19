@@ -143,6 +143,7 @@ nav a:hover, .index-line a:hover {
   display: flex;
   flex-direction: column;
   width: 700px;
+  /*border: 1px solid red;*/
 }
 
 .show-text h4 {
@@ -389,6 +390,7 @@ main {
   margin: 0;
   padding: 30px 100px;
   width: 1150px;
+  /*border: 1px solid red;*/
 }
 
 .my-shelf {
@@ -408,6 +410,40 @@ main {
   display: flex;
   flex-direction: column;
   width: 700px;
+}
+
+.text-delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.author-title {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.delete {
+  width: 100px;
+  height: 30px;
+  background-color: #33332e;
+  color: #fafaed;
+  border: none;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  font-family: "Dual-300";
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.delete:hover {
+  opacity: .6;
 }
 
 .show {

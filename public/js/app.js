@@ -9,8 +9,7 @@ app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   this.author = 'Stephen+King';
   this.book = null;
-  this.search = null;
-  this.showModal = false;
+
   this.getBooks = () => {
     $http({
       url: this.url + this.author + '&key=' + key,
@@ -42,18 +41,6 @@ app.controller('MainController', ['$http', function($http) {
       data: id
     }).then((data) => {
       this.getBooks();
-    }, ( error ) => {
-      console.log(error);
-    }).catch(err => console.log(err));
-  }
-
-  this.searchAPI = () => {
-    $http({
-      url: this.url + this.search + '&key=' + key,
-      method: 'GET'
-    }).then((response) => {
-      console.log('Results:', response.data.items);
-      this.search = null;
     }, ( error ) => {
       console.log(error);
     }).catch(err => console.log(err));
@@ -153,11 +140,24 @@ app.controller('UserShelfController', ['$http', function($http) {
     }, error => {
       console.error(error);
     }).catch(err => console.log(err))
-
-
   }
 
+  this.deleteBook = (id) => {
+    $http({
+      url: '/delete/' + id,
+      method: 'DELETE',
+      data: id
+    }).then((data) => {
+      this.getBooks();
+    }, ( error ) => {
+      console.log(error);
+    }).catch(err => console.log(err));
+  }
+
+
   this.getUser('5a38037b6c03034b8c7e5ac3');
+
+
 
 }]);
 
