@@ -27,22 +27,32 @@
             </form>
           </div>
           <div class="dim" ng-click="ctrl.showModal = false" ng-class="(ctrl.showModal? 'showModal' : '')">
-
             <div class="modal">
-              <h2>Register</h2>
+              <h6>x</h6>
+              <hr/>
+              <h2>Login</h2>
               <form>
                 <div class="row">
-                  <label for="name">username:</label>
                   <input type="text" placeholder="username" id="name"></br>
-                  <label for="avatar">avatar:</label>
-                  <input type="text" placeholder="image URL"  id="avatar"></br>
-                  <label for="password">password:</label>
                   <input type="text" placeholder="password" id="password"></br>
-                  <input type="submit" value="Register" class="register-button"></br>
+                  <input type="submit" value="login" class="login-button"></br>
                 </div>
               </form>
             </div>
-
+          <div class="dim" ng-click="ctrl.showModal = false" ng-class="(ctrl.showModal? 'showModal' : '')">
+            <div class="modal">
+              <h6>x</h6>
+              <hr/>
+              <h2>Register</h2>
+              <form>
+                <div class="row">
+                  <input type="text" placeholder="username" id="name"></br>
+                  <input type="text" placeholder="image URL"  id="avatar"></br>
+                  <input type="text" placeholder="password" id="password"></br>
+                  <input type="submit" value="register" class="register-button"></br>
+                </div>
+              </form>
+            </div>
           </div>
         </nav>
       </div>
