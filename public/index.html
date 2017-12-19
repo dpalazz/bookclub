@@ -13,18 +13,36 @@
   <body>
     <div class="header">
       <div class="nav">
-        <nav>
+        <nav ng-controller="MainController as ctrl">
           <div>
-            <a href="#">Login</a> |
-            <a href="/register">Register</a> |
-            <a href="#">username</a>
+            <p href="#">Login | </p>
+            <p ng-click="ctrl.showModal = true"> Register | </p>
+            <p href="#"> username</p>
           </div>
-          <div class="search" ng-controller="MainController as ctrl">
+          <div class="search">
             <form ng-submit='ctrl.searchAPI()'>
               Search
               <input type="text" ng-model="ctrl.search">
               <input type="submit">
             </form>
+          </div>
+          <div class="dim" ng-click="ctrl.showModal = false" ng-class="(ctrl.showModal? 'showModal' : '')">
+
+            <div class="modal">
+              <h2>Register</h2>
+              <form>
+                <div class="row">
+                  <label for="name">username:</label>
+                  <input type="text" placeholder="username" id="name"></br>
+                  <label for="avatar">avatar:</label>
+                  <input type="text" placeholder="image URL"  id="avatar"></br>
+                  <label for="password">password:</label>
+                  <input type="text" placeholder="password" id="password"></br>
+                  <input type="submit" value="Register" class="register-button"></br>
+                </div>
+              </form>
+            </div>
+
           </div>
         </nav>
       </div>
