@@ -19,9 +19,12 @@
             <a href="/register">Register</a> |
             <a href="#">username</a>
           </div>
-          <div>
-            Search
-            <input type="text" ng-model="searchBox">
+          <div class="search" ng-controller="MainController as ctrl">
+            <form ng-submit='ctrl.searchAPI()'>
+              Search
+              <input type="text" ng-model="ctrl.search">
+              <input type="submit">
+            </form>
           </div>
         </nav>
       </div>

@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http) {
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   this.author = 'Stephen+King';
   this.book = null;
+  this.search = null;
 
   this.getBooks = () => {
     $http({
@@ -41,6 +42,18 @@ app.controller('MainController', ['$http', function($http) {
       data: id
     }).then((data) => {
       this.getBooks();
+    }, ( error ) => {
+      console.log(error);
+    }).catch(err => console.log(err));
+  }
+
+  this.searchAPI = () => {
+    $http({
+      url: this.url + this.search + '&key=' + key,
+      method: 'GET'
+    }).then((response) => {
+      console.log('Results:', response.data.items);
+      this.search = null;
     }, ( error ) => {
       console.log(error);
     }).catch(err => console.log(err));
