@@ -39,24 +39,28 @@
     </div>
 
     <main >
-      <div class="index-line"><h3>popular on Shelf Help</h3></div>
+      <div class="index-line"><h3>what's popular</h3></div>
       <div ng-controller='MainController as ctrl1' class="book-index">
         <div class="book-show-section" ng-class="(ctrl1.book? 'show' : '')">
           <div class='close' ng-click="ctrl1.book = null">x</div>
           <div class="book-show" >
             <img ng-src={{ctrl1.book.volumeInfo.imageLinks.thumbnail}}>
-            <div class="show-text">
-              <h4>{{ctrl1.book.volumeInfo.title}}</h4>
-              <div>
-                <h5 class="by">by</h5>
-                <h5 ng-repeat="author in ctrl1.book.volumeInfo.authors">
-                  {{author}}
-                </h5>
+              <div class="show-text">
+                <div>
+                  <h4>{{ctrl1.book.volumeInfo.title}}</h4>
+                  <h5 class="by">by</h5>
+                  <h5 ng-repeat="author in ctrl1.book.volumeInfo.authors">
+                    {{author}}
+                    <h5 ng-if="ctrl1.book.volumeInfo.authors.length > 1">, </h5>
+                  </h5>
+                </div>
+                <h5>Published: {{ctrl1.book.volumeInfo.publishedDate}}</h5>
+                <h5>{{ctrl1.book.volumeInfo.categories[0]}}</h5>
+                <p>
+                  {{ctrl1.book.volumeInfo.description}}
+                </p>
+                <h5>PageCount: {{ctrl1.book.volumeInfo.pageCount}}</h5>
               </div>
-              <p>
-                {{ctrl1.book.volumeInfo.description}}
-              </p>
-            </div>
           </div>
         </div>
 
@@ -81,16 +85,20 @@
           <div class="book-show" >
             <img ng-src={{ctrl2.book.volumeInfo.imageLinks.thumbnail}}>
             <div class="show-text">
-              <h4>{{ctrl2.book.volumeInfo.title}}</h4>
               <div>
+                <h4>{{ctrl2.book.volumeInfo.title}}</h4>
                 <h5 class="by">by</h5>
                 <h5 ng-repeat="author in ctrl2.book.volumeInfo.authors">
                   {{author}}
+                  <h5 ng-if="ctrl2.book.volumeInfo.authors.length > 1">, </h5>
                 </h5>
               </div>
+              <h5>Published: {{ctrl2.book.volumeInfo.publishedDate}}</h5>
+              <h5>{{ctrl2.book.volumeInfo.categories[0]}}</h5>
               <p>
                 {{ctrl2.book.volumeInfo.description}}
               </p>
+              <h5>PageCount: {{ctrl2.book.volumeInfo.pageCount}}</h5>
             </div>
           </div>
         </div>
@@ -123,7 +131,7 @@
           <a href="/">
             <div class="triangle-up">
             </div>
-            <h3>show less</h3>
+            <h3>see less</h3>
           </a>
         </div>
       </div>
@@ -135,7 +143,7 @@
           <a href="/expandedbooks">
             <div class="triangle-down">
             </div>
-            <h3>show more</h3>
+            <h3>see more</h3>
           </a>
         </div>
       </div>
@@ -144,7 +152,7 @@
     <main>
       <div ng-controller="UserShelfController as ctrl" class="book-index">
 
-        <div class="index-line"><h3>my Shelf | <a href="#">add books</a></h3></div>
+        <div class="index-line"><h3>my shelf | <a href="#">add books</a></h3></div>
         <div class="my-shelf" ng-repeat="book in ctrl.userBooks">
 
           <div class="my-shelf-section">
