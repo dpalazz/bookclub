@@ -1,0 +1,415 @@
+@font-face {
+    font-family: "Budhayanti";
+    src: url('Budhayanti script.ttf');
+}
+
+@font-face {
+    font-family: "Dual-300";
+    src: url('Dual-300.otf');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Dual-300";
+  letter-spacing: 1px;
+  background-color: #fcfcf6;
+}
+
+
+/* header ------------------------*/
+.header, .footer {
+  width: 100%;
+  background-color: #33332e;
+  color: #fafaed;
+  height: 500px;
+  margin: 0;
+}
+
+.nav {
+  padding: 15px 0;
+  background-color: #242421;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-transform: lowercase;
+  font-size: 19px;
+  width: 1150px;
+  margin: auto;
+}
+
+nav a, .index-line a {
+  color: #fafaed;
+  text-decoration: none;
+}
+
+nav a:hover, .index-line a:hover {
+  text-decoration: underline;
+}
+
+.inner-header {
+  display: flex;
+  flex-direction: row;
+  width: 1150px;
+  height: 439px;
+  margin: 0 auto;
+}
+
+.title-images {
+  display: flex;
+  flex-direction: row;
+}
+
+.title-images > img {
+  width: 155px;
+  height: 451px;
+  object-fit: cover;
+  opacity: .7;
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  width: 1100px;
+  height: 439px;
+  margin: 0 auto;
+  padding-top: 20px;
+  justify-content: flex-end;
+}
+
+.title > h3 {
+  text-align: left;
+  text-transform: lowercase;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding-left: 30px;
+  letter-spacing: 2px;
+}
+
+.title > h1 {
+  font-family: "Budhayanti";
+  font-size: 80px;
+  font-weight: normal;
+  margin: 0;
+  text-align: right;
+  padding-bottom: 40px
+}
+
+
+/* show book -------------------- */
+.book-show-section {
+  display: none;
+  border-top: 1px solid #33332e;
+  border-bottom: 1px solid #33332e;
+  width: 1150px;
+  margin: 30px 0;
+  padding: 30px 100px;
+}
+
+.close {
+  text-align: right;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.book-show {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.book-show > img {
+  width: 173px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.show-text {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+}
+
+.show-text h4 {
+  margin: 0 0 5px 0;
+  padding: 0 5px 5px 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.show-text > div {
+  display: flex;
+  flex-direction: row;
+  /*padding: 20px;*/
+  align-items: baseline;
+}
+
+.show-text h5 {
+  margin: 0 0 5px 0;
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* main content ----------------- */
+main {
+  color: black;
+  padding-bottom: 0px;
+  /*border: 1px red solid;*/
+}
+
+.index-line {
+  padding: 20px 0 0 0;
+  width: 1150px;
+  margin: 60px auto 50px auto;
+  font-weight: bold;
+  font-size: 19px;
+  border-bottom: 1px #33332e solid;
+  letter-spacing: 1px;
+}
+
+.index-line a {
+  color: #33332e;
+  text-decoration: none;
+}
+
+.index-line a:hover {
+  text-decoration: underline;
+}
+
+.index-line > h3 {
+  padding: 20px 20px 10px 20px;
+  margin: 0;
+  font-weight: bold;
+  border-top: 1px #33332e solid;
+  border-right: 1px #33332e solid;
+  border-left: 1px #33332e solid;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  display: inline-block;
+  color: #33332e;
+  /*background-color: #33332e;*/
+}
+
+.book-index {
+  width: 1150px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /*padding-top: 30px;*/
+  /*border: 1px solid red;*/
+}
+
+.book-card {
+  width: 287.5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-bottom: 60px;
+  /*border: 1px red solid;*/
+}
+
+.img-like {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.img-like img {
+  width: 128px;
+  height: 184px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.img-like > h2 {
+  font-size: 40px;
+  font-weight: bold;
+  padding-left: 5px;
+  margin: 0;
+}
+
+.book-card a {
+  color: black;
+  text-decoration: none;
+}
+
+.book-card a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.book-card h4 {
+  font-size: 18px;
+  padding: 5px 0;
+  margin: 0 25px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.book-card > h5 {
+  padding: 0;
+  margin: 0;
+}
+
+.author {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0;
+}
+
+.author > h5 {
+  margin: 0;
+}
+
+.by {
+  padding-right: 4px;
+}
+
+
+/* expander/collapser ----------- */
+.expand-collapse {
+  width: 100%;
+  color: #fafaed;
+  height: 100px;
+  margin: 0;
+}
+
+.expand {
+  border-top: 1px solid #33332e;
+}
+
+.collapse {
+  border-bottom: 1px solid #33332e;
+}
+
+.expander {
+  margin: auto;
+  width: 150px;
+  height: 75px;
+  position: relative;
+  z-index: 1;
+}
+
+.collapser {
+  margin: auto;
+  width: 150px;
+  height: 75px;
+  position: relative;
+  z-index: 4;
+}
+
+.hidden {
+  display: none;
+}
+
+.expander a, .collapser a {
+  text-decoration: none;
+}
+
+.triangle-down {
+  color: #fafaed;
+  margin: auto;
+  background: #33332e;
+  height: 75px;
+  width: 150px;
+  border-bottom-left-radius: 150px;
+  border-bottom-right-radius: 150px;
+  position: relative;
+  z-index: 2;
+  opacity: .6;
+}
+
+.triangle-down:hover, .triangle-up:hover {
+  cursor: pointer;
+}
+
+.expander h3 {
+  color: #fafaed;
+  position: absolute;
+  z-index: 3;
+  top: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* expanded section ------------- */
+.triangle-up {
+  color: #fafaed;
+  margin: auto;
+  height: 75px;
+  width: 150px;
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+  background: #33332e;
+  position: relative;
+  z-index: 5;
+  opacity: .6;
+}
+
+.collapser h3 {
+  color: #fafaed;
+  position: absolute;
+  z-index: 6;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* my shelf --------------------- */
+.my-shelf-section {
+  border-bottom: 1px solid #33332e;
+  /*border-bottom: 1px solid #33332e;*/
+  margin: 0;
+  padding: 30px 100px;
+  width: 1150px;
+}
+
+.my-shelf {
+  width: 1150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.book-show > img {
+  width: 173px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.show-text {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* index links ------------------ */
+.index-links {
+  width: 100%;
+  color: #fafaed;
+  height: 500px;
+  margin: 0;
+}
