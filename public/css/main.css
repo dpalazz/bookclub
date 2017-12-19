@@ -41,6 +41,16 @@ nav {
   margin: auto;
 }
 
+nav > div {
+  display: flex;
+  flex-direction: row;
+}
+
+nav p {
+  padding: 0px;
+  margin: 0px;
+}
+
 nav a, .index-line a {
   color: #fafaed;
   text-decoration: none;
@@ -412,4 +422,40 @@ main {
   color: #fafaed;
   height: 500px;
   margin: 0;
+}
+
+/* modals ------------------------ */
+.dim {
+  background-color: rgba(0, 0, 0, .4);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 5000;
+  display: none;
+}
+
+.modal {
+  background-color: white;
+  box-shadow: 0px 2px 5px grey;
+  margin: auto;
+  color: #33332e;
+}
+
+.modal > h2 {
+  font-family: "Budhayanti";
+  font-size: 40px;
+}
+
+.row > input {
+  margin-top: 30px;
+  padding: 5px 5px;
+  font-size: 16px;
+}
+
+.showModal {
+  display: flex;
+  flex-direction: column;
 }
