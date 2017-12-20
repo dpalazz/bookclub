@@ -136,7 +136,7 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
   this.loginModal = false;
   this.processLogin = () => {
     console.log('the process login function is starting');
-    console.log(this.formData);
+    // console.log(this.formData); // this shows user's password
     $http({
       url: '/sessions/login',
       method: 'POST',
