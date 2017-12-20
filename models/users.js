@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 const userSchema = mongoose.Schema({
   username: {type: String, required: true, unique: true},
   avatar: {type: String, default: "https://i.imgur.com/fGi0Yl0.png"},
-  password: {type: String, required: true},
-  bookCollection: [{type: String}]
+  password: {type: String, required: true}
+  // bookCollection: [{type: String}]
 });
 
 // ** TO HASH PASSWORD OF USER TRYING TO LOGIN
