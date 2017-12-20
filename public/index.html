@@ -31,11 +31,11 @@
             <h6 ng-click="ctrl.loginModal = false">x</h6>
             <hr/>
             <h2>Login</h2>
-            <form>
+            <form ng-submit="ctrl.processLogin()">
               <div class="row">
-                <input type="text" placeholder="username" id="name"></br>
-                <input type="text" placeholder="password" id="password"></br>
-                <input type="submit" value="login" class="login-button"></br>
+                <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
+                <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+                <input type="submit" value="login" class="login-button" ng-click="ctrl.loginModal = false"></br>
               </div>
             </form>
           </div>
@@ -45,12 +45,12 @@
             <h6 ng-click="ctrl.registerModal = false">x</h6>
             <hr/>
             <div>
-              <h2 id="modal-h2">Register</h2>
+              <h2>Register</h2>
               <form ng-submit="ctrl.processRegister()">
                 <div class="row">
                   <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
                   <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
-                  <input type="submit" value="register" class="register-button" ng-click="ctrl.registerModal = false"</br>
+                  <input type="submit" value="register" class="register-button" ng-click="ctrl.registerModal = false"></br>
                 </div>
               </form>
             </div>

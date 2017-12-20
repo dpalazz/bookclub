@@ -111,13 +111,10 @@ app.controller('MainController', ['$http', function($http) {
 //   this.getBooks();
 // }]);
 
-// register
+// register and login
 app.controller('RegisterController', ['$route', '$http', function($route, $http) {
-  this.loginModal = false;
   this.registerModal = false;
   this.processRegister = () => {
-    console.log('the process register functin is starting');
-    console.log(this.formData);
     $http({
       url: '/users/register',
       method: 'POST',
@@ -127,6 +124,21 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err));
+  }
+
+  this.loginModal = false;
+  this.processLogin = () => {
+    console.log('the process login function is starting');
+    console.log(this.formData);
+    $http({
+      url: '/login',
+      method: 'POST',
+      data: this.formData
+    }).then(response => {
+      this.user = response.data;
+    }, error => {
+      console.log(error.message);
+    }).err(err => console.log('Catch', err))
   }
 }]);
 
