@@ -21,13 +21,7 @@
           <p ng-if="ctrl.user"><a href="#">my shelf</a></p>
           <p ng-click="ctrl.logout()" ng-if="ctrl.user">| Logout</p>
         </div>
-        <div class="search">
-          <form ng-submit='ctrl.searchAPI()'>
-            Search
-            <input type="text" ng-model="ctrl.search">
-            <input type="submit">
-          </form>
-        </div>
+
         <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
           <div class="modal">
             <h6 ng-click="ctrl.loginModal = false">x</h6>
@@ -73,6 +67,32 @@
     </div>
   </div>
 
+  <main>
+    <div ng-controller="SearchController as ctrl" class="book-index">
+      <div class="search">
+        <form ng-submit='ctrl.searchAPI()'>
+          Search
+          <input type="text" ng-model="ctrl.search">
+          <input type="submit">
+        </form>
+      </div>
+      <div class="index-line"><h3>search results</h3></div>
+    <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
+        <div class="img-like">
+        <img ng-src={{searchedBook.volumeInfo.imageLinks.thumbnail}}>
+        <!-- ng-click="ctrl.getBook(book)" -->
+        <h2>+</h2>
+        </div>
+        <h4 >{{searchedBook.title}}</h4>
+      <!-- ng-click="ctrl.getBook(book)" -->
+        <div class="author">
+          <h5 class="by">by</h5>
+          <h5>{{searchedBook.volumeInfo.authors[0]}}</h5>
+          <h5 ng-if="searchedBook.volumeInfo.authors.length > 1">, ...</h5>
+        </div>
+      </div>
+    </div>
+  </main>
 
     <main >
       <div class="index-line"><h3>what's popular</h3></div>

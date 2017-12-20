@@ -5,12 +5,6 @@ const app = angular.module('Shelf_Help', ['ngRoute', 'angular.filter']);
 // ===============
 app.controller('MainController', ['$http', function($http) {
 
-  $http({
-    url: '/getkey',
-    method: 'GET',
-  }).then(response=>{
-    this.apikey = response.data.key;
-  })
   // this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   // this.author = 'Stephen+King';
   // this.book = null;
@@ -118,6 +112,7 @@ app.controller('MainController', ['$http', function($http) {
 
 // register, login, logout
 app.controller('RegisterController', ['$route', '$http', function($route, $http) {
+
   this.user = false;
   this.registerModal = false;
   this.processRegister = () => {
@@ -161,8 +156,41 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
       console.log(error.message);
     }).catch(err => console.log('Catch', err));
   }
+
+
 }]);
 
+
+
+app.controller('SearchController', ['$http', function($http) {
+  // =============
+  // API key route
+  // =============
+  $http({
+    url: '/getkey',
+    method: 'GET',
+  }).then(response=>{
+    this.apikey = response.data.key;
+  })
+
+  this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
+
+  this.searchAPI = () => {
+    $http({
+      url: this.url + this.search + '&key=' + this.apikey,
+      method: 'GET'
+    }).then((response) => {
+      console.log('this search is ', this.search);
+      this.searchParam = this.search;
+      console.log(this.searchParam);
+      console.log('search results are', response.data.items);
+      this.searchResults = response.data.items;
+      this.search = null;
+    }, ( error ) => {
+      console.log(error);
+    }).catch(err => console.log(err));
+  }
+  }]);
 
 // user's shelf
 app.controller('UserShelfController', ['$http', function($http) {
