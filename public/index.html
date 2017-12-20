@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html ng-app="Shelf_Help">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="/css/main.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/js/config.js"></script>
-    <script type="text/javascript" src="/js/app.js"></script>
-    <base href="/" target="_blank">
-  </head>
-  <body>
-    <div class="header">
-      <div class="nav">
-        <nav ng-controller="MainController as ctrl">
-          <div>
-            <p href="#">Login | </p>
-            <p ng-click="ctrl.showModal = true"> Register | </p>
-            <p href="#"> username</p>
-          </div>
-          <div class="search">
-            <form ng-submit='ctrl.searchAPI()'>
-              Search
-              <input type="text" ng-model="ctrl.search">
-              <input type="submit">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="/css/main.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js" charset="utf-8"></script>
+  <script type="text/javascript"   src="/js/config.js"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+  <base href="/" target="_blank">
+</head>
+<body>
+  <div class="header">
+    <div class="nav">
+      <nav ng-controller="RegisterController as ctrl">
+        <div>
+          <p ng-click="ctrl.loginModal = true">Login | </p>
+          <p ng-click="ctrl.registerModal = true"> Register | </p>
+          <p>{{ctrl.user.username}}</p>
+        </div>
+        <div class="search">
+          <form ng-submit='ctrl.searchAPI()'>
+            Search
+            <input type="text" ng-model="ctrl.search">
+            <input type="submit">
+          </form>
+        </div>
+        <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
+          <div class="modal">
+            <h6 ng-click="ctrl.loginModal = false">x</h6>
+            <hr/>
+            <h2>Login</h2>
+            <form>
+              <div class="row">
+                <input type="text" placeholder="username" id="name"></br>
+                <input type="text" placeholder="password" id="password"></br>
+                <input type="submit" value="login" class="login-button"></br>
+              </div>
             </form>
           </div>
-          <div class="dim" ng-click="ctrl.showModal = false" ng-class="(ctrl.showModal? 'showModal' : '')">
-            <div class="modal">
-              <h6>x</h6>
-              <hr/>
-              <h2>Login</h2>
-              <form>
+        </div>
+        <div class="dim" ng-class="(ctrl.registerModal? 'registerModal' : '')">
+          <div class="modal">
+            <h6 ng-click="ctrl.registerModal = false">x</h6>
+            <hr/>
+            <div>
+              <h2 id="modal-h2">Register</h2>
+              <form ng-submit="ctrl.processRegister()">
                 <div class="row">
-                  <input type="text" placeholder="username" id="name"></br>
-                  <input type="text" placeholder="password" id="password"></br>
-                  <input type="submit" value="login" class="login-button"></br>
-                </div>
-              </form>
-            </div>
-          <div class="dim" ng-click="ctrl.showModal = false" ng-class="(ctrl.showModal? 'showModal' : '')">
-            <div class="modal">
-              <h6>x</h6>
-              <hr/>
-              <h2>Register</h2>
-              <form>
-                <div class="row">
-                  <input type="text" placeholder="username" id="name"></br>
-                  <input type="text" placeholder="image URL"  id="avatar"></br>
-                  <input type="text" placeholder="password" id="password"></br>
-                  <input type="submit" value="register" class="register-button"></br>
+                  <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
+                  <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+                  <input type="submit" value="register" class="register-button" ng-click="ctrl.registerModal = false"</br>
                 </div>
               </form>
             </div>
           </div>
-        </nav>
+        </div>
+      </nav>
+    </div>
+    <div class="inner-header">
+      <div class="title-images">
+        <img src="./assets/images/anthony-tran-378336.jpg">
+        <img src="./assets/images/amirreza-fardad-426198.jpg">
+        <img src="./assets/images/clay-banks-258326.jpg">
       </div>
-      <div class="inner-header">
-        <div class="title-images">
-          <img src="./assets/images/anthony-tran-378336.jpg">
-          <img src="./assets/images/amirreza-fardad-426198.jpg">
-          <img src="./assets/images/clay-banks-258326.jpg">
-        </div>
-        <div class="title">
-          <h3>There's no shame in a little</h3>
-          <h1>Shelf Help</h1>
-        </div>
+      <div class="title">
+        <h3>There's no shame in a little</h3>
+        <h1>Shelf Help</h1>
       </div>
     </div>
+
 
     <main >
       <div class="index-line"><h3>what's popular</h3></div>
@@ -134,20 +136,15 @@
               <h5>PageCount: {{ctrl2.book.volumeInfo.pageCount}}</h5>
             </div>
           </div>
+
+        </div>
+        <h4 ng-click="ctrl1.getBook(book)">{{book.volumeInfo.title}}</h4>
+        <div class="author">
+          <h5 class="by">by</h5>
+          <h5> {{book.volumeInfo.authors[0]}}</h5>
+          <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
         </div>
 
-        <div class="book-card" ng-repeat="book in ctrl2.books | limitTo:-4">
-          <div class="img-like">
-            <img ng-click="ctrl2.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
-            <h2>+</h2>
-          </div>
-          <h4 ng-click="ctrl2.getBook(book)">{{book.volumeInfo.title}}</h4>
-          <div class="author">
-            <h5 class="by">by</h5>
-            <h5> {{book.volumeInfo.authors[0]}}</h5>
-            <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
-          </div>
-        </div>
       </div> -->
 
     </main>
@@ -163,23 +160,31 @@
         <div class="collapser">
           <a href="/">
             <div class="triangle-up">
+
             </div>
-            <h3>see less</h3>
-          </a>
+            <h5>Published: {{ctrl2.book.volumeInfo.publishedDate}}</h5>
+            <h5>{{ctrl2.book.volumeInfo.categories[0]}}</h5>
+            <p>
+              {{ctrl2.book.volumeInfo.description}}
+            </p>
+            <h5>PageCount: {{ctrl2.book.volumeInfo.pageCount}}</h5>
+          </div>
         </div>
       </div>
 
-      <div class="expand"
-      ng-click="ctrl.expanded = true"
-      ng-class="(ctrl.expanded ? 'hidden' : '')">
-        <div class="expander">
-          <a href="/expandedbooks">
-            <div class="triangle-down">
-            </div>
-            <h3>see more</h3>
-          </a>
+      <div class="book-card" ng-repeat="book in ctrl2.books | limitTo:-4">
+        <div class="img-like">
+          <img ng-click="ctrl2.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
+          <h2>+</h2>
+        </div>
+        <h4 ng-click="ctrl2.getBook(book)">{{book.volumeInfo.title}}</h4>
+        <div class="author">
+          <h5 class="by">by</h5>
+          <h5> {{book.volumeInfo.authors[0]}}</h5>
+          <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
         </div>
       </div>
+
     </div> -->
 
     <main>
@@ -206,17 +211,23 @@
                 </p>
                 <h5>PageCount: {{book.pageCount}}</h5>
               </div>
+
             </div>
+            <h5>Published: {{book.publishedDate}}</h5>
+            <h5>{{book.categories[0]}}</h5>
+            <p>
+              {{book.description}}
+            </p>
+            <h5>PageCount: {{book.pageCount}}</h5>
           </div>
         </div>
       </div>
-    </main>
-
-    <div class="index-links">
     </div>
-
-    <div class="footer">
-    </div>
-
-  </body>
+  </div>
+</main>
+<div class="index-links">
+</div>
+<div class="footer">
+</div>
+</body>
 </html>

@@ -60,6 +60,7 @@ app.controller('MainController', ['$http', function($http) {
   // }
 
   // index
+
   this.getBooks = () => {
     $http({
       url: 'books/',
@@ -111,14 +112,18 @@ app.controller('MainController', ['$http', function($http) {
 // }]);
 
 // register
-app.controller('RegisterController', ['$http', function($http) {
-  this.registerUser = () => {
+app.controller('RegisterController', ['$route', '$http', function($route, $http) {
+  this.loginModal = false;
+  this.registerModal = false;
+  this.processRegister = () => {
+    console.log('the process register functin is starting');
+    console.log(this.formData);
     $http({
-      url: '/register',
+      url: '/users/register',
       method: 'POST',
       data: this.formData
     }).then(response => {
-      this.users.push(response.data);
+      this.user = response.data;
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err));
