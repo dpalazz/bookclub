@@ -13,11 +13,11 @@
 <body>
   <div class="header">
     <div class="nav">
-      <nav ng-controller="MainController as ctrl">
+      <nav ng-controller="RegisterController as ctrl">
         <div>
           <p ng-click="ctrl.loginModal = true">Login | </p>
           <p ng-click="ctrl.registerModal = true"> Register | </p>
-          <p> username</p>
+          <p>{{ctrl.user.username}}</p>
         </div>
         <div class="search">
           <form ng-submit='ctrl.searchAPI()'>
@@ -44,15 +44,16 @@
           <div class="modal">
             <h6 ng-click="ctrl.registerModal = false">x</h6>
             <hr/>
-            <h2>Register</h2>
-            <form>
-              <div class="row">
-                <input type="text" placeholder="username" id="name"></br>
-                <input type="text" placeholder="image URL"  id="avatar"></br>
-                <input type="text" placeholder="password" id="password"></br>
-                <input type="submit" value="register" class="register-button"></br>
-              </div>
-            </form>
+            <div>
+              <h2 id="modal-h2">Register</h2>
+              <form ng-submit="ctrl.processRegister()">
+                <div class="row">
+                  <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
+                  <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+                  <input type="submit" value="register" class="register-button" ng-click="ctrl.registerModal = false"</br>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </nav>

@@ -35,7 +35,9 @@ router.get('/:id', async (req, res) => {
 // =======================
 // CREATE ROUTE FOR A USER
 // =======================
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
+  console.log('reaching the register route in user controller');
+  console.log(req.body);
   try {
     const user = await User.create(req.body);
     req.session.user = user;

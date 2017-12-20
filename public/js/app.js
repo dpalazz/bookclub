@@ -10,8 +10,6 @@ app.controller('MainController', ['$http', function($http) {
   this.author = 'Stephen+King';
   this.book = null;
   this.search = null;
-  this.loginModal = false;
-  this.registerModal = false;
   this.getBooks = () => {
     $http({
       url: this.url + this.author + '&key=' + key,
@@ -95,14 +93,18 @@ app.controller('ExpandedBooksController', ['$http', function($http) {
 }]);
 
 // register
-app.controller('RegisterController', ['$http', function($http) {
-  this.registerUser = () => {
+app.controller('RegisterController', ['$route', '$http', function($route, $http) {
+  this.loginModal = false;
+  this.registerModal = false;
+  this.processRegister = () => {
+    console.log('the process register functin is starting');
+    console.log(this.formData);
     $http({
-      url: '/register',
+      url: '/users/register',
       method: 'POST',
       data: this.formData
     }).then(response => {
-      this.users.push(response.data);
+      this.user = response.data;
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err));
@@ -143,7 +145,6 @@ app.controller('UserShelfController', ['$http', function($http) {
       this.user = response.data.user;
       console.log(this.user);
 
-
       for (let i = 0; i < this.user.bookCollection.length; i++) {
         console.log(this.user.bookCollection[i]);
         this.getBook(this.user.bookCollection[i]);
@@ -154,12 +155,8 @@ app.controller('UserShelfController', ['$http', function($http) {
     }, error => {
       console.error(error);
     }).catch(err => console.log(err))
-
-
   }
-
   this.getUser('5a38037b6c03034b8c7e5ac3');
-
 }]);
 
 
