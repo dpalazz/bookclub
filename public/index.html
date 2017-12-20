@@ -197,37 +197,32 @@
             <div class="book-show">
               <img ng-src={{book.thumbnail}}>
               <div class="show-text">
-                <div>
-                  <h4>{{book.title}}</h4>
-                  <h5 class="by">by</h5>
-                  <h5 ng-repeat="author in book.authors">
-                    {{author}}
-                  </h5>
+                <div class="author-title-delete">
+                  <div class="author-title">
+                    <h4>{{book.title}}</h4>
+                    <h5 class="by">by </h5>
+                    <h5 ng-repeat="author in book.authors">
+                      {{author}},
+                    </h5>
+                  </div>
+                  <button class="delete">delete</button>
                 </div>
                 <h5>Published: {{book.publishedDate}}</h5>
                 <h5>{{book.categories[0]}}</h5>
                 <p>
-                  {{book.description}}
+                {{book.description}}
                 </p>
                 <h5>PageCount: {{book.pageCount}}</h5>
               </div>
 
             </div>
-            <!-- <h5>Published: {{book.publishedDate}}</h5>
-            <h5>{{book.categories[0]}}</h5>
-            <p>
-              {{book.description}}
-            </p>
-            <h5>PageCount: {{book.pageCount}}</h5> -->
-          <!-- </div>
-        </div> -->
+          </div>
+        </div>
       </div>
+    </main>
+    <div class="index-links">
     </div>
-  </div>
-</main>
-<div class="index-links">
-</div>
-<div class="footer">
-</div>
-</body>
+    <div class="footer">
+    </div>
+  </body>
 </html>
