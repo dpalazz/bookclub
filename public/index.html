@@ -205,7 +205,7 @@
                       {{author}},
                     </h5>
                   </div>
-                  <button class="delete">delete</button>
+                  <button ng-click="ctrl.deleteBook(book._id)" class="delete">delete</button>
                 </div>
                 <h5>Published: {{book.publishedDate}}</h5>
                 <h5>{{book.categories[0]}}</h5>

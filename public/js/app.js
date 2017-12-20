@@ -208,6 +208,20 @@ this.getMyShelf = (id) => {
 
 this.getMyShelf('5a39b837d8343b59a100081a');
 
+this.deleteBook = (id) => {
+$http({
+    url: 'books/' + id,
+    method: 'DELETE'
+  }).then(response => {
+    const removeBook = this.books.findIndex(book => book._id === id);
+    this.books.splice(removeBook, 1);
+  }, error => {
+    console.log(error.message);
+  }).catch(err => console.log(err))
+}
+
+
+
 }]);
 
 
