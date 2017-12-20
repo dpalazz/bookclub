@@ -131,11 +131,12 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
     console.log('the process login function is starting');
     console.log(this.formData);
     $http({
-      url: '/login',
+      url: '/sessions/login',
       method: 'POST',
       data: this.formData
     }).then(response => {
       this.user = response.data;
+      console.log(this.user);
     }, error => {
       console.log(error.message);
     }).err(err => console.log('Catch', err));
