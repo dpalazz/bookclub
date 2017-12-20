@@ -101,14 +101,14 @@
 
         <div ng-repeat="row in ctrl.bookArray">
 
-          <div ng-if="$index === ctrl.index" class="book-show">
+          <div ng-if="$index === ctrl.index" class="index-book-show ">
             <img ng-src={{ctrl.book.thumbnail}}>
             <div class="show-text">
               <div class="author-title-delete">
                 <div class="author-title">
                   <h4>{{ctrl.book.title}}</h4>
                   <h5 class="by">by </h5>
-                  <h5 ng-repeat="author in book.authors track by $index">
+                  <h5 ng-repeat="author in ctrl.book.authors track by $index">
                     <div ng-if="ctrl.book.authors.length = 1">{{author}}</div>
                     <div ng-if="ctrl.book.authors.length > 1">{{author}}, </div>
                   </h5>
