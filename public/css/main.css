@@ -51,6 +51,11 @@ nav p {
   margin: 0px;
 }
 
+nav p:hover {
+  color: rgb(128, 127, 123);
+  cursor: pointer;
+}
+
 nav a, .index-line a {
   color: #fafaed;
   text-decoration: none;
@@ -453,6 +458,7 @@ main {
 .modal h6 {
   text-align: right;
   margin-bottom: 0px;
+  cursor: pointer;
 }
 
 .modal > h2 {
@@ -508,7 +514,12 @@ main {
   outline: none;
 }
 
-.showModal {
+.loginModal {
+  display: flex;
+  flex-direction: column;
+}
+
+.registerModal {
   display: flex;
   flex-direction: column;
 }
