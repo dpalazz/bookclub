@@ -140,7 +140,7 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
       console.log(this.user);
     }, error => {
       console.log(error.message);
-    }).err(err => console.log('Catch', err));
+    }).catch(err => console.log('Catch', err));
   }
 
   this.logout = () => {
@@ -153,7 +153,7 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
       console.log('sesh destroyed');
     }, error => {
       console.log(error.message);
-    }).err(err => console.log('Catch', err));
+    }).catch(err => console.log('Catch', err));
   }
 }]);
 
