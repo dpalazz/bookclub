@@ -217,6 +217,32 @@
                 {{book.description}}
                 </p>
                 <h5>PageCount: {{book.pageCount}}</h5>
+
+                <h4 class="rating" ng-if="book.rating > 0">
+                  Rating: {{book.rating}}
+                  <img ng-click="ctrl.getBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
+
+                </h4>
+
+                <h4 class="rating" ng-if="book.rating === 0">
+                  Add a rating!
+                  <img ng-click="ctrl.getBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
+
+                </h4>
+                <form ng-submit="ctrl.updateBook()" class="rate-edit" ng-if="book.rating === null">
+                  <input ng-model="ctrl.formData.rating" class="rate-textbox" type="text"
+                   placeholder="e.g. 1 - 5" />
+                   <input class="rate-button" type="submit" value="Go">
+                </form>
+
+
+                <!-- <form ng-submit="ctrl.updateBook()" class="rate-edit" ng-if="!book.rating">
+                  <input ng-model="ctrl.formData.rating" class="rate-textbox" type="text"
+                   placeholder="e.g. 1 - 5" />
+                   <input class="rate-button" type="submit" value="Go">
+                </form> -->
+
+
               </div>
 
             </div>

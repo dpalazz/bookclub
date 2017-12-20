@@ -72,7 +72,7 @@ app.controller('MainController', ['$http', function($http) {
       method: 'GET'
     }).then(response => {
       this.books = response.data
-      console.log(this.books);
+      console.table(this.books);
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err))
@@ -172,7 +172,7 @@ app.controller('UserShelfController', ['$http', function($http) {
       method: 'GET'
     }).then(response => {
       this.books = response.data
-      console.log(this.books);
+      console.table(this.books);
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err))
@@ -181,12 +181,36 @@ app.controller('UserShelfController', ['$http', function($http) {
   this.getMyShelf('5a39b95ca150f172d92ee228');
 
   this.deleteBook = (id) => {
-  $http({
+    $http({
       url: 'books/' + id,
       method: 'DELETE'
     }).then(response => {
       const removeBook = this.books.findIndex(book => book._id === id);
       this.books.splice(removeBook, 1);
+    }, error => {
+      console.log(error.message);
+    }).catch(err => console.log(err))
+  }
+
+  this.formData = {};
+
+  this.getBook = (book) => {
+    this.book = book;
+    this.book.rating = null;
+    console.table(this.book);
+  }
+
+  this.updateBook = () => {
+    console.log(this.book);
+    $http({
+      url: 'books/' + this.book._id,
+      method: 'PUT',
+      data: this.formData
+    }).then(response => {
+      this.book = this.formData;
+      const updateByIndex = this.books.findIndex(book => book._id === response.data._id)
+      this.books.splice(updateByIndex, 1, response.data)
+      this.formData = {};
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err))

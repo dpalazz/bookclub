@@ -195,7 +195,7 @@ nav .index-line a:hover {
   width: 700px;
 }
 
-.show-text h4 {
+.author-title h4 {
   margin: 0 0 5px 0;
   padding: 0 5px 5px 0;
   font-weight: bold;
@@ -507,6 +507,61 @@ main {
 
 .delete:hover {
   opacity: .7;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-top: 5px;
+  /*border: 1px solid red; */
+}
+
+.rate-button {
+  margin: 0 0 0 10px;
+  border: 1px solid #33332e;
+  border-radius: 50%;
+  background-color: #fcfcf6;
+  color: #33332e;
+  font-size: 18px;
+  font-family: "Dual-300";
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  padding-top: 5px;
+  letter-spacing: 1px;
+}
+
+.rate-textbox {
+  width: 90px;
+  height: 30px;
+  font-size: 14px;
+  font-family: "Dual-300";
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #33332e;
+}
+
+.rating {
+  margin: 10px 0 5px 0;
+}
+
+.rating img {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.rating img:hover, .rate-button:hover {
+  opacity: .7;
+}
+
+.rate-edit {
+  flex-direction: row;
+  align-items: center;
+  /*border: 1px red solid;*/
 }
 
 .show {

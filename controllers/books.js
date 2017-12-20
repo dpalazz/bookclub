@@ -21,7 +21,6 @@ router.get('/', async (req, res) => {
   try {
     const books = await Book.find().populate('user').sort({createdAt: -1});
     const key = process.env.KEY;
-    console.log('This is the process env key: ', key);
     res.status(200).json(books);
   } catch (err) {
     res.status(400).json({ err: err.message });
@@ -49,8 +48,15 @@ router.get('/user/:id', async (req, res) => {
 })
 
 
-// update??? ======================
-// router.put
+// update =========================
+router.put('/:id', async (req, res) => {
+  try {
+    const book = await Book.findByIdAndUpdate(req.params.id, req.body, {new:true});
+    res.status(200).json(book);
+  } catch (err) {
+    res.status(400).json({ err: err.message });
+  }
+})
 
 
 // delete =========================
