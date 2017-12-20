@@ -10,7 +10,8 @@ app.controller('MainController', ['$http', function($http) {
   this.author = 'Stephen+King';
   this.book = null;
   this.search = null;
-  this.showModal = false;
+  this.loginModal = false;
+  this.registerModal = false;
   this.getBooks = () => {
     $http({
       url: this.url + this.author + '&key=' + key,
