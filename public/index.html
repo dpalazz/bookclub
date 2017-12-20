@@ -15,10 +15,11 @@
     <div class="nav">
       <nav ng-controller="RegisterController as ctrl">
         <div>
-          <p ng-click="ctrl.loginModal = true">Login</p> |
+          <p ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login |</p>
           <p ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
-          <p ng-if="ctrl.user">Happy reading, <a href="#">{{ctrl.user.username}}!</a>|</p>
-          <p ng-if="ctrl.user">Logout</p>
+          <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}. |</p>
+          <p ng-if="ctrl.user"><a href="#">my shelf</a></p>
+          <p ng-click="ctrl.logout()" ng-if="ctrl.user">| Logout</p>
         </div>
         <div class="search">
           <form ng-submit='ctrl.searchAPI()'>

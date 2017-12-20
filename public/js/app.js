@@ -111,7 +111,7 @@ app.controller('MainController', ['$http', function($http) {
 //   this.getBooks();
 // }]);
 
-// register and login
+// register, login, logout
 app.controller('RegisterController', ['$route', '$http', function($route, $http) {
   this.registerModal = false;
   this.processRegister = () => {
@@ -137,6 +137,19 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
     }).then(response => {
       this.user = response.data;
       console.log(this.user);
+    }, error => {
+      console.log(error.message);
+    }).err(err => console.log('Catch', err));
+  }
+
+  this.logout = () => {
+    console.log('loggin outta here');
+    $http({
+      url: '/sessions/logout',
+      method: 'DELETE'
+    }).then(response => {
+      this.user = false;
+      console.log('sesh destroyed');
     }, error => {
       console.log(error.message);
     }).err(err => console.log('Catch', err));
