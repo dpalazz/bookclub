@@ -1,4 +1,5 @@
 const express = require('express');
+const dotenv  = require('dotenv').config();
 const router = express.Router();
 
 const Book = require('../models/books');
@@ -19,6 +20,8 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const books = await Book.find().populate('user').sort({createdAt: -1});
+    const key = process.env.KEY;
+    console.log('This is the process env key: ', key);
     res.status(200).json(books);
   } catch (err) {
     res.status(400).json({ err: err.message });

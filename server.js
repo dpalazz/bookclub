@@ -2,6 +2,7 @@
 const express    = require('express');
 const mongoose   = require('mongoose');
 const morgan     = require('morgan');
+const dotenv     = require('dotenv').config();
 const app        = express();
 const session    = require('express-session');
 require('pretty-error').start();
@@ -41,6 +42,10 @@ app.use('/sessions', sessionsController);
 
 app.get('/', (req, res) => {
   res.send('working');
+});
+
+app.get('/getkey', (req, res) => {
+  res.send({key: process.env.KEY});
 });
 
 // LISTEN

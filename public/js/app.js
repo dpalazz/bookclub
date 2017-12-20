@@ -1,11 +1,16 @@
 const app = angular.module('Shelf_Help', ['ngRoute', 'angular.filter']);
-const key = config.key;
-
 
 // ===============
 // MAIN CONTROLLER
 // ===============
 app.controller('MainController', ['$http', function($http) {
+
+  $http({
+    url: '/getkey',
+    method: 'GET',
+  }).then(response=>{
+    this.apikey = response.data.key;
+  })
   // this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
   // this.author = 'Stephen+King';
   // this.book = null;
@@ -143,7 +148,6 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
       console.log(error.message);
     }).catch(err => console.log('Catch', err));
   }
-  this.processLogin();
 
   this.logout = () => {
     console.log('loggin outta here');
