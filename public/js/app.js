@@ -74,20 +74,6 @@ app.controller('MainController', ['$http', function($http) {
 
   this.getBooks();
 
-  // my shelf
-  this.getBooks = (id) => {
-    $http({
-      url: 'books/user/' + req.params.id,
-      method: 'GET'
-    }).then(response => {
-      this.books = response.data
-      console.log(this.books);
-    }, error => {
-      console.log(error.message);
-    }).catch(err => console.log(err))
-  }
-  
-
 
 }]);
 
@@ -139,8 +125,9 @@ app.controller('RegisterController', ['$http', function($http) {
   }
 }]);
 
+
 // user's shelf
-// app.controller('UserShelfController', ['$http', function($http) {
+app.controller('UserShelfController', ['$http', function($http) {
 //   this.url = "https://www.googleapis.com/books/v1/volumes/";
 //   this.userBooks = [];
 //   this.book = {};
@@ -190,7 +177,21 @@ app.controller('RegisterController', ['$http', function($http) {
 //
 //   this.getUser('5a38037b6c03034b8c7e5ac3');
 
-// }]);
+this.getMyShelf = (id) => {
+  $http({
+    url: 'books/user/' + id,
+    method: 'GET'
+  }).then(response => {
+    this.books = response.data
+    console.log(this.books);
+  }, error => {
+    console.log(error.message);
+  }).catch(err => console.log(err))
+}
+
+this.getMyShelf('5a39b837d8343b59a100081a');
+
+}]);
 
 
 // =================
