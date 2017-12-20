@@ -74,6 +74,29 @@ app.controller('MainController', ['$http', function($http) {
 
   this.getBooks();
 
+  this.getBook = (book, num) => {
+    this.book = book;
+    this.index = num;
+    console.log("this.index", num);
+    console.table(this.book);
+  }
+
+  this.bookArray = [];
+
+  this.createIndexArray = (num) => {
+    let rows = Math.floor(num / 4);
+    if (num % 4 !== 0) {
+      rows++
+    }
+    let j = 4;
+    for (let i = 0; i < rows; i++) {
+      this.bookArray.push(j);
+      j = j + 4;
+    }
+    console.log(this.bookArray);
+  }
+
+this.createIndexArray(12);
 
 }]);
 
@@ -191,6 +214,7 @@ app.controller('SearchController', ['$http', function($http) {
     }).catch(err => console.log(err));
   }
   }]);
+
 
 // user's shelf
 app.controller('UserShelfController', ['$http', function($http) {

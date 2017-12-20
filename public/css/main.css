@@ -113,7 +113,7 @@ nav .index-line a:hover {
 .inner-header {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 1150px;
   height: 100%;
   margin: 0 auto;
 }
