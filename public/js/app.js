@@ -1,4 +1,4 @@
-const app = angular.module('Shelf_Help', ['ngRoute']);
+const app = angular.module('Shelf_Help', ['ngRoute', 'angular.filter']);
 const key = config.key;
 
 
@@ -160,82 +160,31 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
 
 // user's shelf
 app.controller('UserShelfController', ['$http', function($http) {
-//   this.url = "https://www.googleapis.com/books/v1/volumes/";
-//   this.userBooks = [];
-//   this.book = {};
-//
-//   this.getBook = (bookId) => {
-//     $http({
-//       url: this.url + bookId+ '?key=' + key,
-//       method: 'GET'
-//     }).then(response => {
-//       this.book.title = response.data.volumeInfo.title;
-//       this.book.authors = response.data.volumeInfo.authors;
-//       this.book.img = response.data.volumeInfo.imageLinks.thumbnail;
-//       this.book.description = response.data.volumeInfo.description;
-//       this.book.categories = response.data.volumeInfo.categories;
-//       this.book.pageCount = response.data.volumeInfo.pageCount;
-//       this.book.publishedDate = response.data.volumeInfo.publishedDate;
-//       console.log(this.book);
-//       this.userBooks.push(this.book);
-//       this.book = {};
-//     }, error => {
-//       console.error(error)
-//     }).catch(err => console.log(err))
-//   }
-//
-//   this.getUser = (id) => {
-//     $http({
-//       url: '/users/' + id,
-//       method: 'GET'
-//     }).then(response => {
-//       this.user = response.data.user;
-//       console.log(this.user);
-//
-//
-//       for (let i = 0; i < this.user.bookCollection.length; i++) {
-//         console.log(this.user.bookCollection[i]);
-//         this.getBook(this.user.bookCollection[i]);
-//         console.log(this.book);
-//         console.log(this.userBooks);
-//       }
-//       console.log(this.userBooks);
-//     }, error => {
-//       console.error(error);
-//     }).catch(err => console.log(err))
-//
-//
-//   }
-//
-//   this.getUser('5a38037b6c03034b8c7e5ac3');
+  this.getMyShelf = (id) => {
+    $http({
+      url: 'books/user/' + id,
+      method: 'GET'
+    }).then(response => {
+      this.books = response.data
+      console.log(this.books);
+    }, error => {
+      console.log(error.message);
+    }).catch(err => console.log(err))
+  }
 
-this.getMyShelf = (id) => {
+  this.getMyShelf('5a39b837d8343b59a100081a');
+
+  this.deleteBook = (id) => {
   $http({
-    url: 'books/user/' + id,
-    method: 'GET'
-  }).then(response => {
-    this.books = response.data
-    console.log(this.books);
-  }, error => {
-    console.log(error.message);
-  }).catch(err => console.log(err))
-}
-
-this.getMyShelf('5a39b837d8343b59a100081a');
-
-this.deleteBook = (id) => {
-$http({
-    url: 'books/' + id,
-    method: 'DELETE'
-  }).then(response => {
-    const removeBook = this.books.findIndex(book => book._id === id);
-    this.books.splice(removeBook, 1);
-  }, error => {
-    console.log(error.message);
-  }).catch(err => console.log(err))
-}
-
-
+      url: 'books/' + id,
+      method: 'DELETE'
+    }).then(response => {
+      const removeBook = this.books.findIndex(book => book._id === id);
+      this.books.splice(removeBook, 1);
+    }, error => {
+      console.log(error.message);
+    }).catch(err => console.log(err))
+  }
 
 }]);
 

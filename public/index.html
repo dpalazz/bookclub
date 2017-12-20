@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/main.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
   <script type="text/javascript"   src="/js/config.js"></script>
   <script type="text/javascript" src="/js/app.js"></script>
   <base href="/" target="_blank">
@@ -99,7 +100,7 @@
           </div>
         </div> -->
 
-        <div class="book-card" ng-repeat="book in ctrl.books | limitTo:4">
+        <div class="book-card" ng-repeat="book in ctrl.books | unique:'title'">
           <div class="img-like">
             <img ng-src={{book.thumbnail}}>
             <!-- ng-click="ctrl.getBook(book)" -->
@@ -203,8 +204,9 @@
                   <div class="author-title">
                     <h4>{{book.title}}</h4>
                     <h5 class="by">by </h5>
-                    <h5 ng-repeat="author in book.authors">
-                      {{author}},
+                    <h5 ng-repeat="author in book.authors track by $index">
+                      <!-- <div ng-if="book.authors.length = 1">{{author}}</div> -->
+                      <div ng-if="book.authors.length > 1">{{author}}, </div>
                     </h5>
                   </div>
                   <button ng-click="ctrl.deleteBook(book._id)" class="delete">delete</button>

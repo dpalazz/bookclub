@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
 // get all books saved on site
 router.get('/', async (req, res) => {
   try {
-    const books = await Book.find().populate('user');
+    const books = await Book.find().populate('user').sort({createdAt: -1});
     res.status(200).json(books);
   } catch (err) {
     res.status(400).json({ err: err.message });
@@ -38,7 +38,7 @@ router.get('/:id', async (req, res) => {
 //get books based on user
 router.get('/user/:id', async (req, res) => {
   try {
-    const books = await Book.find({user: req.params.id});
+    const books = await Book.find({user: req.params.id}).sort({createdAt: -1});
     res.status(200).json(books);
   } catch (err) {
     res.status(400).json({ err: err.message });
