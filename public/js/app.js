@@ -172,7 +172,7 @@ app.controller('UserShelfController', ['$http', function($http) {
     }).catch(err => console.log(err))
   }
 
-  this.getMyShelf('5a39b837d8343b59a100081a');
+  this.getMyShelf('5a39b95ca150f172d92ee228');
 
   this.deleteBook = (id) => {
   $http({
