@@ -55,9 +55,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// =======================
+// ========================
 // DELETE ROUTE FOR SESSION
-// =======================
+// ========================
 router.delete('/logout', (req, res) => {
   req.session.destroy(() => {
     console.log('Just ended the session for ', req.session);
