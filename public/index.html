@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js" charset="utf-8"></script>
-    <script type="text/javascript"   src="/js/config.js"></script>
+    <script type="text/javascript" src="/js/config.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
     <base href="/" target="_blank">
   </head>
@@ -71,11 +71,11 @@
 
     <main >
       <div class="index-line"><h3>what's popular</h3></div>
-      <div ng-controller='MainController as ctrl1' class="book-index">
-        <div class="book-show-section" ng-class="(ctrl1.book? 'show' : '')">
-          <div class='close' ng-click="ctrl1.book = null">x</div>
+      <div ng-controller='MainController as ctrl' class="book-index">
+        <!-- <div class="book-show-section" ng-class="(ctrl.book? 'show' : '')">
+          <div class='close' ng-click="ctrl.book = null">x</div>
           <div class="book-show" >
-            <img ng-src={{ctrl1.book.volumeInfo.imageLinks.thumbnail}}>
+            <img ng-src={{ctrl.book.volumeInfo.imageLinks.thumbnail}}>
               <div class="show-text">
                 <div>
                   <h4>{{ctrl1.book.volumeInfo.title}}</h4>
@@ -93,23 +93,25 @@
                 <h5>PageCount: {{ctrl1.book.volumeInfo.pageCount}}</h5>
               </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="book-card" ng-repeat="book in ctrl1.books | limitTo:4">
+        <div class="book-card" ng-repeat="book in ctrl.books | limitTo:4">
           <div class="img-like">
-            <img ng-click="ctrl1.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
+            <img ng-src={{book.thumbnail}}>
+            <!-- ng-click="ctrl.getBook(book)" -->
             <h2>+</h2>
           </div>
-          <h4 ng-click="ctrl1.getBook(book)">{{book.volumeInfo.title}}</h4>
+          <h4 >{{book.title}}</h4>
+          <!-- ng-click="ctrl.getBook(book)" -->
           <div class="author">
             <h5 class="by">by</h5>
-            <h5> {{book.volumeInfo.authors[0]}}</h5>
-            <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
+            <h5>{{book.authors[0]}}</h5>
+            <h5 ng-if="book.authors.length > 1">, ...</h5>
           </div>
         </div>
       </div>
 
-      <div ng-controller='MainController as ctrl2' class="book-index">
+      <!-- <div ng-controller='MainController as ctrl2' class="book-index">
 
         <div class="book-show-section" ng-class="(ctrl2.book? 'show' : '')">
           <div class='close' ng-click="ctrl2.book = null">x</div>
@@ -146,14 +148,14 @@
             <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </main>
 
 
     <main ng-view></main>
 
-    <div ng-controller="ExpanderCollapserController as ctrl" class="expand-collapse">
+    <!-- <div ng-controller="ExpanderCollapserController as ctrl" class="expand-collapse">
 
       <div class="collapse"
       ng-click="ctrl.expanded = false"
@@ -178,10 +180,10 @@
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <main>
-      <div ng-controller="UserShelfController as ctrl" class="book-index">
+      <!-- <div ng-controller="UserShelfController as ctrl" class="book-index">
 
         <div class="index-line"><h3>my shelf | <a href="#">add books</a></h3></div>
         <div class="my-shelf" ng-repeat="book in ctrl.userBooks">
@@ -207,7 +209,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </main>
 
     <div class="index-links">
