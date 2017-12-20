@@ -120,7 +120,8 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
       method: 'POST',
       data: this.formData
     }).then(response => {
-      this.user = response.data;
+      this.registrant = response.data;
+      console.log(this.registrant);
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err));
@@ -254,10 +255,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   //   controllerAs: 'ctrl'
   // });
 
-  $routeProvider.when('/register', {
-    templateUrl: 'partials/register.html',
-    controller: 'RegisterController',
-    controllerAs: 'ctrl'
-  });
+  // $routeProvider.when('/register', {
+  //   templateUrl: 'partials/register.html',
+  //   controller: 'RegisterController',
+  //   controllerAs: 'ctrl'
+  // });
 
 }]);
