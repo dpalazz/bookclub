@@ -8,7 +8,8 @@ const bookSchema = mongoose.Schema({
   categories: [String],
   pageCount: String,
   publishedDate: String,
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  rating: { type: Number, default: 0}
 }, { timestamps: true });
 
 module.exports = mongoose.model('Book', bookSchema);

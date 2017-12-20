@@ -15,19 +15,13 @@
     <div class="nav">
       <nav ng-controller="RegisterController as ctrl">
         <div>
-          <p ng-click="ctrl.loginModal = true">Login |</p>
-          <p ng-click="ctrl.registerModal = true"> Register</p>
+          <p ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login |</p>
+          <p ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
           <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}. |</p>
           <p ng-if="ctrl.user"><a href="#">my shelf</a></p>
           <p ng-click="ctrl.logout()" ng-if="ctrl.user">| Logout</p>
         </div>
-        <div class="search">
-          <form ng-submit='ctrl.searchAPI()'>
-            Search
-            <input type="text" ng-model="ctrl.search">
-            <input type="submit">
-          </form>
-        </div>
+
         <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
           <div class="modal">
             <h6 ng-click="ctrl.loginModal = false">x</h6>
@@ -73,6 +67,32 @@
     </div>
   </div>
 
+  <main>
+    <div ng-controller="SearchController as ctrl" class="book-index">
+      <div class="search">
+        <form ng-submit='ctrl.searchAPI()'>
+          Search
+          <input type="text" ng-model="ctrl.search">
+          <input type="submit">
+        </form>
+      </div>
+      <div class="index-line"><h3>search results</h3></div>
+    <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
+        <div class="img-like">
+        <img ng-src={{searchedBook.volumeInfo.imageLinks.thumbnail}}>
+        <!-- ng-click="ctrl.getBook(book)" -->
+        <h2>+</h2>
+        </div>
+        <h4 >{{searchedBook.title}}</h4>
+      <!-- ng-click="ctrl.getBook(book)" -->
+        <div class="author">
+          <h5 class="by">by</h5>
+          <h5>{{searchedBook.volumeInfo.authors[0]}}</h5>
+          <h5 ng-if="searchedBook.volumeInfo.authors.length > 1">, ...</h5>
+        </div>
+      </div>
+    </div>
+  </main>
 
     <main >
       <div class="index-line"><h3>what's popular</h3></div>
@@ -217,6 +237,32 @@
                 {{book.description}}
                 </p>
                 <h5>PageCount: {{book.pageCount}}</h5>
+
+                <h4 class="rating" ng-if="book.rating > 0">
+                  Rating: {{book.rating}}
+                  <img ng-click="ctrl.getBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
+
+                </h4>
+
+                <h4 class="rating" ng-if="book.rating === 0">
+                  Add a rating!
+                  <img ng-click="ctrl.getBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
+
+                </h4>
+                <form ng-submit="ctrl.updateBook()" class="rate-edit" ng-if="book.rating === null">
+                  <input ng-model="ctrl.formData.rating" class="rate-textbox" type="text"
+                   placeholder="e.g. 1 - 5" />
+                   <input class="rate-button" type="submit" value="Go">
+                </form>
+
+
+                <!-- <form ng-submit="ctrl.updateBook()" class="rate-edit" ng-if="!book.rating">
+                  <input ng-model="ctrl.formData.rating" class="rate-textbox" type="text"
+                   placeholder="e.g. 1 - 5" />
+                   <input class="rate-button" type="submit" value="Go">
+                </form> -->
+
+
               </div>
 
             </div>
