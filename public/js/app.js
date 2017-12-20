@@ -138,7 +138,7 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
       this.user = response.data;
     }, error => {
       console.log(error.message);
-    }).err(err => console.log('Catch', err))
+    }).err(err => console.log('Catch', err));
   }
 }]);
 
