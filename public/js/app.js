@@ -113,6 +113,7 @@ app.controller('MainController', ['$http', function($http) {
 
 // register, login, logout
 app.controller('RegisterController', ['$route', '$http', function($route, $http) {
+  this.user = false;
   this.registerModal = false;
   this.processRegister = () => {
     $http({
@@ -142,6 +143,7 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
       console.log(error.message);
     }).catch(err => console.log('Catch', err));
   }
+  this.processLogin();
 
   this.logout = () => {
     console.log('loggin outta here');
