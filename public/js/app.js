@@ -82,13 +82,16 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   this.bookArray = [];
+  this.expanded = false;
 
-  this.createIndexArray = (num) => {
+  this.createIndexArray = (num, begin) => {
+    this.bookArray = [];
     let rows = Math.floor(num / 4);
     if (num % 4 !== 0) {
       rows++
     }
-    let j = 4;
+    let j = begin;
+    console.log(j);
     for (let i = 0; i < rows; i++) {
       this.bookArray.push(j);
       j = j + 4;
@@ -96,7 +99,15 @@ app.controller('MainController', ['$http', function($http) {
     console.log(this.bookArray);
   }
 
-this.createIndexArray(20);
+  this.expandIndex = (num, begin) => {
+    this.expanded = true;
+    this.bookArray = [];
+    console.log("expanded?", this.expanded);
+    this.createIndexArray(num, begin);
+  }
+
+
+  this.createIndexArray(8,0);
 
 }]);
 

@@ -177,17 +177,29 @@ nav .index-line a:hover {
   cursor: pointer;
 }
 
+.show-book-close {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  padding: 10px 30px 30px 30px;
+  border-top: 1px solid #33332e;
+  border-bottom: 1px solid #33332e;
+  margin-bottom: 30px;
+  min-height: 350px;
+}
+
 .index-book-show {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   /*border: 1px solid red;*/
-  width: 100%;
+  /*width: 100%;
   padding:30px;
   border-top: 1px solid #33332e;
   border-bottom: 1px solid #33332e;
   margin-bottom: 30px;
-  min-height: 350px;
+  min-height: 350px;*/
 }
 
 .book-show > img, .index-book-show > img{
@@ -361,14 +373,20 @@ main {
   color: #fafaed;
   height: 100px;
   margin: 0;
+  /*border: 1px red solid;*/
+  padding: 0;
 }
 
 .expand {
   border-top: 1px solid #33332e;
+  /*border: 1px red solid;*/
+  margin-top: 0;
+
 }
 
 .collapse {
   border-bottom: 1px solid #33332e;
+  margin-top: 0;
 }
 
 .expander {
@@ -377,6 +395,8 @@ main {
   height: 75px;
   position: relative;
   z-index: 1;
+  /*border: 1px red solid;*/
+  margin-top: 0;
 }
 
 .collapser {
@@ -385,6 +405,7 @@ main {
   height: 75px;
   position: relative;
   z-index: 4;
+  margin-bottom: 0;
 }
 
 .hidden {
