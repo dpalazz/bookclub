@@ -80,8 +80,9 @@
           </form>
         </div>
 
+        <div ng-if="ctrl.searched">
         <div class="index-line"><h3>search results</h3></div>
-        <div>
+        <!-- <div> -->
           <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
 
             <div class="img-like">
@@ -100,7 +101,6 @@
             </div>
           </div>
         </div>
-    </div>
   </main>
     <main>
       <!-- {{ctrl.test}} -->
