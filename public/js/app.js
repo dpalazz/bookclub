@@ -96,7 +96,7 @@ app.controller('MainController', ['$http', function($http) {
     console.log(this.bookArray);
   }
 
-this.createIndexArray(20);
+this.createIndexArray(8);
 
 }]);
 
