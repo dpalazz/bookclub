@@ -53,6 +53,15 @@
               </div>
             </div>
           </div>
+
+          <div class="search">
+            <form ng-submit='ctrl.searchAPI()'>
+              Search
+              <input type="text" ng-model="ctrl.search">
+              <input type="submit">
+            </form>
+          </div>
+
         </nav>
       </div>
       <div class="inner-header">
@@ -72,13 +81,13 @@
 
       <div  class="book-index">
         <!-- ng-controller="RegisterController as ctrl" -->
-        <div class="search">
+        <!-- <div class="search">
           <form ng-submit='ctrl.searchAPI()'>
             Search
             <input type="text" ng-model="ctrl.search">
             <input type="submit">
           </form>
-        </div>
+        </div> -->
 
         <div ng-if="ctrl.searched">
         <div class="index-line"><h3>search results</h3></div>
