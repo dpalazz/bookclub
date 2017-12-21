@@ -752,6 +752,17 @@ form {
     display: flex;
     flex-direction: column;
   }
+
+  nav div {
+    text-align: center;
+    margin: auto;
+  }
+
+  nav p {
+    text-align: center;
+    margin: auto;
+  }
+
   .inner-header {
     display: flex;
     flex-direction: column;
