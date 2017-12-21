@@ -131,7 +131,7 @@
               ng-click="ctrl.getBook(book, $parent.$index)">
               <h2>+</h2>
             </div>
-            <h4 ng-click="ctrl.getBook(book)">{{book.title}}</h4>
+            <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
 
             <div class="author">
               <h5 class="by">by</h5>
@@ -300,13 +300,6 @@
                    placeholder="e.g. 1 - 5" />
                    <input class="rate-button" type="submit" value="Go">
                 </form>
-
-
-                <!-- <form ng-submit="ctrl.updateBook()" class="rate-edit" ng-if="!book.rating">
-                  <input ng-model="ctrl.formData.rating" class="rate-textbox" type="text"
-                   placeholder="e.g. 1 - 5" />
-                   <input class="rate-button" type="submit" value="Go">
-                </form> -->
 
 
               </div>
