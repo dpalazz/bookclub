@@ -8,35 +8,6 @@
     src: url('Dual-300.otf');
 }
 
-/*=======================*/
-/*Media Query*/
-/*=======================*/
-@media (max-width: 600px) {
-  .title > h3 {
-    display: none;
-  }
-
-  .title > h1 {
-    display: none;
-  }
-
-  .title-images > img {
-    display: none;
-  }
-
-  .header, .footer {
-    width: 100%;
-    background-color: #33332e;
-    color: #fafaed;
-    height: 10px;
-    margin: 0;
-  }
-
-  .inner-header {
-    display: none;
-  }
-}
-
 * {
   max-width: 100%;
   height: auto;
@@ -106,9 +77,9 @@ nav .index-line a:hover {
   text-decoration: underline;
 }
 
-.search > form {
+/*.search > form {
   padding-right: 30px;
-}
+}*/
 
 .inner-header {
   display: flex;
@@ -718,4 +689,73 @@ form {
 .registerModal {
   display: flex;
   flex-direction: column;
+}
+
+/*=======================*/
+/*Media Query*/
+/*=======================*/
+
+@media (max-width: 1080px) {
+  .title > h1 {
+    font-family: "Budhayanti";
+    font-size: 50px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 50px
+  }
+
+  .title > h3 {
+    /*text-align: center;*/
+    text-transform: lowercase;
+    font-size: 20px;
+    margin-bottom: 50px;
+    padding-right: 130px;
+    letter-spacing: 2px;
+    text-align: right;
+    margin-top: 50px;
+
+  }
+}
+
+@media (max-width: 960px) {
+
+  .inner-header {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 20vh;
+    margin: 0 auto;
+  }
+
+  .title-images {
+    display: flex;
+    width: inherit;
+    height: inherit;
+  }
+
+  .title-images > img {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    opacity: .7;
+    margin: 0;
+    padding: 0;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .header, .footer {
+    width: 100%;
+    background-color: #33332e;
+    color: #fafaed;
+    height: 10px;
+    margin: 0;
+  }
+
+  #top-main {
+    margin-top: 200px;
+  }
 }
