@@ -26,7 +26,7 @@ body {
   width: 100%;
   background-color: #33332e;
   color: #fafaed;
-  height: 500px;
+  height: 514px;
   margin: 0;
 }
 
@@ -42,7 +42,7 @@ nav {
   text-transform: lowercase;
   font-size: 19px;
   width: 100%;
-  margin: auto;
+  /*margin: auto;*/
   /*padding: 0px 20px;*/
   /*border: 1px red solid;*/
 
@@ -56,12 +56,10 @@ nav > div {
 .nav-links {
   width: 1150px;
   margin: auto;
-  /*border: 1px red solid;*/
-
 }
 
 nav p {
-  padding: 0px;
+  padding: 0px 10px;
   margin: 0px;
 }
 
@@ -77,7 +75,6 @@ nav p {
 nav a, .index-line a {
   color: #fafaed;
   text-decoration: none;
-  padding-right: 10px;
 }
 
 nav a:hover {
@@ -94,7 +91,39 @@ nav .index-line a:hover {
 }
 
 .search > form {
-  padding-right: 30px;
+  padding-right: 10px;
+}
+
+.search-box {
+  vertical-align: middle;
+  margin: 0 10px;
+  border: none;
+  border-radius: 10px;
+  width: 150px;
+  height: 18px;
+  margin-left: 10px;
+  padding: 5px 5px;
+  font-size: 14px;
+  font-family: "Dual-300";
+}
+
+.search > form > .search-box:focus {
+  outline: none;
+}
+
+.submit-btn {
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 25px;
+  height: 18px;
+  margin-left: -40px;
+  /*margin-bottom: 10px;*/
+}
+
+.submit-btn:focus {
+  outline: none;
 }
 
 .inner-header {
@@ -102,7 +131,7 @@ nav .index-line a:hover {
   flex-direction: row;
   width: 1150px;
   height: 100%;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .title-images {
@@ -659,9 +688,9 @@ form {
   padding-right: 25px;
   font-size: 16px;
   font-family: "Dual-300";
+  border: 2px solid #33332e;
+  border-radius: 10px;
   letter-spacing: 1px;
-  border-radius: 3px;
-  border: 1px solid #33332e;
 }
 
 .row > input:focus {
@@ -678,7 +707,9 @@ form {
   width: 180px;
   height: 35px;
   color: white;
-  border-radius: 3px;
+  border-radius: 10px;
+  font-family: "Dual-300";
+  letter-spacing: 1px;
 }
 
 .login-button:focus {
@@ -691,7 +722,9 @@ form {
   width: 180px;
   height: 35px;
   color: white;
-  border-radius: 3px;
+  border-radius: 10px;
+  font-family: "Dual-300";
+  letter-spacing: 1px;
 }
 
 .register-button:focus {
@@ -712,93 +745,28 @@ form {
 /*=======================*/
 /*Media Query*/
 /*=======================*/
-@media (max-width: 1080px) {
-  .title > h1 {
-    font-family: "Budhayanti";
-    font-size: 50px;
-    font-weight: normal;
-    margin: 0;
-    text-align: center;
-    margin-bottom: 50px
-  }
-
-  .title > h3 {
-    /*text-align: center;*/
-    text-transform: lowercase;
-    font-size: 20px;
-    margin-bottom: 50px;
-    padding-right: 130px;
-    letter-spacing: 2px;
-    text-align: right;
-    margin-top: 50px;
-  }
-}
-
-@media (max-width: 960px) {
-  .title > h1 {
-    font-family: "Budhayanti";
-    font-size: 50px;
-    font-weight: normal;
-    margin: 0;
-    text-align: center;
-    margin-bottom: 50px
-  }
-}
-
-/* cell phones*/
-@media (max-width: 414px) {
-
-  nav {
-    display: flex;
-    flex-direction: column;
-  }
-
-  nav div {
-    text-align: center;
-    margin: auto;
-  }
-
-  nav p {
-    text-align: center;
-    margin: auto;
-  }
-
-  .inner-header {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 20vh;
-    margin: 0 auto;
-  }
-
+@media (max-width: 1000px) {
   .title-images {
-    display: flex;
-    width: inherit;
-    height: inherit;
-  }
-
-  .title-images > img {
-    width: inherit;
-    height: inherit;
-    object-fit: cover;
-    opacity: .7;
-    margin: 0;
-    padding: 0;
-  }
-
-  .title {
     display: none;
   }
 
-  .header, .footer {
-    width: 100%;
-    background-color: #33332e;
-    color: #fafaed;
-    height: 10px;
-    margin: 0;
+  .title > h3 {
+    display: none;
   }
 
-  #top-main {
-    margin-top: 200px;
+  .title > h1 {
+    font-size: 55px;
+    text-align: center;
+    margin: auto;
+  }
+
+  .title {
+  display: flex;
+  flex-direction: row;
+  }
+
+  .header, .footer {
+    height: 350px;
+    margin: 0;
   }
 }
