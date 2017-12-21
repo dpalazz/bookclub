@@ -72,7 +72,9 @@ nav {
   font-size: 19px;
   width: 100%;
   margin: auto;
-  padding: 0px 20px;
+  /*padding: 0px 20px;*/
+  /*border: 1px red solid;*/
+
 }
 
 nav > div {
@@ -80,13 +82,23 @@ nav > div {
   flex-direction: row;
 }
 
+.nav-links {
+  width: 1150px;
+  margin: auto;
+  /*border: 1px red solid;*/
+
+}
+
 nav p {
   padding: 0px;
   margin: 0px;
-  padding-right: 10px;
 }
 
-nav p:hover {
+.pipe {
+  padding: 0 10px;
+}
+
+.link:hover {
   color: rgb(128, 127, 123);
   cursor: pointer;
 }
@@ -655,10 +667,11 @@ form {
   /*text-align: center;*/
 }
 
-.modal h6 {
+.modal h4 {
   text-align: right;
   margin-bottom: 0px;
   cursor: pointer;
+  font-size: 25px;
 }
 
 .modal h2 {

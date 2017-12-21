@@ -78,7 +78,6 @@ app.controller('RegisterController', ['$http', function($http) {
         this.books = response.data;
         console.log(id);
         console.log("user books:", this.books);
-
       }, error => {
         console.log(error.message);
       }).catch(err => console.log(err))
@@ -107,14 +106,17 @@ app.controller('RegisterController', ['$http', function($http) {
       method: 'POST',
       data: this.formData
     }).then(response => {
+      console.log(response.message);
       this.user = response.data;
       console.log(this.user);
       console.log(this.user._id);
       console.log('--- running shelf function ---');
       this.getMyShelf(this.user._id);
+      // console.log();
     }, error => {
-      console.log(error.message);
-    }).catch(err => console.log('Catch', err));
+      this.errorMessage = error.data.err
+      console.log(this.errorMessage);
+    }).catch(err => console.log('Catch', err.message));
   }
 
   this.logout = () => {
