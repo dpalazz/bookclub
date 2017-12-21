@@ -116,6 +116,7 @@ app.controller('RegisterController', ['$http', function($http) {
     }, error => {
       this.errorMessage = error.data.err
       console.log(this.errorMessage);
+      this.loginModal = true;
     }).catch(err => console.log('Catch', err.message));
   }
 
