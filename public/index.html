@@ -14,45 +14,28 @@
   <div ng-controller="RegisterController as ctrl">
     <div class="header">
       <div class="nav">
-        <nav >
-          <div>
-            <p ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login |</p>
-            <p ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
-            <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}. |</p>
-            <p ng-if="ctrl.user"><a href="#">my shelf</a></p>
-            <p ng-click="ctrl.logout()" ng-if="ctrl.user">| Logout</p>
-          </div>
+        <nav>
+          <div class="nav-bar">
+            <div class="nav-links">
+              <p class="link" ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login</p>
+              <p ng-if="!ctrl.user" class="pipe">|</p>
+              <p class="link" ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
+              <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}</p>
+              <p ng-if="ctrl.user" class="pipe">|</p>
+              <p class="link" ng-if="ctrl.user">my shelf</p>
+              <p ng-if="ctrl.user" class="pipe">|</p>
+              <p class="link" ng-click="ctrl.logout()" ng-if="ctrl.user">Logout</p>
+            </div>
 
-          <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
-            <div class="modal">
-              <h6 ng-click="ctrl.loginModal = false">x</h6>
-              <hr/>
-              <h2>Login</h2>
-              <form ng-submit="ctrl.processLogin()">
-                <div class="row">
-                  <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
-                  <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
-                  <input type="submit" value="login" class="login-button" ng-click="ctrl.loginModal = false"></br>
-                </div>
+            <div class="search">
+              <form ng-submit='ctrl.searchAPI()'>
+                Search
+                <input type="text" class="search-box" ng-model="ctrl.search">
+                <input type="submit" value="+"class="submit-btn">
               </form>
             </div>
           </div>
-          <div class="dim" ng-class="(ctrl.registerModal? 'registerModal' : '')">
-            <div class="modal">
-              <h6 ng-click="ctrl.registerModal = false">x</h6>
-              <hr/>
-              <div>
-                <h2>Register</h2>
-                <form ng-submit="ctrl.processRegister()">
-                  <div class="row">
-                    <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
-                    <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
-                    <input type="submit" value="register" class="register-button" ng-click="ctrl.registerModal = false"></br>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+
         </nav>
       </div>
       <div class="inner-header">
@@ -68,20 +51,48 @@
       </div>
     </div>
 
-    <main>
 
+          <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
+            <div class="modal">
+              <h4 class="close" ng-click="ctrl.loginModal = false; ctrl.errorMessage = null">x</h4>
+              <div>
+                <h2>Login</h2>
+                <form class="loginModal" ng-submit="ctrl.processLogin()">
+                  <div class="error-message">{{ctrl.errorMessage}}</div>
+                  <div class="row">
+                    <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
+                    <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+                    <input type="submit" value="login" class="login-button" ></br>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="dim" ng-class="(ctrl.registerModal? 'registerModal' : '')">
+            <div class="modal">
+              <h4 class="close" ng-click="ctrl.registerModal = false; ctrl.registerMessage = null">x</h4>
+              <div>
+                <h2>Register</h2>
+                <form class="loginModal" ng-submit="ctrl.processRegister()">
+                  <div class="error-message">{{ctrl.registerMessage}}</div>
+                  <div class="row">
+                    <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
+                    <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+                    <input type="submit" value="register" class="register-button"></br>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+
+
+    <main id="top-main">
       <div  class="book-index">
-        <!-- ng-controller="RegisterController as ctrl" -->
-        <div class="search">
-          <form ng-submit='ctrl.searchAPI()'>
-            Search
-            <input type="text" ng-model="ctrl.search">
-            <input type="submit">
-          </form>
-        </div>
 
+        <div ng-if="ctrl.searched">
         <div class="index-line"><h3>search results</h3></div>
-        <div>
           <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
 
             <div class="img-like">
@@ -92,7 +103,6 @@
               </form>
             </div>
             <h4>{{searchedBook.volumeInfo.title}}</h4>
-            <!-- ng-click="ctrl.getBook(book)" -->
             <div class="author">
               <h5 class="by">by</h5>
               <h5>{{searchedBook.volumeInfo.authors[0]}}</h5>
@@ -100,18 +110,16 @@
             </div>
           </div>
         </div>
-    </div>
+      </div>
   </main>
-    <main>
-      <!-- {{ctrl.test}} -->
 
+    <main>
       <div class="book-index">
 
         <div class="index-line">
           <h3>my shelf | <a href="#">add books</a>
           </h3>
         </div>
-        <!-- {{ctrl.user}} -->
         <div class="my-shelf" ng-repeat="book in ctrl.books">
 
           <div class="my-shelf-section">
@@ -161,9 +169,8 @@
         </div>
       </div>
     </main>
-
-
   </div>
+
   <main ng-controller='MainController as ctrl'>
     <div class="index-line"><h3>what's popular</h3></div>
     <div ng-if="!ctrl.expanded" class="book-index">
@@ -201,7 +208,7 @@
           <div class="img-like">
             <img ng-src={{book.thumbnail}}
             ng-click="ctrl.getBook(book, $parent.$index)">
-            <h2 class="add">+</h2>
+            <!-- <h2 class="add">+</h2> -->
           </div>
           <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
 
@@ -258,7 +265,7 @@
           <div class="img-like">
             <img ng-src={{book.thumbnail}}
             ng-click="ctrl.getBook(book, $parent.$index)">
-            <h2 class="add">+</h2>
+            <!-- <h2 class="add">+</h2> -->
           </div>
           <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
 
@@ -279,13 +286,11 @@
         </div>
       </div>
     </div>
-
   </main>
-
-
 
   <div class="index-links">
   </div>
+
   <div class="footer">
   </div>
 </body>
