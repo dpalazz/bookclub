@@ -26,7 +26,6 @@
               <p ng-if="ctrl.user" class="pipe">|</p>
               <p class="link" ng-click="ctrl.logout()" ng-if="ctrl.user">Logout</p>
             </div>
-
             <div class="search">
               <form ng-submit='ctrl.searchAPI()'>
                 Search
@@ -35,7 +34,6 @@
               </form>
             </div>
           </div>
-
         </nav>
       </div>
       <div class="inner-header">
@@ -50,56 +48,49 @@
         </div>
       </div>
     </div>
-
-
-          <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
-            <div class="modal">
-              <h4 class="close" ng-click="ctrl.loginModal = false; ctrl.errorMessage = null">x</h4>
-              <div>
-                <h2>Login</h2>
-                <form class="loginModal" ng-submit="ctrl.processLogin()">
-                  <div class="error-message">{{ctrl.errorMessage}}</div>
-                  <div class="row">
-                    <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
-                    <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
-                    <input type="submit" value="login" class="login-button" ></br>
-                  </div>
-                </form>
-              </div>
+    <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
+      <div class="modal">
+        <h4 class="close" ng-click="ctrl.loginModal = false; ctrl.errorMessage = null">x</h4>
+        <div>
+          <h2>Login</h2>
+          <form class="loginModal" ng-submit="ctrl.processLogin()">
+            <div class="error-message">{{ctrl.errorMessage}}</div>
+            <div class="row">
+              <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
+              <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+              <input type="submit" value="login" class="login-button" ></br>
             </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="dim" ng-class="(ctrl.registerModal? 'registerModal' : '')">
+      <div class="modal">
+        <h4 class="close" ng-click="ctrl.registerModal = false; ctrl.registerMessage = null">x</h4>
+        <div>
+          <h2>Register</h2>
+          <form class="loginModal" ng-submit="ctrl.processRegister()">
+          <div class="error-message">{{ctrl.registerMessage}}</div>
+          <div class="row">
+            <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
+            <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+            <input type="submit" value="register" class="register-button"></br>
           </div>
-          <div class="dim" ng-class="(ctrl.registerModal? 'registerModal' : '')">
-            <div class="modal">
-              <h4 class="close" ng-click="ctrl.registerModal = false; ctrl.registerMessage = null">x</h4>
-              <div>
-                <h2>Register</h2>
-                <form class="loginModal" ng-submit="ctrl.processRegister()">
-                  <div class="error-message">{{ctrl.registerMessage}}</div>
-                  <div class="row">
-                    <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
-                    <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
-                    <input type="submit" value="register" class="register-button"></br>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-
-
-
-
+          </form>
+        </div>
+      </div>
+    </div>
     <main id="top-main">
-      <div  class="book-index">
-
+      <div class="book-index">
         <div ng-if="ctrl.searched">
-        <div class="index-line"><h3>search results</h3></div>
+          <div class="index-line">
+            <h3>search results</h3>
+          </div>
           <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
-
             <div class="img-like">
               <img  ng-src={{searchedBook.volumeInfo.imageLinks.thumbnail}} ng-click="ctrl.getBook(searchedBook)">
               <form ng-submit="ctrl.createBookShelf(searchedBook, ctrl.user)">
                 <input class="plus" type="submit" value="+"></input>
-
               </form>
             </div>
             <h4>{{searchedBook.volumeInfo.title}}</h4>
@@ -111,17 +102,13 @@
           </div>
         </div>
       </div>
-  </main>
-
+    </main>
     <main>
       <div class="book-index">
-
         <div class="index-line">
-          <h3>my shelf | <a href="#">add books</a>
-          </h3>
+          <h3>my shelf </h3>
         </div>
         <div class="my-shelf" ng-repeat="book in ctrl.books">
-
           <div class="my-shelf-section">
             <div class="book-show">
               <img ng-src={{book.thumbnail}}>
@@ -132,7 +119,7 @@
                     <h5 class="by">by </h5>
                     <h5 ng-repeat="author in book.authors track by $index">
                       <!-- <div ng-if="book.authors.length = 1">{{author}}</div> -->
-                      <div ng-if="book.authors.length > 1">{{author}}, </div>
+                    <div ng-if="book.authors.length > 1">{{author}}, </div>
                     </h5>
                   </div>
                   <button ng-click="ctrl.deleteBook(book._id)" class="delete">delete</button>
@@ -143,41 +130,28 @@
                   {{book.description}}
                 </p>
                 <h5>PageCount: {{book.pageCount}}</h5>
-
                 <h4 class="rating" ng-if="book.rating > 0">
                   Rating: {{book.rating}}
-                  <img ng-click="ctrl.getShelfBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
-
-                </h4>
-
+                  <img ng-click="ctrl.getShelfBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/></h4>
                 <h4 class="rating" ng-if="book.rating === 0">
                   Add a rating!
-                  <img ng-click="ctrl.getShelfBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
-
-                </h4>
+                  <img ng-click="ctrl.getShelfBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/></h4>
                 <form ng-submit="ctrl.updateBook()" class="rate-edit" ng-if="book.rating === null">
                   <input ng-model="ctrl.formData.rating" class="rate-textbox" type="text"
                   placeholder="e.g. 1 - 5" />
                   <input class="rate-button" type="submit" value="Go">
                 </form>
-
-
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </main>
   </div>
-
   <main ng-controller='MainController as ctrl'>
     <div class="index-line"><h3>what's popular</h3></div>
     <div ng-if="!ctrl.expanded" class="book-index">
-
-
       <div ng-repeat="row in ctrl.bookArray">
-
         <div class="show-book-close" ng-if="$index === ctrl.index" >
           <div ng-click="ctrl.index = null" class="close">x</div>
           <div class="index-book-show ">
@@ -189,8 +163,7 @@
                   <h5 class="by">by </h5>
                   <h5 ng-repeat="author in ctrl.book.authors track by $index">
                     <div ng-if="ctrl.book.authors.length = 1">{{author}}</div>
-                    <div ng-if="ctrl.book.authors.length > 1">{{author}}, </div>
-                  </h5>
+                    <div ng-if="ctrl.book.authors.length > 1">{{author}}, </div></h5>
                 </div>
               </div>
               <h5>Published: {{ctrl.book.publishedDate}}</h5>
@@ -199,11 +172,9 @@
                 {{ctrl.book.description}}
               </p>
               <h5>PageCount: {{ctrl.book.pageCount}}</h5>
-
             </div>
           </div>
         </div>
-
         <div class="book-card" ng-repeat="book in ctrl.books | unique:'title' | limitTo:4:row">
           <div class="img-like">
             <img ng-src={{book.thumbnail}}
@@ -211,19 +182,15 @@
             <!-- <h2 class="add">+</h2> -->
           </div>
           <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
-
           <div class="author">
             <h5 class="by">by</h5>
             <h5>{{book.authors[0]}}</h5>
             <h5 ng-if="book.authors.length > 1">, ...</h5>
           </div>
         </div>
-
       </div>
     </div>
-
     <div class="book-index">
-
       <div ng-if="!ctrl.expanded" class="expand-collapse expand">
         <div class="expander">
           <div ng-click="ctrl.expandIndex(20,0); ctrl.index = null" class="triangle-down">
@@ -231,10 +198,7 @@
           </div>
         </div>
       </div>
-
-
       <div ng-if="ctrl.expanded" ng-repeat="row in ctrl.bookArray">
-
         <div class="show-book-close" ng-if="$index === ctrl.index" >
           <div ng-click="ctrl.index = null" class="close">x</div>
           <div class="index-book-show ">
@@ -246,8 +210,7 @@
                   <h5 class="by">by </h5>
                   <h5 ng-repeat="author in ctrl.book.authors track by $index">
                     <div ng-if="ctrl.book.authors.length = 1">{{author}}</div>
-                    <div ng-if="ctrl.book.authors.length > 1">{{author}}, </div>
-                  </h5>
+                    <div ng-if="ctrl.book.authors.length > 1">{{author}}, </div></h5>
                 </div>
               </div>
               <h5>Published: {{ctrl.book.publishedDate}}</h5>
@@ -256,28 +219,22 @@
                 {{ctrl.book.description}}
               </p>
               <h5>PageCount: {{ctrl.book.pageCount}}</h5>
-
             </div>
           </div>
         </div>
-
         <div class="book-card" ng-repeat="book in ctrl.books | unique:'title' | limitTo:4:row">
           <div class="img-like">
             <img ng-src={{book.thumbnail}}
             ng-click="ctrl.getBook(book, $parent.$index)">
-            <!-- <h2 class="add">+</h2> -->
           </div>
           <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
-
           <div class="author">
             <h5 class="by">by</h5>
             <h5>{{book.authors[0]}}</h5>
             <h5 ng-if="book.authors.length > 1">, ...</h5>
           </div>
         </div>
-
       </div>
-
       <div ng-if="ctrl.expanded" class="expand-collapse collapse">
         <div class="collapser">
           <div ng-click="ctrl.expanded = false; ctrl.index = null; ctrl.createIndexArray(8,0)" class="triangle-up">
@@ -287,11 +244,7 @@
       </div>
     </div>
   </main>
-
-  <div class="index-links">
-  </div>
-
-  <div class="footer">
-  </div>
+  <div class="index-links"></div>
+  <div class="footer"></div>
 </body>
 </html>

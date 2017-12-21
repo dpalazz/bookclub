@@ -108,6 +108,14 @@ nav .index-line a:hover {
   font-size: 35px;
 }
 
+.plus:hover {
+  color: rgb(128, 127, 123);
+}
+
+.plus:focus {
+  outline: none;
+}
+
 .search > form {
   padding-right: 10px;
   display: flex;
@@ -593,6 +601,10 @@ main {
 
 .delete:hover {
   opacity: .7;
+}
+
+.delete:focus{
+  outline: none;
 }
 
 form {
