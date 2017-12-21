@@ -64,9 +64,7 @@ app.controller('MainController', ['$http', function($http) {
 // register, login, logout
 app.controller('RegisterController', ['$http', function($http) {
   this.user = null;
-  this.test = "show up plzz";
   this.registerModal = false;
-  // this.books = [{title: 'test book'}];
 
   // user's shelf
     this.getMyShelf = (id) => {
@@ -78,7 +76,6 @@ app.controller('RegisterController', ['$http', function($http) {
         this.books = response.data;
         console.log(id);
         console.log("user books:", this.books);
-
       }, error => {
         console.log(error.message);
       }).catch(err => console.log(err))
@@ -93,9 +90,16 @@ app.controller('RegisterController', ['$http', function($http) {
     }).then(response => {
       this.registrant = response.data;
       console.log(this.registrant);
+      this.registerModal = false;
+      this.formData = null;
+      this.registerMessage = null;
     }, error => {
-      console.log(error.message);
-    }).catch(err => console.log(err));
+      // console.log(error.message);
+      this.registerMessage = error.data.err
+      console.log(this.registerMessage);
+      this.registerModal = true;
+      this.formData = null;
+    }).catch(err => console.log(err.message));
   }
 
   this.loginModal = false;
@@ -107,14 +111,21 @@ app.controller('RegisterController', ['$http', function($http) {
       method: 'POST',
       data: this.formData
     }).then(response => {
+      console.log(response.message);
       this.user = response.data;
       console.log(this.user);
       console.log(this.user._id);
+      this.loginModal = false;
+      this.formData = null;
+      this.errorMessage = null;
       console.log('--- running shelf function ---');
       this.getMyShelf(this.user._id);
     }, error => {
-      console.log(error.message);
-    }).catch(err => console.log('Catch', err));
+      this.errorMessage = error.data.err
+      console.log(this.errorMessage);
+      this.loginModal = true;
+      this.formData = null;
+    }).catch(err => console.log('Catch', err.message));
   }
 
   this.logout = () => {
@@ -158,12 +169,12 @@ app.controller('RegisterController', ['$http', function($http) {
     console.log('selected book', searchedBook);
     console.table('selected book', searchedBook);
     console.log('user:', id);
-    const newBook = {
+    this.newBook = {
       title: searchedBook.volumeInfo.title,
       authors: searchedBook.volumeInfo.authors,
       thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
       description: searchedBook.volumeInfo.description,
-      categories: searchedBook.volumeInfo.title,
+      categories: searchedBook.volumeInfo.categories[0],
       pageCount: searchedBook.volumeInfo.pageCount,
       publishedDate: searchedBook.volumeInfo.publishedDate,
       user: this.user._id,
@@ -172,10 +183,10 @@ app.controller('RegisterController', ['$http', function($http) {
     $http({
       url: 'books/',
       method: 'POST',
-      data: newBook
+      data: this.newBook
     }).then(response => {
       // this.books = newBook;
-      this.books.push(newBook);
+      this.books.unshift(response.data);
       // console.log(this.arrayOfBooks);
       console.log(this.books);
       // this.getMyShelf(this.user._id);
@@ -195,16 +206,14 @@ app.controller('RegisterController', ['$http', function($http) {
       console.table('search results are', response.data.items);
       this.searchResults = response.data.items;
       this.search = null;
+      this.searched = true;
     }, ( error ) => {
       console.log(error);
     }).catch(err => console.log(err));
   }
 
-
-
-
-
   this.deleteBook = (id) => {
+    console.log(id);
     $http({
       url: 'books/' + id,
       method: 'DELETE'

@@ -1,40 +1,11 @@
 @font-face {
-    font-family: "Budhayanti";
-    src: url('Budhayanti script.ttf');
+  font-family: "Budhayanti";
+  src: url('Budhayanti script.ttf');
 }
 
 @font-face {
-    font-family: "Dual-300";
-    src: url('Dual-300.otf');
-}
-
-/*=======================*/
-/*Media Query*/
-/*=======================*/
-@media (max-width: 600px) {
-  .title > h3 {
-    display: none;
-  }
-
-  .title > h1 {
-    display: none;
-  }
-
-  .title-images > img {
-    display: none;
-  }
-
-  .header, .footer {
-    width: 100%;
-    background-color: #33332e;
-    color: #fafaed;
-    height: 10px;
-    margin: 0;
-  }
-
-  .inner-header {
-    display: none;
-  }
+  font-family: "Dual-300";
+  src: url('Dual-300.otf');
 }
 
 * {
@@ -55,7 +26,7 @@ body {
   width: 100%;
   background-color: #33332e;
   color: #fafaed;
-  height: 500px;
+  height: 514px;
   margin: 0;
 }
 
@@ -71,8 +42,9 @@ nav {
   text-transform: lowercase;
   font-size: 19px;
   width: 100%;
-  margin: auto;
-  padding: 0px 20px;
+  /*margin: auto;*/
+  /*padding: 0px 20px;*/
+  /*border: 1px red solid;*/
 }
 
 nav > div {
@@ -80,13 +52,37 @@ nav > div {
   flex-direction: row;
 }
 
-nav p {
-  padding: 0px;
-  margin: 0px;
-  padding-right: 10px;
+.nav-links {
+  width: 1150px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  /*border: 1px red solid;*/
+  padding-left: 0;
 }
 
-nav p:hover {
+.nav-bar {
+  /*border: 1px red solid;*/
+  margin: auto;
+  width: 1150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 28px;
+  box-sizing: border-box;
+}
+
+nav p {
+  /*padding: 0px 10px;*/
+  margin: 0px;
+}
+
+.pipe {
+  padding: 0 10px;
+}
+
+.link:hover {
   color: rgb(128, 127, 123);
   cursor: pointer;
 }
@@ -94,7 +90,6 @@ nav p:hover {
 nav a, .index-line a {
   color: #fafaed;
   text-decoration: none;
-  padding-right: 10px;
 }
 
 nav a:hover {
@@ -108,10 +103,49 @@ nav .index-line a:hover {
 
 .plus {
   cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 35px;
 }
 
 .search > form {
-  padding-right: 30px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  /*border: 1px red solid;*/
+}
+
+.search-box {
+  /*vertical-align: middle;*/
+  margin: 0 10px;
+  border: none;
+  border-radius: 10px;
+  width: 150px;
+  height: 18px;
+  margin-left: 10px;
+  padding: 9px 5px 5px 5px;
+  font-size: 14px;
+  font-family: "Dual-300";
+}
+
+.search > form > .search-box:focus {
+  outline: none;
+}
+
+.submit-btn {
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 25px;
+  height: 18px;
+  margin-left: -40px;
+  /*margin-bottom: 10px;*/
+}
+
+.submit-btn:focus {
+  outline: none;
 }
 
 .inner-header {
@@ -119,7 +153,8 @@ nav .index-line a:hover {
   flex-direction: row;
   width: 1150px;
   height: 100%;
-  margin: 0 auto;
+  margin: auto;
+  /*border: 1px red solid;*/
 }
 
 .title-images {
@@ -650,42 +685,57 @@ form {
   text-align: left;
   padding-left: 30px;
   padding-right: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   border-radius: 3px;
   /*text-align: center;*/
+  width: 200px;
+  height: 425px;
 }
 
-.modal h6 {
+.modal h4 {
   text-align: right;
   margin-bottom: 0px;
   cursor: pointer;
+  font-size: 25px;
 }
 
 .modal h2 {
   font-family: "Budhayanti";
   font-size: 40px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   text-align: center;
   text-shadow: -5px 10px #f4f4d9;
 }
 
+.error-message {
+  color: #b20000;
+  font-size: 16px;
+  width: 180px;
+  padding-bottom: 10px;
+  /*border: 1px red solid;*/
+
+}
+
+
 .row > input {
-  margin-top: 20px;
+  margin-top: 5px;
   padding: 8px;
   padding-right: 25px;
   font-size: 16px;
   font-family: "Dual-300";
+  border: 2px solid #33332e;
+  border-radius: 10px;
   letter-spacing: 1px;
-  border-radius: 3px;
-  border: 1px solid #33332e;
 }
 
 .row > input:focus {
   outline: none;
 }
 
+
 .row > input[type=submit] {
   padding-left: 22px;
+  cursor: pointer;
 }
 
 .login-button {
@@ -694,7 +744,9 @@ form {
   width: 180px;
   height: 35px;
   color: white;
-  border-radius: 3px;
+  border-radius: 10px;
+  font-family: "Dual-300";
+  letter-spacing: 1px;
 }
 
 .login-button:focus {
@@ -707,7 +759,9 @@ form {
   width: 180px;
   height: 35px;
   color: white;
-  border-radius: 3px;
+  border-radius: 10px;
+  font-family: "Dual-300";
+  letter-spacing: 1px;
 }
 
 .register-button:focus {
@@ -717,9 +771,49 @@ form {
 .loginModal {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
 }
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
 
 .registerModal {
   display: flex;
   flex-direction: column;
+}
+
+
+/*=======================*/
+/*Media Query*/
+/*=======================*/
+@media (max-width: 1000px) {
+  .title-images {
+    display: none;
+  }
+
+  .title > h3 {
+    display: none;
+  }
+
+  .title > h1 {
+    font-size: 55px;
+    text-align: center;
+    margin: auto;
+  }
+
+  .title {
+  display: flex;
+  flex-direction: row;
+  }
+
+  .header, .footer {
+    height: 350px;
+    margin: 0;
+  }
 }
