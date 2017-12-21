@@ -15,23 +15,26 @@
     <div class="header">
       <div class="nav">
         <nav >
-          <div>
-            <p ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login |</p>
-            <p ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
-            <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}. |</p>
-            <p ng-if="ctrl.user"><a href="#">my shelf</a></p>
-            <p ng-click="ctrl.logout()" ng-if="ctrl.user">| Logout</p>
+          <div class="nav-links">
+            <p class="link" ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login</p>
+            <p ng-if="!ctrl.user" class="pipe">|</p>
+            <p class="link" ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
+            <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}</p>
+            <p ng-if="ctrl.user" class="pipe">|</p>
+            <p class="link" ng-if="ctrl.user">my shelf</p>
+            <p ng-if="ctrl.user" class="pipe">|</p>
+            <p class="link" ng-click="ctrl.logout()" ng-if="ctrl.user">Logout</p>
           </div>
 
           <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
             <div class="modal">
-              <h6 ng-click="ctrl.loginModal = false">x</h6>
-              <hr/>
+              <h4 class="close" ng-click="ctrl.loginModal = false">x</h4>
+              <!-- <hr/> -->
               <h2>Login</h2>
               <form ng-submit="ctrl.processLogin()">
                 <div class="row">
                   <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
-                  <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+                  <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
                   <input type="submit" value="login" class="login-button" ng-click="ctrl.loginModal = false"></br>
                 </div>
               </form>
@@ -39,14 +42,14 @@
           </div>
           <div class="dim" ng-class="(ctrl.registerModal? 'registerModal' : '')">
             <div class="modal">
-              <h6 ng-click="ctrl.registerModal = false">x</h6>
-              <hr/>
+              <h4 class="close" ng-click="ctrl.registerModal = false">x</h4>
+              <!-- <hr/> -->
               <div>
                 <h2>Register</h2>
                 <form ng-submit="ctrl.processRegister()">
                   <div class="row">
                     <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
-                    <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+                    <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
                     <input type="submit" value="register" class="register-button" ng-click="ctrl.registerModal = false"></br>
                   </div>
                 </form>

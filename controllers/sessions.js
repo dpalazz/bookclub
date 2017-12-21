@@ -46,12 +46,14 @@ router.post('/login', async (req, res) => {
       req.session.user = loggedUser;
       console.log(req.session.user);
       res.status(200).json(loggedUser);
-    } else {
-      res.status(403).json({err: 'Forbidden.'});
+    } else { //username correct
+      req.session.message = "Username or password is incorrect"
+      res.status(403).json({err: req.session.message});
     }
     // ** END AUTHENTICATE USER
-  } catch (err) {
-    res.status(400).json({err: err.message})
+  } catch (err) { //password and username incorrect
+    req.session.message = "Username or password is incorrect"
+    res.status(400).json({err: req.session.message})
   }
 });
 
