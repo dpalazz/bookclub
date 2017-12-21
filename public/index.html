@@ -28,28 +28,31 @@
 
           <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
             <div class="modal">
-              <h4 class="close" ng-click="ctrl.loginModal = false">x</h4>
-              <h2>Login</h2>
-              <form class="loginModal" ng-submit="ctrl.processLogin()">
-                <div class="error-message">{{ctrl.errorMessage}}</div>
-                <div class="row">
-                  <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
-                  <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
-                  <input type="submit" value="login" class="login-button" ></br>
-                </div>
-              </form>
+              <h4 class="close" ng-click="ctrl.loginModal = false; ctrl.errorMessage = null">x</h4>
+              <div>
+                <h2>Login</h2>
+                <form class="loginModal" ng-submit="ctrl.processLogin()">
+                  <div class="error-message">{{ctrl.errorMessage}}</div>
+                  <div class="row">
+                    <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
+                    <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+                    <input type="submit" value="login" class="login-button" ></br>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
           <div class="dim" ng-class="(ctrl.registerModal? 'registerModal' : '')">
             <div class="modal">
-              <h4 class="close" ng-click="ctrl.registerModal = false">x</h4>
+              <h4 class="close" ng-click="ctrl.registerModal = false; ctrl.registerMessage = null">x</h4>
               <div>
                 <h2>Register</h2>
-                <form ng-submit="ctrl.processRegister()">
+                <form class="loginModal" ng-submit="ctrl.processRegister()">
+                  <div class="error-message">{{ctrl.registerMessage}}</div>
                   <div class="row">
                     <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
                     <input type="password" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
-                    <input type="submit" value="register" class="register-button" ng-click="ctrl.registerModal = false"></br>
+                    <input type="submit" value="register" class="register-button"></br>
                   </div>
                 </form>
               </div>

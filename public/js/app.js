@@ -64,9 +64,7 @@ app.controller('MainController', ['$http', function($http) {
 // register, login, logout
 app.controller('RegisterController', ['$http', function($http) {
   this.user = null;
-  this.test = "show up plzz";
   this.registerModal = false;
-  // this.books = [{title: 'test book'}];
 
   // user's shelf
     this.getMyShelf = (id) => {
@@ -92,9 +90,16 @@ app.controller('RegisterController', ['$http', function($http) {
     }).then(response => {
       this.registrant = response.data;
       console.log(this.registrant);
+      this.registerModal = false;
+      this.formData = null;
+      this.registerMessage = null;
     }, error => {
-      console.log(error.message);
-    }).catch(err => console.log(err));
+      // console.log(error.message);
+      this.registerMessage = error.data.err
+      console.log(this.registerMessage);
+      this.registerModal = true;
+      this.formData = null;
+    }).catch(err => console.log(err.message));
   }
 
   this.loginModal = false;
