@@ -98,6 +98,7 @@ app.controller('RegisterController', ['$http', function($http) {
   }
 
   this.loginModal = false;
+  this.loggedIn = false;
 
   this.processLogin = () => {
     console.log('the process login function is starting');
@@ -112,7 +113,6 @@ app.controller('RegisterController', ['$http', function($http) {
       console.log(this.user._id);
       console.log('--- running shelf function ---');
       this.getMyShelf(this.user._id);
-      // console.log();
     }, error => {
       this.errorMessage = error.data.err
       console.log(this.errorMessage);
@@ -160,12 +160,12 @@ app.controller('RegisterController', ['$http', function($http) {
     console.log('selected book', searchedBook);
     console.table('selected book', searchedBook);
     console.log('user:', id);
-    const newBook = {
+    this.newBook = {
       title: searchedBook.volumeInfo.title,
       authors: searchedBook.volumeInfo.authors,
       thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
       description: searchedBook.volumeInfo.description,
-      categories: searchedBook.volumeInfo.title,
+      categories: searchedBook.volumeInfo.categories[0],
       pageCount: searchedBook.volumeInfo.pageCount,
       publishedDate: searchedBook.volumeInfo.publishedDate,
       user: this.user._id,
@@ -174,10 +174,10 @@ app.controller('RegisterController', ['$http', function($http) {
     $http({
       url: 'books/',
       method: 'POST',
-      data: newBook
+      data: this.newBook
     }).then(response => {
       // this.books = newBook;
-      this.books.push(newBook);
+      this.books.push(response.data);
       // console.log(this.arrayOfBooks);
       console.log(this.books);
       // this.getMyShelf(this.user._id);
@@ -203,11 +203,8 @@ app.controller('RegisterController', ['$http', function($http) {
     }).catch(err => console.log(err));
   }
 
-
-
-
-
   this.deleteBook = (id) => {
+    console.log(id);
     $http({
       url: 'books/' + id,
       method: 'DELETE'
