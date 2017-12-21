@@ -285,7 +285,7 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   /*padding-top: 30px;*/
-  /*border: 1px solid red;*/
+  border: 1px solid red;
 }
 
 .book-index > div {
@@ -302,7 +302,7 @@ main {
   flex-wrap: wrap;
   align-items: center;
   padding-bottom: 30px;
-  /*border: 1px red solid;*/
+  border: 1px red solid;
   height: 350px;
 }
 
