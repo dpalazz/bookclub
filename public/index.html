@@ -68,7 +68,7 @@
   </div>
 
   <main>
-    <div ng-controller="SearchController as ctrl" class="book-index">
+    <div ng-controller="SearchController as ctrl" >
       <div class="search">
         <form ng-submit='ctrl.searchAPI()'>
           Search
@@ -76,7 +76,7 @@
           <input type="submit">
         </form>
       </div>
-      <div ng-if="ctrl.searched">
+      <div class="book-index" ng-if="ctrl.searched">
       <div class="index-line"><h3>search results</h3></div>
       <div>
         <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
