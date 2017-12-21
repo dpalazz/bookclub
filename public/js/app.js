@@ -85,6 +85,7 @@ app.controller('MainController', ['$http', function($http) {
   this.expanded = false;
 
   this.createIndexArray = (num, begin) => {
+    this.bookArray = [];
     let rows = Math.floor(num / 4);
     if (num % 4 !== 0) {
       rows++
@@ -106,7 +107,7 @@ app.controller('MainController', ['$http', function($http) {
   }
 
 
-  this.createIndexArray(8, 0);
+  this.createIndexArray(8,0);
 
 }]);
 

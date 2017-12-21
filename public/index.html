@@ -94,44 +94,44 @@
     </div>
   </main>
 
-    <main >
+    <main ng-controller='MainController as ctrl'>
       <div class="index-line"><h3>what's popular</h3></div>
-      <div ng-controller='MainController as ctrl1' class="book-index">
+      <div ng-if="!ctrl.expanded" class="book-index">
 
 
-        <div ng-repeat="row in ctrl1.bookArray">
+        <div ng-repeat="row in ctrl.bookArray">
 
-          <div ng-if="$index === ctrl1.index" class="index-book-show ">
-            <img ng-src={{ctrl1.book.thumbnail}}>
+          <div ng-if="$index === ctrl.index" class="index-book-show ">
+            <img ng-src={{ctrl.book.thumbnail}}>
             <div class="show-text">
               <div class="author-title-delete">
                 <div class="author-title">
-                  <h4>{{ctrl1.book.title}}</h4>
+                  <h4>{{ctrl.book.title}}</h4>
                   <h5 class="by">by </h5>
-                  <h5 ng-repeat="author in ctrl1.book.authors track by $index">
-                    <div ng-if="ctrl1.book.authors.length = 1">{{author}}</div>
-                    <div ng-if="ctrl1.book.authors.length > 1">{{author}}, </div>
+                  <h5 ng-repeat="author in ctrl.book.authors track by $index">
+                    <div ng-if="ctrl.book.authors.length = 1">{{author}}</div>
+                    <div ng-if="ctrl.book.authors.length > 1">{{author}}, </div>
                   </h5>
                 </div>
               </div>
-              <h5>Published: {{ctrl1.book.publishedDate}}</h5>
-              <h5>{{ctrl1.book.categories[0]}}</h5>
+              <h5>Published: {{ctrl.book.publishedDate}}</h5>
+              <h5>{{ctrl.book.categories[0]}}</h5>
               <p>
-              {{ctrl1.book.description}}
+              {{ctrl.book.description}}
               </p>
-              <h5>PageCount: {{ctrl1.book.pageCount}}</h5>
+              <h5>PageCount: {{ctrl.book.pageCount}}</h5>
 
             </div>
 
           </div>
 
-          <div class="book-card" ng-repeat="book in ctrl1.books | unique:'title' | limitTo:4:row">
+          <div class="book-card" ng-repeat="book in ctrl.books | unique:'title' | limitTo:4:row">
             <div class="img-like">
               <img ng-src={{book.thumbnail}}
-              ng-click="ctrl1.getBook(book, $parent.$index)">
+              ng-click="ctrl.getBook(book, $parent.$index)">
               <h2>+</h2>
             </div>
-            <h4 ng-click="ctrl1.getBook(book, $parent.$index)">{{book.title}}</h4>
+            <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
 
             <div class="author">
               <h5 class="by">by</h5>
@@ -143,124 +143,50 @@
         </div>
       </div>
 
-        <!-- <div class="book-show-section" ng-class="(ctrl.book? 'show' : '')">
-          <div class='close' ng-click="ctrl.book = null">x</div>
-          <div class="book-show" >
-            <img ng-src={{ctrl.book.volumeInfo.imageLinks.thumbnail}}>
-              <div class="show-text">
-                <div>
-                  <h4>{{ctrl1.book.volumeInfo.title}}</h4>
-                  <h5 class="by">by</h5>
-                  <h5 ng-repeat="author in ctrl1.book.volumeInfo.authors">
-                    {{author}}
-                    <h5 ng-if="ctrl1.book.volumeInfo.authors.length > 1">, </h5>
-                  </h5>
-                </div>
-                <h5>Published: {{ctrl1.book.volumeInfo.publishedDate}}</h5>
-                <h5>{{ctrl1.book.volumeInfo.categories[0]}}</h5>
-                <p>
-                  {{ctrl1.book.volumeInfo.description}}
-                </p>
-                <h5>PageCount: {{ctrl1.book.volumeInfo.pageCount}}</h5>
-              </div>
-          </div>
-        </div> -->
+      <div class="book-index">
 
-        <!-- <div class="book-card" ng-repeat="book in ctrl.books | unique:'title'">
-          <div class="img-like">
-            <img ng-src={{book.thumbnail}}>
-            ng-click="ctrl.getBook(book)"
-            <h2>+</h2>
-          </div>
-          <h4 >{{book.title}}</h4>
-          ng-click="ctrl.getBook(book)"
-          <div class="author">
-            <h5 class="by">by</h5>
-            <h5>{{book.authors[0]}}</h5>
-            <h5 ng-if="book.authors.length > 1">, ...</h5>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- <div ng-controller='MainController as ctrl2' class="book-index">
-
-        <div class="book-show-section" ng-class="(ctrl2.book? 'show' : '')">
-          <div class='close' ng-click="ctrl2.book = null">x</div>
-          <div class="book-show" >
-            <img ng-src={{ctrl2.book.volumeInfo.imageLinks.thumbnail}}>
-            <div class="show-text">
-              <div>
-                <h4>{{ctrl2.book.volumeInfo.title}}</h4>
-                <h5 class="by">by</h5>
-                <h5 ng-repeat="author in ctrl2.book.volumeInfo.authors">
-                  {{author}}
-                  <h5 ng-if="ctrl2.book.volumeInfo.authors.length > 1">, </h5>
-                </h5>
-              </div>
-              <h5>Published: {{ctrl2.book.volumeInfo.publishedDate}}</h5>
-              <h5>{{ctrl2.book.volumeInfo.categories[0]}}</h5>
-              <p>
-                {{ctrl2.book.volumeInfo.description}}
-              </p>
-              <h5>PageCount: {{ctrl2.book.volumeInfo.pageCount}}</h5>
-            </div>
-          </div>
-
-        </div>
-        <h4 ng-click="ctrl1.getBook(book)">{{book.volumeInfo.title}}</h4>
-        <div class="author">
-          <h5 class="by">by</h5>
-          <h5> {{book.volumeInfo.authors[0]}}</h5>
-          <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
-        </div>
-
-      </div> -->
-
-
-      <div  ng-controller='MainController as ctrl2' class="book-index">
-
-        <div ng-if="!ctrl2.expanded" class="expand-collapse expand">
+        <div ng-if="!ctrl.expanded" class="expand-collapse expand">
             <div class="expander">
-                <div ng-click="ctrl2.expandIndex(12,8)" class="triangle-down">
+                <div ng-click="ctrl.expandIndex(20,0)" class="triangle-down">
                   <h3>see more</h3>
                 </div>
               </div>
           </div>
 
 
-        <div ng-if="ctrl2.expanded" ng-repeat="row in ctrl2.bookArray">
+        <div ng-if="ctrl.expanded" ng-repeat="row in ctrl.bookArray">
 
-          <div ng-if="$index === ctrl2.index" class="index-book-show ">
-            <img ng-src={{ctrl2.book.thumbnail}}>
+          <div ng-if="$index === ctrl.index" class="index-book-show ">
+            <img ng-src={{ctrl.book.thumbnail}}>
             <div class="show-text">
               <div class="author-title-delete">
                 <div class="author-title">
-                  <h4>{{ctrl2.book.title}}</h4>
+                  <h4>{{ctrl.book.title}}</h4>
                   <h5 class="by">by </h5>
-                  <h5 ng-repeat="author in ctrl2.book.authors track by $index">
-                    <div ng-if="ctrl2.book.authors.length = 1">{{author}}</div>
-                    <div ng-if="ctrl2.book.authors.length > 1">{{author}}, </div>
+                  <h5 ng-repeat="author in ctrl.book.authors track by $index">
+                    <div ng-if="ctrl.book.authors.length = 1">{{author}}</div>
+                    <div ng-if="ctrl.book.authors.length > 1">{{author}}, </div>
                   </h5>
                 </div>
               </div>
-              <h5>Published: {{ctrl2.book.publishedDate}}</h5>
-              <h5>{{ctrl2.book.categories[0]}}</h5>
+              <h5>Published: {{ctrl.book.publishedDate}}</h5>
+              <h5>{{ctrl.book.categories[0]}}</h5>
               <p>
-              {{ctrl2.book.description}}
+              {{ctrl.book.description}}
               </p>
-              <h5>PageCount: {{ctrl2.book.pageCount}}</h5>
+              <h5>PageCount: {{ctrl.book.pageCount}}</h5>
 
             </div>
 
           </div>
 
-          <div class="book-card" ng-repeat="book in ctrl2.books | unique:'title' | limitTo:4:row">
+          <div class="book-card" ng-repeat="book in ctrl.books | unique:'title' | limitTo:4:row">
             <div class="img-like">
               <img ng-src={{book.thumbnail}}
-              ng-click="ctrl2.getBook(book, $parent.$index)">
+              ng-click="ctrl.getBook(book, $parent.$index)">
               <h2>+</h2>
             </div>
-            <h4 ng-click="ctrl2.getBook(book, $parent.$index)">{{book.title}}</h4>
+            <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
 
             <div class="author">
               <h5 class="by">by</h5>
@@ -271,9 +197,9 @@
 
         </div>
 
-        <div ng-if="ctrl2.expanded" class="expand-collapse collapse">
+        <div ng-if="ctrl.expanded" class="expand-collapse collapse">
             <div class="collapser">
-                <div ng-click="ctrl2.expanded = false" class="triangle-up">
+                <div ng-click="ctrl.expanded = false; ctrl.createIndexArray(8,0)" class="triangle-up">
                   <h3>see less</h3>
                 </div>
               </div>
