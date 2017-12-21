@@ -15,16 +15,42 @@
     <div class="header">
       <div class="nav">
         <nav>
-          <div class="nav-links">
-            <p class="link" ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login</p>
-            <p ng-if="!ctrl.user" class="pipe">|</p>
-            <p class="link" ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
-            <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}</p>
-            <p ng-if="ctrl.user" class="pipe">|</p>
-            <p class="link" ng-if="ctrl.user">my shelf</p>
-            <p ng-if="ctrl.user" class="pipe">|</p>
-            <p class="link" ng-click="ctrl.logout()" ng-if="ctrl.user">Logout</p>
+          <div class="nav-bar">
+            <div class="nav-links">
+              <p class="link" ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login</p>
+              <p ng-if="!ctrl.user" class="pipe">|</p>
+              <p class="link" ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
+              <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}</p>
+              <p ng-if="ctrl.user" class="pipe">|</p>
+              <p class="link" ng-if="ctrl.user">my shelf</p>
+              <p ng-if="ctrl.user" class="pipe">|</p>
+              <p class="link" ng-click="ctrl.logout()" ng-if="ctrl.user">Logout</p>
+            </div>
+
+            <div class="search">
+              <form ng-submit='ctrl.searchAPI()'>
+                Search
+                <input type="text" class="search-box" ng-model="ctrl.search">
+                <input type="submit" value="+"class="submit-btn">
+              </form>
+            </div>
           </div>
+
+        </nav>
+      </div>
+      <div class="inner-header">
+        <div class="title-images">
+          <img src="./assets/images/anthony-tran-378336.jpg">
+          <img src="./assets/images/amirreza-fardad-426198.jpg">
+          <img src="./assets/images/clay-banks-258326.jpg">
+        </div>
+        <div class="title">
+          <h3>There's no shame in a little</h3>
+          <h1>Shelf Help</h1>
+        </div>
+      </div>
+    </div>
+
 
           <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
             <div class="modal">
@@ -59,28 +85,7 @@
             </div>
           </div>
 
-          <div class="search">
-            <form ng-submit='ctrl.searchAPI()'>
-              Search
-              <input type="text" class="search-box" ng-model="ctrl.search">
-              <input type="submit" value="+"class="submit-btn">
-            </form>
-          </div>
 
-        </nav>
-      </div>
-      <div class="inner-header">
-        <div class="title-images">
-          <img src="./assets/images/anthony-tran-378336.jpg">
-          <img src="./assets/images/amirreza-fardad-426198.jpg">
-          <img src="./assets/images/clay-banks-258326.jpg">
-        </div>
-        <div class="title">
-          <h3>There's no shame in a little</h3>
-          <h1>Shelf Help</h1>
-        </div>
-      </div>
-    </div>
 
 
     <main id="top-main">
@@ -203,7 +208,7 @@
           <div class="img-like">
             <img ng-src={{book.thumbnail}}
             ng-click="ctrl.getBook(book, $parent.$index)">
-            <h2 class="add">+</h2>
+            <!-- <h2 class="add">+</h2> -->
           </div>
           <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
 
@@ -260,7 +265,7 @@
           <div class="img-like">
             <img ng-src={{book.thumbnail}}
             ng-click="ctrl.getBook(book, $parent.$index)">
-            <h2 class="add">+</h2>
+            <!-- <h2 class="add">+</h2> -->
           </div>
           <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
 

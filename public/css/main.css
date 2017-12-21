@@ -45,7 +45,6 @@ nav {
   /*margin: auto;*/
   /*padding: 0px 20px;*/
   /*border: 1px red solid;*/
-
 }
 
 nav > div {
@@ -56,11 +55,26 @@ nav > div {
 .nav-links {
   width: 1150px;
   margin: auto;
+  display: flex;
+  flex-direction: row;
+  /*border: 1px red solid;*/
+  padding-left: 0;
+}
 
+.nav-bar {
+  /*border: 1px red solid;*/
+  margin: auto;
+  width: 1150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 28px;
+  box-sizing: border-box;
 }
 
 nav p {
-  padding: 0px 10px;
+  /*padding: 0px 10px;*/
   margin: 0px;
 }
 
@@ -89,21 +103,28 @@ nav .index-line a:hover {
 
 .plus {
   cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 35px;
 }
 
 .search > form {
   padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  /*border: 1px red solid;*/
 }
 
 .search-box {
-  vertical-align: middle;
+  /*vertical-align: middle;*/
   margin: 0 10px;
   border: none;
   border-radius: 10px;
   width: 150px;
   height: 18px;
   margin-left: 10px;
-  padding: 5px 5px;
+  padding: 9px 5px 5px 5px;
   font-size: 14px;
   font-family: "Dual-300";
 }
@@ -132,7 +153,8 @@ nav .index-line a:hover {
   flex-direction: row;
   width: 1150px;
   height: 100%;
-  margin: 0;
+  margin: auto;
+  /*border: 1px red solid;*/
 }
 
 .title-images {
