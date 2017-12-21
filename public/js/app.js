@@ -188,14 +188,26 @@ app.controller('SearchController', ['$http', function($http) {
   }
 
   this.createBookShelf = (searchedBook) => {
-    console.log(this.formData);
     console.log(searchedBook);
+    const newBook = {
+      title: searchedBook.volumeInfo.title,
+      authors: searchedBook.volumeInfo.authors,
+      thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
+      description: searchedBook.volumeInfo.description,
+      categories: searchedBook.volumeInfo.title,
+      pageCount: searchedBook.volumeInfo.pageCount,
+      publishedDate: searchedBook.volumeInfo.publishedDate,
+      // user: searchedBook,
+      rating: searchedBook.volumeInfo.rating
+    }
     $http({
       url: 'books/',
       method: 'POST',
-      data: searchedBook
+      data: newBook
     }).then(response => {
-      this.books.push(response.data);
+      console.log(newBook);
+      this.books = newBook;
+      console.log(this.books);
     }, error => {
       console.log(error);
     }).catch(console.log('Catch', err))
