@@ -183,9 +183,11 @@ app.controller('SearchController', ['$http', function($http) {
     console.table(this.book);
   }
 
-  this.test = (parameter) => {
-    console.log(parameter);
-  }
+  // this.test = (parameter) => {
+  //   console.log(parameter);
+  // }
+
+  this.arrayOfBooks =[];
 
   this.createBookShelf = (searchedBook) => {
     console.log(searchedBook);
@@ -205,8 +207,9 @@ app.controller('SearchController', ['$http', function($http) {
       method: 'POST',
       data: newBook
     }).then(response => {
-      console.log(newBook);
       this.books = newBook;
+      this.arrayOfBooks.push(this.books);
+      console.log(this.arrayOfBooks);
       console.log(this.books);
     }, error => {
       console.log(error);
