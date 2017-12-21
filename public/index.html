@@ -68,24 +68,25 @@
   </div>
 
   <main>
-    <div ng-controller="SearchController as ctrl" class="book-index">
-      <div class="search">
-        <form ng-submit='ctrl.searchAPI()'>
-          Search
-          <input type="text" ng-model="ctrl.search">
-          <input type="submit">
-        </form>
-      </div>
-      <div ng-if="ctrl.searched">
-      <div class="index-line"><h3>search results</h3></div>
-      <div>
-        <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
+      <div ng-controller="SearchController as ctrl" class="book-index">
+        <div class="search">
+          <form ng-submit='ctrl.searchAPI()'>
+            Search
+            <input type="text" ng-model="ctrl.search">
+            <input type="submit">
+          </form>
+        </div>
+
+        <div class="index-line"><h3>search results</h3></div>
+      <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
+
           <div class="img-like">
-          <img  ng-src={{searchedBook.volumeInfo.imageLinks.thumbnail}}>
-          <!-- ng-click="ctrl.getBook(book)" -->
-          <h2 class="add">+</h2>
+          <img  ng-src={{searchedBook.volumeInfo.imageLinks.thumbnail}} ng-click="ctrl.getBook(searchedBook)">
+          <form ng-submit="ctrl.createBookShelf(searchedBook)">
+            <input type="submit" value="+"></input>
+          </form>
           </div>
-          <h4 >{{searchedBook.volumeInfo.title}}</h4>
+          <h4>{{searchedBook.title}}</h4>
         <!-- ng-click="ctrl.getBook(book)" -->
           <div class="author">
             <h5 class="by">by</h5>
@@ -94,9 +95,7 @@
           </div>
         </div>
       </div>
-    </div>
-    </div>
-  </main>
+    </main>
 
     <main ng-controller='MainController as ctrl'>
       <div class="index-line"><h3>what's popular</h3></div>

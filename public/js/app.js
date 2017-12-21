@@ -112,7 +112,6 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
 }]);
 
 
-
 app.controller('SearchController', ['$http', function($http) {
   // =============
   // API key route
@@ -124,7 +123,48 @@ app.controller('SearchController', ['$http', function($http) {
     this.apikey = response.data.key;
   })
 
-  this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&orderBy=relevance&printType=books&q=';
+  this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
+
+  this.formData = {};
+
+  this.getBook = (book) => {
+    this.book = book;
+    // this.book.rating = null;
+    console.table(this.book);
+  }
+
+  // this.test = (parameter) => {
+  //   console.log(parameter);
+  // }
+
+  this.arrayOfBooks =[];
+
+  this.createBookShelf = (searchedBook) => {
+    console.log(searchedBook);
+    const newBook = {
+      title: searchedBook.volumeInfo.title,
+      authors: searchedBook.volumeInfo.authors,
+      thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
+      description: searchedBook.volumeInfo.description,
+      categories: searchedBook.volumeInfo.title,
+      pageCount: searchedBook.volumeInfo.pageCount,
+      publishedDate: searchedBook.volumeInfo.publishedDate,
+      // user: searchedBook,
+      rating: searchedBook.volumeInfo.rating
+    }
+    $http({
+      url: 'books/',
+      method: 'POST',
+      data: newBook
+    }).then(response => {
+      this.books = newBook;
+      this.arrayOfBooks.push(this.books);
+      console.log(this.arrayOfBooks);
+      console.log(this.books);
+    }, error => {
+      console.log(error);
+    }).catch(console.log('Catch', err))
+  }
 
   this.searchAPI = () => {
     $http({
@@ -137,13 +177,12 @@ app.controller('SearchController', ['$http', function($http) {
       console.log('search results are', response.data.items);
       this.searchResults = response.data.items;
       this.search = null;
-      this.searched = true;
     }, ( error ) => {
       console.log(error);
     }).catch(err => console.log(err));
   }
-  }]);
 
+  }]);
 
 // user's shelf
 app.controller('UserShelfController', ['$http', function($http) {
