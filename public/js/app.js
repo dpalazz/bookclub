@@ -142,7 +142,7 @@ app.controller('SearchController', ['$http', function($http) {
       console.log(error);
     }).catch(err => console.log(err));
   }
-  }]);
+}]);
 
 
 // user's shelf
