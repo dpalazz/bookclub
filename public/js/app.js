@@ -98,7 +98,6 @@ app.controller('RegisterController', ['$http', function($http) {
   }
 
   this.loginModal = false;
-  this.loggedIn = false;
 
   this.processLogin = () => {
     console.log('the process login function is starting');
@@ -111,12 +110,16 @@ app.controller('RegisterController', ['$http', function($http) {
       this.user = response.data;
       console.log(this.user);
       console.log(this.user._id);
+      this.loginModal = false;
+      this.formData = null;
+      this.errorMessage = null;
       console.log('--- running shelf function ---');
       this.getMyShelf(this.user._id);
     }, error => {
       this.errorMessage = error.data.err
       console.log(this.errorMessage);
       this.loginModal = true;
+      this.formData = null;
     }).catch(err => console.log('Catch', err.message));
   }
 
