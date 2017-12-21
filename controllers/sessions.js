@@ -47,7 +47,7 @@ router.post('/login', async (req, res) => {
       console.log(req.session.user);
       res.status(200).json(loggedUser);
     } else { //username correct
-      req.session.message = "Username or password is incorrect"
+      req.session.message = "Username or password is incorrect";
       res.status(403).json({err: req.session.message});
     }
     // ** END AUTHENTICATE USER
