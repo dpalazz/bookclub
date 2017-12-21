@@ -106,6 +106,10 @@ nav .index-line a:hover {
   text-decoration: underline;
 }
 
+.plus {
+  cursor: pointer;
+}
+
 .search > form {
   padding-right: 30px;
 }

@@ -12,7 +12,7 @@ app.controller('MainController', ['$http', function($http) {
       method: 'GET'
     }).then(response => {
       this.books = response.data
-      console.table(this.books);
+      // console.table(this.books);
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err))
@@ -62,10 +62,29 @@ app.controller('MainController', ['$http', function($http) {
 // OTHER CONTROLLERS
 // =================
 // register, login, logout
-app.controller('RegisterController', ['$route', '$http', function($route, $http) {
-
-  this.user = false;
+app.controller('RegisterController', ['$http', function($http) {
+  this.user = null;
+  this.test = "show up plzz";
   this.registerModal = false;
+  // this.books = [{title: 'test book'}];
+
+  // user's shelf
+    this.getMyShelf = (id) => {
+      $http({
+        url: 'books/user/' + id,
+        method: 'GET'
+      }).then(response => {
+        console.log('--- in shelf function ---');
+        this.books = response.data;
+        console.log(id);
+        console.log("user books:", this.books);
+
+      }, error => {
+        console.log(error.message);
+      }).catch(err => console.log(err))
+    }
+
+
   this.processRegister = () => {
     $http({
       url: '/users/register',
@@ -80,9 +99,9 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
   }
 
   this.loginModal = false;
+
   this.processLogin = () => {
     console.log('the process login function is starting');
-    // console.log(this.formData); // this shows user's password
     $http({
       url: '/sessions/login',
       method: 'POST',
@@ -90,6 +109,9 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
     }).then(response => {
       this.user = response.data;
       console.log(this.user);
+      console.log(this.user._id);
+      console.log('--- running shelf function ---');
+      this.getMyShelf(this.user._id);
     }, error => {
       console.log(error.message);
     }).catch(err => console.log('Catch', err));
@@ -101,7 +123,7 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
       url: '/sessions/logout',
       method: 'DELETE'
     }).then(response => {
-      this.user = false;
+      this.user = null;
       console.log('sesh destroyed');
     }, error => {
       console.log(error.message);
@@ -109,11 +131,6 @@ app.controller('RegisterController', ['$route', '$http', function($route, $http)
   }
 
 
-}]);
-
-
-
-app.controller('SearchController', ['$http', function($http) {
   // =============
   // API key route
   // =============
@@ -124,7 +141,48 @@ app.controller('SearchController', ['$http', function($http) {
     this.apikey = response.data.key;
   })
 
-  this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&orderBy=relevance&printType=books&q=';
+  this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
+
+  this.formData = {};
+
+  // this.getBook = (book) => {
+  //   this.book = book;
+  //   console.table(this.book);
+  //   console.log(this.user);
+  //   console.log(this.user._id);
+  // }
+
+  // this.arrayOfBooks =[];
+
+  this.createBookShelf = (searchedBook, id) => {
+    console.log('selected book', searchedBook);
+    console.table('selected book', searchedBook);
+    console.log('user:', id);
+    const newBook = {
+      title: searchedBook.volumeInfo.title,
+      authors: searchedBook.volumeInfo.authors,
+      thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
+      description: searchedBook.volumeInfo.description,
+      categories: searchedBook.volumeInfo.title,
+      pageCount: searchedBook.volumeInfo.pageCount,
+      publishedDate: searchedBook.volumeInfo.publishedDate,
+      user: this.user._id,
+      rating: searchedBook.volumeInfo.rating
+    }
+    $http({
+      url: 'books/',
+      method: 'POST',
+      data: newBook
+    }).then(response => {
+      // this.books = newBook;
+      this.books.push(newBook);
+      // console.log(this.arrayOfBooks);
+      console.log(this.books);
+      // this.getMyShelf(this.user._id);
+    }, error => {
+      console.log(error);
+    }).catch(err => console.log('Catch', err))
+  }
 
   this.searchAPI = () => {
     $http({
@@ -134,32 +192,17 @@ app.controller('SearchController', ['$http', function($http) {
       console.log('this search is ', this.search);
       this.searchParam = this.search;
       console.log(this.searchParam);
-      console.log('search results are', response.data.items);
+      console.table('search results are', response.data.items);
       this.searchResults = response.data.items;
       this.search = null;
-      this.searched = true;
     }, ( error ) => {
       console.log(error);
     }).catch(err => console.log(err));
   }
-  }]);
 
 
-// user's shelf
-app.controller('UserShelfController', ['$http', function($http) {
-  this.getMyShelf = (id) => {
-    $http({
-      url: 'books/user/' + id,
-      method: 'GET'
-    }).then(response => {
-      this.books = response.data
-      console.table(this.books);
-    }, error => {
-      console.log(error.message);
-    }).catch(err => console.log(err))
-  }
 
-  this.getMyShelf('5a39b95ca150f172d92ee228');
+
 
   this.deleteBook = (id) => {
     $http({
@@ -175,7 +218,7 @@ app.controller('UserShelfController', ['$http', function($http) {
 
   this.formData = {};
 
-  this.getBook = (book) => {
+  this.getShelfBook = (book) => {
     this.book = book;
     this.book.rating = null;
     console.table(this.book);
