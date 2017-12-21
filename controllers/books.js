@@ -6,8 +6,20 @@ const Book = require('../models/books');
 
 // create =========================
 router.post('/', async (req, res) => {
+  console.log(req.body);
+  const newBook = {
+    title: req.body.volumeInfo.title,
+    authors: [req.body.volumeInfo.authors],
+    thumbnail: req.body.volumeInfo.imageLinks.thumbnail,
+    description: req.body.volumeInfo.description,
+    categories: [req.body.volumeInfo.title],
+    pageCount: req.body.volumeInfo.pageCount,
+    publishedDate: req.body.volumeInfo.publishedDate,
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    rating: req.body.volumeInfo.rating
+  }
   try {
-    const book = await Book.create(req.body);
+    const book = await Book.create(newBook);
     res.status(200).json(book);
   } catch (err) {
     res.status(400).json({ err: err.message });

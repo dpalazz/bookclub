@@ -175,6 +175,32 @@ app.controller('SearchController', ['$http', function($http) {
 
   this.url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&q=';
 
+  this.formData = {};
+
+  this.getBook = (book) => {
+    this.book = book;
+    // this.book.rating = null;
+    console.table(this.book);
+  }
+
+  this.test = (parameter) => {
+    console.log(parameter);
+  }
+
+  this.createBookShelf = (searchedBook) => {
+    console.log(this.formData);
+    console.log(searchedBook);
+    $http({
+      url: 'books/',
+      method: 'POST',
+      data: searchedBook
+    }).then(response => {
+      this.books.push(response.data);
+    }, error => {
+      console.log(error);
+    }).catch(console.log('Catch', err))
+  }
+
   this.searchAPI = () => {
     $http({
       url: this.url + this.search + '&key=' + this.apikey,
@@ -190,6 +216,7 @@ app.controller('SearchController', ['$http', function($http) {
       console.log(error);
     }).catch(err => console.log(err));
   }
+
   }]);
 
 // user's shelf
@@ -250,8 +277,8 @@ app.controller('UserShelfController', ['$http', function($http) {
 // =================
 // CONFIG CONTROLLER
 // =================
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-  $locationProvider.html5Mode({enabled: true});
+// app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+//   $locationProvider.html5Mode({enabled: true});
 
 // =======
 // ROUTING
@@ -268,4 +295,4 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   //   controllerAs: 'ctrl'
   // });
 
-}]);
+// }]);
