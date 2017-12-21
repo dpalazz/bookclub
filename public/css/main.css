@@ -313,6 +313,10 @@ main {
   align-items: flex-start;
 }
 
+.add {
+  cursor: pointer;
+}
+
 .img-like img {
   width: 128px;
   height: 184px;

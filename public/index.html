@@ -78,18 +78,20 @@
       </div>
       <div ng-if="ctrl.searched">
       <div class="index-line"><h3>search results</h3></div>
-    <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
-        <div class="img-like">
-        <img ng-src={{searchedBook.volumeInfo.imageLinks.thumbnail}}>
+      <div>
+        <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
+          <div class="img-like">
+          <img  ng-src={{searchedBook.volumeInfo.imageLinks.thumbnail}}>
+          <!-- ng-click="ctrl.getBook(book)" -->
+          <h2 class="add">+</h2>
+          </div>
+          <h4 >{{searchedBook.volumeInfo.title}}</h4>
         <!-- ng-click="ctrl.getBook(book)" -->
-        <h2>+</h2>
-        </div>
-        <h4 >{{searchedBook.title}}</h4>
-      <!-- ng-click="ctrl.getBook(book)" -->
-        <div class="author">
-          <h5 class="by">by</h5>
-          <h5>{{searchedBook.volumeInfo.authors[0]}}</h5>
-          <h5 ng-if="searchedBook.volumeInfo.authors.length > 1">, ...</h5>
+          <div class="author">
+            <h5 class="by">by</h5>
+            <h5>{{searchedBook.volumeInfo.authors[0]}}</h5>
+            <h5 ng-if="searchedBook.volumeInfo.authors.length > 1">, ...</h5>
+          </div>
         </div>
       </div>
     </div>
@@ -133,7 +135,7 @@
             <div class="img-like">
               <img ng-src={{book.thumbnail}}
               ng-click="ctrl.getBook(book, $parent.$index)">
-              <h2>+</h2>
+              <h2 class="add">+</h2>
             </div>
             <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
 
@@ -190,7 +192,7 @@
             <div class="img-like">
               <img ng-src={{book.thumbnail}}
               ng-click="ctrl.getBook(book, $parent.$index)">
-              <h2>+</h2>
+              <h2 class="add">+</h2>
             </div>
             <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
 
@@ -210,54 +212,11 @@
                 </div>
               </div>
           </div>
-
       </div>
-
-
-
-
-
-
-
 
     </main>
 
 
-
-    <!-- <div ng-controller="ExpanderCollapserController as ctrl" class="expand-collapse">
-
-      <div class="collapse"
-      ng-click="ctrl.expanded = false"
-      ng-class="(ctrl.expanded ? '' : 'hidden')">
-        <div class="collapser">
-          <a href="/">
-            <div class="triangle-up">
-
-            </div>
-            <h5>Published: {{ctrl2.book.volumeInfo.publishedDate}}</h5>
-            <h5>{{ctrl2.book.volumeInfo.categories[0]}}</h5>
-            <p>
-              {{ctrl2.book.volumeInfo.description}}
-            </p>
-            <h5>PageCount: {{ctrl2.book.volumeInfo.pageCount}}</h5>
-          </div>
-        </div>
-      </div>
-
-      <div class="book-card" ng-repeat="book in ctrl2.books | limitTo:-4">
-        <div class="img-like">
-          <img ng-click="ctrl2.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
-          <h2>+</h2>
-        </div>
-        <h4 ng-click="ctrl2.getBook(book)">{{book.volumeInfo.title}}</h4>
-        <div class="author">
-          <h5 class="by">by</h5>
-          <h5> {{book.volumeInfo.authors[0]}}</h5>
-          <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
-        </div>
-      </div>
-
-    </div> -->
 
     <main>
       <div ng-controller="UserShelfController as ctrl" class="book-index">
