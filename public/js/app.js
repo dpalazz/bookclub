@@ -186,7 +186,7 @@ app.controller('RegisterController', ['$http', function($http) {
       data: this.newBook
     }).then(response => {
       // this.books = newBook;
-      this.books.push(response.data);
+      this.books.unshift(response.data);
       // console.log(this.arrayOfBooks);
       console.log(this.books);
       // this.getMyShelf(this.user._id);
