@@ -220,6 +220,7 @@ app.controller('SearchController', ['$http', function($http) {
       console.log('search results are', response.data.items);
       this.searchResults = response.data.items;
       this.search = null;
+      this.searched = true;
     }, ( error ) => {
       console.log(error);
     }).catch(err => console.log(err));
