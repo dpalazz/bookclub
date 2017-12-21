@@ -216,10 +216,19 @@
 
       </div> -->
 
-      <div ng-controller='MainController as ctrl2' class="book-index">
+
+      <div  ng-controller='MainController as ctrl2' class="book-index">
+
+        <div ng-if="!ctrl2.expanded" class="expand-collapse expand">
+            <div class="expander">
+                <div ng-click="ctrl2.expandIndex(12,8)" class="triangle-down">
+                  <h3>see more</h3>
+                </div>
+              </div>
+          </div>
 
 
-        <div ng-repeat="row in ctrl2.bookArray">
+        <div ng-if="ctrl2.expanded" ng-repeat="row in ctrl2.bookArray">
 
           <div ng-if="$index === ctrl2.index" class="index-book-show ">
             <img ng-src={{ctrl2.book.thumbnail}}>
@@ -273,7 +282,6 @@
     </main>
 
 
-    <main ng-view></main>
 
     <!-- <div ng-controller="ExpanderCollapserController as ctrl" class="expand-collapse">
 

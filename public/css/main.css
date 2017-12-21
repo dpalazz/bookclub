@@ -361,10 +361,15 @@ main {
   color: #fafaed;
   height: 100px;
   margin: 0;
+  /*border: 1px red solid;*/
+  padding: 0;
 }
 
 .expand {
   border-top: 1px solid #33332e;
+  /*border: 1px red solid;*/
+  margin-top: 0;
+
 }
 
 .collapse {
@@ -377,6 +382,8 @@ main {
   height: 75px;
   position: relative;
   z-index: 1;
+  /*border: 1px red solid;*/
+  margin-top: 0;
 }
 
 .collapser {
