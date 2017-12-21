@@ -374,6 +374,7 @@ main {
 
 .collapse {
   border-bottom: 1px solid #33332e;
+  margin-top: 0;
 }
 
 .expander {
@@ -392,6 +393,7 @@ main {
   height: 75px;
   position: relative;
   z-index: 4;
+  margin-bottom: 0;
 }
 
 .hidden {
