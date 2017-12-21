@@ -106,6 +106,10 @@ nav .index-line a:hover {
   text-decoration: underline;
 }
 
+.plus {
+  cursor: pointer;
+}
+
 .search > form {
   padding-right: 30px;
 }
@@ -113,7 +117,7 @@ nav .index-line a:hover {
 .inner-header {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 1150px;
   height: 100%;
   margin: 0 auto;
 }
@@ -177,13 +181,32 @@ nav .index-line a:hover {
   cursor: pointer;
 }
 
-.book-show {
+.show-book-close {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  padding: 10px 30px 30px 30px;
+  border-top: 1px solid #33332e;
+  border-bottom: 1px solid #33332e;
+  margin-bottom: 30px;
+  min-height: 350px;
 }
 
-.book-show > img {
+.index-book-show {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /*border: 1px solid red;*/
+  /*width: 100%;
+  padding:30px;
+  border-top: 1px solid #33332e;
+  border-bottom: 1px solid #33332e;
+  margin-bottom: 30px;
+  min-height: 350px;*/
+}
+
+.book-show > img, .index-book-show > img{
   width: 173px;
   height: 250px;
   object-fit: cover;
@@ -269,6 +292,12 @@ main {
   /*border: 1px solid red;*/
 }
 
+.book-index > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .book-card {
   width: 287.5px;
   box-sizing: border-box;
@@ -276,8 +305,9 @@ main {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   /*border: 1px red solid;*/
+  height: 350px;
 }
 
 .img-like {
@@ -285,6 +315,10 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+}
+
+.add {
+  cursor: pointer;
 }
 
 .img-like img {
@@ -347,14 +381,20 @@ main {
   color: #fafaed;
   height: 100px;
   margin: 0;
+  /*border: 1px red solid;*/
+  padding: 0;
 }
 
 .expand {
   border-top: 1px solid #33332e;
+  /*border: 1px red solid;*/
+  margin-top: 0;
+
 }
 
 .collapse {
   border-bottom: 1px solid #33332e;
+  margin-top: 0;
 }
 
 .expander {
@@ -363,6 +403,8 @@ main {
   height: 75px;
   position: relative;
   z-index: 1;
+  /*border: 1px red solid;*/
+  margin-top: 0;
 }
 
 .collapser {
@@ -371,6 +413,7 @@ main {
   height: 75px;
   position: relative;
   z-index: 4;
+  margin-bottom: 0;
 }
 
 .hidden {
@@ -437,8 +480,8 @@ main {
   border-bottom: 1px solid #33332e;
   /*border-bottom: 1px solid #33332e;*/
   margin: 0;
-  padding: 30px 100px;
-  width: 1150px;
+  padding: 30px 0;
+  width: 100%;
 }
 
 .my-shelf {
@@ -448,6 +491,14 @@ main {
   justify-content: space-between;
 }
 
+.book-show {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /*border: 1px solid red;*/
+  min-height: 350px;
+  width: 100%;
+}
 
 .book-show > img {
   width: 173px;

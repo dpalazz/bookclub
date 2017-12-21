@@ -11,209 +11,107 @@
   <base href="/" target="_blank">
 </head>
 <body>
-  <div class="header">
-    <div class="nav">
-      <nav ng-controller="RegisterController as ctrl">
-        <div>
-          <p ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login |</p>
-          <p ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
-          <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}. |</p>
-          <p ng-if="ctrl.user"><a href="#">my shelf</a></p>
-          <p ng-click="ctrl.logout()" ng-if="ctrl.user">| Logout</p>
-        </div>
-
-        <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
-          <div class="modal">
-            <h6 ng-click="ctrl.loginModal = false">x</h6>
-            <hr/>
-            <h2>Login</h2>
-            <form ng-submit="ctrl.processLogin()">
-              <div class="row">
-                <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
-                <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
-                <input type="submit" value="login" class="login-button" ng-click="ctrl.loginModal = false"></br>
-              </div>
-            </form>
+  <div ng-controller="RegisterController as ctrl">
+    <div class="header">
+      <div class="nav">
+        <nav >
+          <div>
+            <p ng-if="!ctrl.user" ng-click="ctrl.loginModal = true">Login |</p>
+            <p ng-if="!ctrl.user" ng-click="ctrl.registerModal = true"> Register</p>
+            <p ng-if="ctrl.user">Happy reading, {{ctrl.user.username}}. |</p>
+            <p ng-if="ctrl.user"><a href="#">my shelf</a></p>
+            <p ng-click="ctrl.logout()" ng-if="ctrl.user">| Logout</p>
           </div>
-        </div>
-        <div class="dim" ng-class="(ctrl.registerModal? 'registerModal' : '')">
-          <div class="modal">
-            <h6 ng-click="ctrl.registerModal = false">x</h6>
-            <hr/>
-            <div>
-              <h2>Register</h2>
-              <form ng-submit="ctrl.processRegister()">
+
+          <div class="dim" ng-class="(ctrl.loginModal? 'loginModal' : '')">
+            <div class="modal">
+              <h6 ng-click="ctrl.loginModal = false">x</h6>
+              <hr/>
+              <h2>Login</h2>
+              <form ng-submit="ctrl.processLogin()">
                 <div class="row">
                   <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
                   <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
-                  <input type="submit" value="register" class="register-button" ng-click="ctrl.registerModal = false"></br>
+                  <input type="submit" value="login" class="login-button" ng-click="ctrl.loginModal = false"></br>
                 </div>
               </form>
             </div>
           </div>
-        </div>
-      </nav>
-    </div>
-    <div class="inner-header">
-      <div class="title-images">
-        <img src="./assets/images/anthony-tran-378336.jpg">
-        <img src="./assets/images/amirreza-fardad-426198.jpg">
-        <img src="./assets/images/clay-banks-258326.jpg">
-      </div>
-      <div class="title">
-        <h3>There's no shame in a little</h3>
-        <h1>Shelf Help</h1>
-      </div>
-    </div>
-  </div>
-
-  <main>
-    <div ng-controller="SearchController as ctrl" class="book-index">
-      <div class="search">
-        <form ng-submit='ctrl.searchAPI()'>
-          Search
-          <input type="text" ng-model="ctrl.search">
-          <input type="submit">
-        </form>
-      </div>
-      <div class="index-line"><h3>search results</h3></div>
-    <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
-        <div class="img-like">
-        <img ng-src={{searchedBook.volumeInfo.imageLinks.thumbnail}}>
-        <!-- ng-click="ctrl.getBook(book)" -->
-        <h2>+</h2>
-        </div>
-        <h4 >{{searchedBook.title}}</h4>
-      <!-- ng-click="ctrl.getBook(book)" -->
-        <div class="author">
-          <h5 class="by">by</h5>
-          <h5>{{searchedBook.volumeInfo.authors[0]}}</h5>
-          <h5 ng-if="searchedBook.volumeInfo.authors.length > 1">, ...</h5>
-        </div>
-      </div>
-    </div>
-  </main>
-
-    <main >
-      <div class="index-line"><h3>what's popular</h3></div>
-      <div ng-controller='MainController as ctrl' class="book-index">
-        <!-- <div class="book-show-section" ng-class="(ctrl.book? 'show' : '')">
-          <div class='close' ng-click="ctrl.book = null">x</div>
-          <div class="book-show" >
-            <img ng-src={{ctrl.book.volumeInfo.imageLinks.thumbnail}}>
-              <div class="show-text">
-                <div>
-                  <h4>{{ctrl1.book.volumeInfo.title}}</h4>
-                  <h5 class="by">by</h5>
-                  <h5 ng-repeat="author in ctrl1.book.volumeInfo.authors">
-                    {{author}}
-                    <h5 ng-if="ctrl1.book.volumeInfo.authors.length > 1">, </h5>
-                  </h5>
-                </div>
-                <h5>Published: {{ctrl1.book.volumeInfo.publishedDate}}</h5>
-                <h5>{{ctrl1.book.volumeInfo.categories[0]}}</h5>
-                <p>
-                  {{ctrl1.book.volumeInfo.description}}
-                </p>
-                <h5>PageCount: {{ctrl1.book.volumeInfo.pageCount}}</h5>
-              </div>
-          </div>
-        </div> -->
-
-        <div class="book-card" ng-repeat="book in ctrl.books | unique:'title'">
-          <div class="img-like">
-            <img ng-src={{book.thumbnail}}>
-            <!-- ng-click="ctrl.getBook(book)" -->
-            <h2>+</h2>
-          </div>
-          <h4 >{{book.title}}</h4>
-          <!-- ng-click="ctrl.getBook(book)" -->
-          <div class="author">
-            <h5 class="by">by</h5>
-            <h5>{{book.authors[0]}}</h5>
-            <h5 ng-if="book.authors.length > 1">, ...</h5>
-          </div>
-        </div>
-      </div>
-
-      <!-- <div ng-controller='MainController as ctrl2' class="book-index">
-
-        <div class="book-show-section" ng-class="(ctrl2.book? 'show' : '')">
-          <div class='close' ng-click="ctrl2.book = null">x</div>
-          <div class="book-show" >
-            <img ng-src={{ctrl2.book.volumeInfo.imageLinks.thumbnail}}>
-            <div class="show-text">
+          <div class="dim" ng-class="(ctrl.registerModal? 'registerModal' : '')">
+            <div class="modal">
+              <h6 ng-click="ctrl.registerModal = false">x</h6>
+              <hr/>
               <div>
-                <h4>{{ctrl2.book.volumeInfo.title}}</h4>
-                <h5 class="by">by</h5>
-                <h5 ng-repeat="author in ctrl2.book.volumeInfo.authors">
-                  {{author}}
-                  <h5 ng-if="ctrl2.book.volumeInfo.authors.length > 1">, </h5>
-                </h5>
+                <h2>Register</h2>
+                <form ng-submit="ctrl.processRegister()">
+                  <div class="row">
+                    <input type="text" placeholder="username" id="name" ng-model="ctrl.formData.username"></br>
+                    <input type="text" placeholder="password" id="password" ng-model="ctrl.formData.password"></br>
+                    <input type="submit" value="register" class="register-button" ng-click="ctrl.registerModal = false"></br>
+                  </div>
+                </form>
               </div>
-              <h5>Published: {{ctrl2.book.volumeInfo.publishedDate}}</h5>
-              <h5>{{ctrl2.book.volumeInfo.categories[0]}}</h5>
-              <p>
-                {{ctrl2.book.volumeInfo.description}}
-              </p>
-              <h5>PageCount: {{ctrl2.book.volumeInfo.pageCount}}</h5>
             </div>
           </div>
-
+        </nav>
+      </div>
+      <div class="inner-header">
+        <div class="title-images">
+          <img src="./assets/images/anthony-tran-378336.jpg">
+          <img src="./assets/images/amirreza-fardad-426198.jpg">
+          <img src="./assets/images/clay-banks-258326.jpg">
         </div>
-        <h4 ng-click="ctrl1.getBook(book)">{{book.volumeInfo.title}}</h4>
-        <div class="author">
-          <h5 class="by">by</h5>
-          <h5> {{book.volumeInfo.authors[0]}}</h5>
-          <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
-        </div>
-
-      </div> -->
-
-    </main>
-
-
-    <main ng-view></main>
-
-    <!-- <div ng-controller="ExpanderCollapserController as ctrl" class="expand-collapse">
-
-      <div class="collapse"
-      ng-click="ctrl.expanded = false"
-      ng-class="(ctrl.expanded ? '' : 'hidden')">
-        <div class="collapser">
-          <a href="/">
-            <div class="triangle-up">
-
-            </div>
-            <h5>Published: {{ctrl2.book.volumeInfo.publishedDate}}</h5>
-            <h5>{{ctrl2.book.volumeInfo.categories[0]}}</h5>
-            <p>
-              {{ctrl2.book.volumeInfo.description}}
-            </p>
-            <h5>PageCount: {{ctrl2.book.volumeInfo.pageCount}}</h5>
-          </div>
+        <div class="title">
+          <h3>There's no shame in a little</h3>
+          <h1>Shelf Help</h1>
         </div>
       </div>
-
-      <div class="book-card" ng-repeat="book in ctrl2.books | limitTo:-4">
-        <div class="img-like">
-          <img ng-click="ctrl2.getBook(book)" ng-src={{book.volumeInfo.imageLinks.smallThumbnail}}>
-          <h2>+</h2>
-        </div>
-        <h4 ng-click="ctrl2.getBook(book)">{{book.volumeInfo.title}}</h4>
-        <div class="author">
-          <h5 class="by">by</h5>
-          <h5> {{book.volumeInfo.authors[0]}}</h5>
-          <h5 ng-if="book.volumeInfo.authors.length > 1">, ...</h5>
-        </div>
-      </div>
-
-    </div> -->
+    </div>
 
     <main>
-      <div ng-controller="UserShelfController as ctrl" class="book-index">
 
-        <div class="index-line"><h3>my shelf | <a href="#">add books</a></h3></div>
+      <div  class="book-index">
+        <!-- ng-controller="RegisterController as ctrl" -->
+        <div class="search">
+          <form ng-submit='ctrl.searchAPI()'>
+            Search
+            <input type="text" ng-model="ctrl.search">
+            <input type="submit">
+          </form>
+        </div>
+
+        <div class="index-line"><h3>search results</h3></div>
+        <div>
+          <div class="book-card" ng-repeat="searchedBook in ctrl.searchResults">
+
+            <div class="img-like">
+              <img  ng-src={{searchedBook.volumeInfo.imageLinks.thumbnail}} ng-click="ctrl.getBook(searchedBook)">
+              <form ng-submit="ctrl.createBookShelf(searchedBook, ctrl.user)">
+                <input class="plus" type="submit" value="+"></input>
+
+              </form>
+            </div>
+            <h4>{{searchedBook.volumeInfo.title}}</h4>
+            <!-- ng-click="ctrl.getBook(book)" -->
+            <div class="author">
+              <h5 class="by">by</h5>
+              <h5>{{searchedBook.volumeInfo.authors[0]}}</h5>
+              <h5 ng-if="searchedBook.volumeInfo.authors.length > 1">, ...</h5>
+            </div>
+          </div>
+        </div>
+    </div>
+  </main>
+    <main>
+      <!-- {{ctrl.test}} -->
+
+      <div class="book-index">
+
+        <div class="index-line">
+          <h3>my shelf | <a href="#">add books</a>
+          </h3>
+        </div>
+        <!-- {{ctrl.user}} -->
         <div class="my-shelf" ng-repeat="book in ctrl.books">
 
           <div class="my-shelf-section">
@@ -234,33 +132,26 @@
                 <h5>Published: {{book.publishedDate}}</h5>
                 <h5>{{book.categories[0]}}</h5>
                 <p>
-                {{book.description}}
+                  {{book.description}}
                 </p>
                 <h5>PageCount: {{book.pageCount}}</h5>
 
                 <h4 class="rating" ng-if="book.rating > 0">
                   Rating: {{book.rating}}
-                  <img ng-click="ctrl.getBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
+                  <img ng-click="ctrl.getShelfBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
 
                 </h4>
 
                 <h4 class="rating" ng-if="book.rating === 0">
                   Add a rating!
-                  <img ng-click="ctrl.getBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
+                  <img ng-click="ctrl.getShelfBook(book)" src="/assets/images/simpleiconDOTcom-pen-15-64x64.png"/>
 
                 </h4>
                 <form ng-submit="ctrl.updateBook()" class="rate-edit" ng-if="book.rating === null">
                   <input ng-model="ctrl.formData.rating" class="rate-textbox" type="text"
-                   placeholder="e.g. 1 - 5" />
-                   <input class="rate-button" type="submit" value="Go">
+                  placeholder="e.g. 1 - 5" />
+                  <input class="rate-button" type="submit" value="Go">
                 </form>
-
-
-                <!-- <form ng-submit="ctrl.updateBook()" class="rate-edit" ng-if="!book.rating">
-                  <input ng-model="ctrl.formData.rating" class="rate-textbox" type="text"
-                   placeholder="e.g. 1 - 5" />
-                   <input class="rate-button" type="submit" value="Go">
-                </form> -->
 
 
               </div>
@@ -270,9 +161,132 @@
         </div>
       </div>
     </main>
-    <div class="index-links">
+
+
+  </div>
+  <main ng-controller='MainController as ctrl'>
+    <div class="index-line"><h3>what's popular</h3></div>
+    <div ng-if="!ctrl.expanded" class="book-index">
+
+
+      <div ng-repeat="row in ctrl.bookArray">
+
+        <div class="show-book-close" ng-if="$index === ctrl.index" >
+          <div ng-click="ctrl.index = null" class="close">x</div>
+          <div class="index-book-show ">
+            <img ng-src={{ctrl.book.thumbnail}}>
+            <div class="show-text">
+              <div class="author-title-delete">
+                <div class="author-title">
+                  <h4>{{ctrl.book.title}}</h4>
+                  <h5 class="by">by </h5>
+                  <h5 ng-repeat="author in ctrl.book.authors track by $index">
+                    <div ng-if="ctrl.book.authors.length = 1">{{author}}</div>
+                    <div ng-if="ctrl.book.authors.length > 1">{{author}}, </div>
+                  </h5>
+                </div>
+              </div>
+              <h5>Published: {{ctrl.book.publishedDate}}</h5>
+              <h5>{{ctrl.book.categories[0]}}</h5>
+              <p>
+                {{ctrl.book.description}}
+              </p>
+              <h5>PageCount: {{ctrl.book.pageCount}}</h5>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="book-card" ng-repeat="book in ctrl.books | unique:'title' | limitTo:4:row">
+          <div class="img-like">
+            <img ng-src={{book.thumbnail}}
+            ng-click="ctrl.getBook(book, $parent.$index)">
+            <h2 class="add">+</h2>
+          </div>
+          <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
+
+          <div class="author">
+            <h5 class="by">by</h5>
+            <h5>{{book.authors[0]}}</h5>
+            <h5 ng-if="book.authors.length > 1">, ...</h5>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="footer">
+
+    <div class="book-index">
+
+      <div ng-if="!ctrl.expanded" class="expand-collapse expand">
+        <div class="expander">
+          <div ng-click="ctrl.expandIndex(20,0); ctrl.index = null" class="triangle-down">
+            <h3>see more</h3>
+          </div>
+        </div>
+      </div>
+
+
+      <div ng-if="ctrl.expanded" ng-repeat="row in ctrl.bookArray">
+
+        <div class="show-book-close" ng-if="$index === ctrl.index" >
+          <div ng-click="ctrl.index = null" class="close">x</div>
+          <div class="index-book-show ">
+            <img ng-src={{ctrl.book.thumbnail}}>
+            <div class="show-text">
+              <div class="author-title-delete">
+                <div class="author-title">
+                  <h4>{{ctrl.book.title}}</h4>
+                  <h5 class="by">by </h5>
+                  <h5 ng-repeat="author in ctrl.book.authors track by $index">
+                    <div ng-if="ctrl.book.authors.length = 1">{{author}}</div>
+                    <div ng-if="ctrl.book.authors.length > 1">{{author}}, </div>
+                  </h5>
+                </div>
+              </div>
+              <h5>Published: {{ctrl.book.publishedDate}}</h5>
+              <h5>{{ctrl.book.categories[0]}}</h5>
+              <p>
+                {{ctrl.book.description}}
+              </p>
+              <h5>PageCount: {{ctrl.book.pageCount}}</h5>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="book-card" ng-repeat="book in ctrl.books | unique:'title' | limitTo:4:row">
+          <div class="img-like">
+            <img ng-src={{book.thumbnail}}
+            ng-click="ctrl.getBook(book, $parent.$index)">
+            <h2 class="add">+</h2>
+          </div>
+          <h4 ng-click="ctrl.getBook(book, $parent.$index)">{{book.title}}</h4>
+
+          <div class="author">
+            <h5 class="by">by</h5>
+            <h5>{{book.authors[0]}}</h5>
+            <h5 ng-if="book.authors.length > 1">, ...</h5>
+          </div>
+        </div>
+
+      </div>
+
+      <div ng-if="ctrl.expanded" class="expand-collapse collapse">
+        <div class="collapser">
+          <div ng-click="ctrl.expanded = false; ctrl.index = null; ctrl.createIndexArray(8,0)" class="triangle-up">
+            <h3>see less</h3>
+          </div>
+        </div>
+      </div>
     </div>
-  </body>
+
+  </main>
+
+
+
+  <div class="index-links">
+  </div>
+  <div class="footer">
+  </div>
+</body>
 </html>
