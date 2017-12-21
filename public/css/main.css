@@ -77,7 +77,15 @@ nav .index-line a:hover {
   text-decoration: underline;
 }
 
+<<<<<<< HEAD
 /*.search > form {
+=======
+.plus {
+  cursor: pointer;
+}
+
+.search > form {
+>>>>>>> 541ba513ee14c49f3149f1c60f935d6a4e4a2e82
   padding-right: 30px;
 }*/
 
