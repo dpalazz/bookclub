@@ -167,7 +167,7 @@ app.controller('RegisterController', ['$http', function($http) {
       pageCount: searchedBook.volumeInfo.pageCount,
       publishedDate: searchedBook.volumeInfo.publishedDate,
       user: this.user._id,
-      rating: searchedBook.volumeInfo.rating
+      rating: 0
     }
     $http({
       url: 'books/',
